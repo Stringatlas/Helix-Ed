@@ -1,0 +1,18 @@
+$color: red;
+
+$background-color: #373b3e;
+$accent: #d3d3d3;
+
+$primary: #13a333;
+$secondary: #67a985;
+
+
+@font-face {
+    font-family: "Inter";
+    src: url("./lib/fonts/Inter.ttf")
+}
+
+* {
+    margin: 0;
+    font-family: Inter, sans-serif;
+}

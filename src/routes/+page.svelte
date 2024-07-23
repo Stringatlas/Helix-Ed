@@ -1,0 +1,36 @@
+<script lang="ts">
+    import InstructorCard from "$lib/components/InstructorCard.svelte";
+    import instructors from "$lib/instructorData.json";
+</script>
+
+<body>
+    {#each Object.entries(instructors) as [subject, subjectInstructors]}
+        <h1>{subject}</h1>
+        <div>
+            {#each subjectInstructors as instructor}
+                <InstructorCard instructorData={instructor} {subject} />
+            {/each}
+        </div>
+    {/each}
+</body>
+
+<style lang="scss">
+    h1 {
+        margin-top: 50px;
+    }
+    body {
+        background-color: $background-color;
+        color: $accent;
+        padding: 8px;
+
+        // scrollbar
+    }
+
+    div {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+</style>
