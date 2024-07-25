@@ -19,8 +19,6 @@
         margin-top: 50px;
     }
     body {
-        background-color: $background-color;
-        color: $accent;
         padding: 8px;
 
         // scrollbar

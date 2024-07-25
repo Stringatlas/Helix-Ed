@@ -22,6 +22,7 @@
 	"type": "module",
 	"dependencies": {
 		"sass": "^1.77.8",
+		"svelte-bootstrap-icons": "^3.1.1",
 		"three": "^0.166.1"
 	}
 }

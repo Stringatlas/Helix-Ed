@@ -31,11 +31,9 @@
         </button>
     </div>
 
-    {#if true}
-        <div id="bottom-container" class={showBio ? "active" : ""}>
-            <p>{instructorData.bio}</p>
-        </div>
-    {/if}
+    <div id="bottom-container" class={showBio ? "active" : ""}>
+        <p>{instructorData.bio}</p>
+    </div>
 </div>
 
 <style lang="scss">
@@ -48,18 +46,19 @@
     #toggle-button {
         position: absolute;
         // background: linear-gradient(to top, rgb(65, 70, 79), rgba(255, 0, 0, 0));
-        background: radial-gradient(ellipse at bottom, rgb(76, 82, 93), rgba(255, 0, 0, 0));
+        background: radial-gradient(ellipse at bottom, rgb(76, 82, 93) 0%, rgba(255, 0, 0, 0) 75%);
         height: 30px;
 
         border-style: none;
         bottom: -$card-padding;
         left: -$card-padding;
-        width: $card-width + 2 * $card-padding;
+        width: calc(100% + 2 * $card-padding);
 
-        transform: translateY(0%);
         transition:
             transform $animation-duration ease,
-            opacity $animation-duration ease;
+            opacity $animation-duration ease,
+            bottom $animation-duration ease;
+
         opacity: 0.2;
 
         svg {
@@ -69,13 +68,15 @@
 
         &.active {
             opacity: 1;
-            svg {
+            height: 46px;
+            bottom: -$card-padding - 16px;
+            background: radial-gradient(ellipse, rgb(76, 82, 93) 0%, rgba(255, 0, 0, 0) 75%);
+            bottom: svg {
                 transform: rotate(0deg);
             }
         }
 
         &:hover {
-            transform: translateY(0%);
             opacity: 1;
         }
     }
@@ -107,17 +108,14 @@
         overflow: hidden;
         max-height: 0px;
         margin-top: 0px;
-        // opacity: 0;
 
         transition:
             max-height $animation-duration ease,
-            opacity $animation-duration ease,
-            margin-top $animation-duration ease;
+            margin-top $animation-duration * 2 ease;
 
         &.active {
             margin-top: 32px;
             max-height: 500px;
-            // opacity: 1;
         }
     }
 
@@ -126,6 +124,9 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
         padding: $card-padding;
         border-radius: 8px;
+
+        position: relative;
+        background: radial-gradient(circle at top right, #3b424b 0%, $background-color 80%);
     }
 
     .text-container {
