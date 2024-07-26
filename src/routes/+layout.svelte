@@ -24,8 +24,9 @@
     }
 
     main {
-        background: radial-gradient(circle at center, rgb(60, 68, 70) 0%, $background-color 100%);
+        // background: radial-gradient(circle at center, darken($background-color, 100%) 0%, $background-color 100%) !important;
+        margin: 0;
+        margin-top: 69px;
         color: $text-color;
-        padding: 8px;
     }
 </style>

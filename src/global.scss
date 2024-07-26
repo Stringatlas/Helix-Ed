@@ -1,21 +1,34 @@
 $color: red;
 
-$background-color: #373b3e;
-$background-darker: #2e3032;
+$background-color: #dbe2e7;
+$background-darker: #9ebcb8;
 
-$text-color: #d3d3d3;
+$text-color: #000000;
 $accent: #6e7e76;
 
 $primary: #fae5ba;
 $secondary: #beb595;
 
 
+:root {
+    --background-color: #{$background-color};
+}
+
 @font-face {
     font-family: "Inter";
     src: url("/Inter.ttf")
 }
 
+@font-face {
+    font-family: "Montserrat";
+    src: url("/Montserrat.ttf")
+}
+
+@font-face {
+    font-family: "Istok Web";
+    src: url("/IstokWeb.ttf");
+}
 * {
     margin: 0;
-    font-family: Inter, Montserrat, sans-serif;
+    font-family: "Montserrat", "Istok Web", sans-serif;
 }

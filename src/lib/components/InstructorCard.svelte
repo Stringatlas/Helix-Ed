@@ -25,7 +25,7 @@
         </div>
         <img src={instructorData.imagePath} alt="instructor" />
         <button id="toggle-button" class={showBio ? "active" : ""} on:click={toggleBio}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" viewBox="0 0 16 16">
                 <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
             </svg>
         </button>
@@ -46,7 +46,7 @@
     #toggle-button {
         position: absolute;
         // background: linear-gradient(to top, rgb(65, 70, 79), rgba(255, 0, 0, 0));
-        background: radial-gradient(ellipse at bottom, rgb(76, 82, 93) 0%, rgba(255, 0, 0, 0) 75%);
+        background: radial-gradient(ellipse at bottom, lighten($background-color, 10%) 0%, rgba(255, 0, 0, 0) 75%);
         height: 30px;
 
         border-style: none;
@@ -70,7 +70,7 @@
             opacity: 1;
             height: 46px;
             bottom: -$card-padding - 16px;
-            background: radial-gradient(ellipse, rgb(76, 82, 93) 0%, rgba(255, 0, 0, 0) 75%);
+            background: radial-gradient(ellipse, lighten($background-color, 10%) 0%, rgba(255, 0, 0, 0) 75%);
             bottom: svg {
                 transform: rotate(0deg);
             }
@@ -126,7 +126,7 @@
         border-radius: 8px;
 
         position: relative;
-        background: radial-gradient(circle at top right, #3b424b 0%, $background-color 80%);
+        background: radial-gradient(circle at top, darken($background-color, 10%) 0%, $background-color 80%);
     }
 
     .text-container {

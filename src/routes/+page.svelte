@@ -18,10 +18,9 @@
     h1 {
         margin-top: 50px;
     }
+
     body {
         padding: 8px;
-
-        // scrollbar
     }
 
     div {

@@ -17,7 +17,7 @@
         </li>
         <div class="nav-links">
             <li class="dropdown" on:mouseleave={closeDropdown}>
-                <a id="our-classes" href="/" on:mouseenter={toggleDropdown} on:click|preventDefault={toggleDropdown}>Our classes<span style="font-size: 8px">▼</span></a>
+                <a id="our-classes" href="/" on:mouseenter={toggleDropdown} on:click|preventDefault={toggleDropdown}>Our classes<span style="font-size: 16px">▼</span></a>
                 <ul class={`dropdown-menu ${isDropdownOpen ? "active" : ""}`}>
                     <li><a href="/classes/physics">Physics</a></li>
                     <li><a href="/classes/chemistry">Chemistry</a></li>
@@ -27,11 +27,21 @@
             </li>
 
             <li><a href="/about-us">About Us</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <button>Enroll</button>
         </div>
     </ul>
 </nav>
 
 <style lang="scss">
+    button {
+        background: $primary;
+        color: black;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+    }
+
     img {
         height: 40px;
     }
@@ -44,7 +54,7 @@
     }
 
     a {
-        font-size: 20px;
+        font-size: 16px;
         color: $text-color;
         text-decoration: none;
     }
@@ -54,9 +64,13 @@
     }
 
     nav {
-        background: $background-darker;
+        background: $background-color;
         color: white;
-        padding: 12px;
+        padding: 12px 20px;
+        border-style: solid;
+        border-width: 0px 0px 1px 0px;
+        border-color: black;
+        margin: 0;
     }
 
     ul {
@@ -74,6 +88,7 @@
     .nav-links {
         margin-right: 20px;
         display: flex;
+        align-items: center;
         gap: 20px;
     }
 
@@ -87,7 +102,7 @@
         position: absolute;
         top: 100%;
         left: 0;
-        background: $background-darker;
+        background: $background-color;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         border-radius: 12px;
         padding: 8px 0;
@@ -114,6 +129,6 @@
     }
 
     .dropdown-menu a:hover {
-        background-color: lighten($background-darker, 10%);
+        background-color: lighten($background-color, 10%);
     }
 </style>
