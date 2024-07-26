@@ -1,22 +1,123 @@
 <script lang="ts">
     import InstructorCard from "$lib/components/InstructorCard.svelte";
     import instructors from "$lib/instructorData.json";
+
+    import BookIcon from "$lib/images/icons/book.png";
+    import MoneyIcon from "$lib/images/icons/money.png";
+    import SchoolIcon from "$lib/images/icons/school.png";
+
+    import testimonials from "$lib/testimonialData.json";
+    import TestimonialCard from "$lib/components/TestimonialCard.svelte";
+    import type { TestimonialData } from "$lib/types";
 </script>
 
 <body>
-    {#each Object.entries(instructors) as [subject, subjectInstructors]}
-        <h1>{subject}</h1>
+    <section id="landing-section">
+        <h1>Bringing scientific literacy to all students</h1>
+        <h2>Get ahead of the curve</h2>
+        <button>View our courses</button>
+    </section>
+    <h1>Why Helix Ed?</h1>
+
+    <section id="why">
         <div>
-            {#each subjectInstructors as instructor}
-                <InstructorCard instructorData={instructor} {subject} />
+            <img src={BookIcon} alt="" />
+            <h2>Outstanding Curriculum</h2>
+            <p>Dive into a well-structured learning path that has been proven effective, setting you up for success in every lesson.</p>
+        </div>
+        <div>
+            <img src={SchoolIcon} alt="" />
+            <h2>Top-Tier Instructors</h2>
+            <p>Our instructors come from top universities, ensuring a learning experience that's both high-quality and personalized.</p>
+        </div>
+        <div>
+            <img src={MoneyIcon} alt="" />
+            <h2>Quality at a Low Cost</h2>
+            <p>Experience premium courses at affordable rates, making education both accessible and effective.</p>
+        </div>
+    </section>
+    <section id="testimonials">
+        <h1>Reviews</h1>
+        <div>
+            {#each testimonials as testimonial}
+                <TestimonialCard {...testimonial} />
             {/each}
         </div>
-    {/each}
+    </section>
 </body>
 
 <style lang="scss">
+    button {
+        border: none;
+        padding: 20px 16px;
+        background: radial-gradient(circle at top left, darken($primary, 10%) 0%, $primary 100%);
+        border-radius: 16px;
+        font-weight: bold;
+    }
+
     h1 {
-        margin-top: 50px;
+        text-align: center;
+        font-size: 32px;
+        margin-bottom: 16px;
+    }
+    #why {
+        padding: 0 15%;
+        display: flex;
+        flex-direction: row;
+        gap: 64px;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            flex: 1;
+            img {
+                width: 100px;
+                height: 100px;
+            }
+            h1 {
+                line-height: 0.8;
+            }
+            p {
+                line-height: 1.5;
+                letter-spacing: 1.5;
+            }
+        }
+
+        margin-bottom: 120px;
+        margin-top: 24px;
+    }
+    #landing-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: $text-color;
+        padding: 0 20%;
+        height: 100vh;
+        text-align: center;
+
+        h1 {
+            font-size: 52px;
+            margin-bottom: 16px;
+        }
+        h2 {
+            margin-bottom: 64px;
+        }
+    }
+    #testimonials {
+        margin: 20px;
+
+        div {
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
     }
 
     body {

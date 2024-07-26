@@ -3,9 +3,10 @@
 
 <section>
     <div>
-        <p>Copyright © 2024 HelixEd</p>
+        <p>Copyright © 2024 HelixEd. All rights reserved.</p>
         <a href="/privacy-policy">Privacy Policy</a>
-        <p>Questions? Contact helix-ed.org@gmail.com</p>
+        <a href="/attributions">Attributions</a>
+        <p>Questions? Contact: <a href="mailto:helix-ed.org@gmail.com">helix-ed.org@gmail.com</a></p>
     </div>
 </section>
 

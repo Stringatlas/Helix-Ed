@@ -1,12 +1,9 @@
 <script lang="ts">
     import type { InstructorData } from "$lib/types";
+    import { capitalizeFirstLetter } from "$lib/util";
 
     export let instructorData: InstructorData;
     export let subject: string;
-
-    function capitalizeFirstLetter(str: string) {
-        return str.charAt(0).toUpperCase() + str.slice(1);
-    }
 
     let showBio: boolean = false;
 
@@ -96,7 +93,6 @@
     p {
         line-height: 1.25;
         text-align: justify;
-        // letter-spacing: 0.02em;
     }
 
     #top-container {
@@ -128,7 +124,7 @@
         border-radius: 8px;
 
         position: relative;
-        background: radial-gradient(circle at top, darken($background-color, 10%) 0%, $background-color 80%);
+        background: radial-gradient(circle at top left, darken($background-color, 5%) 0%, $background-color 80%);
     }
 
     .text-container {

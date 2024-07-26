@@ -11,11 +11,13 @@
     <slot></slot>
 </main>
 
-<section>
+<section id="footer">
     <Footer />
 </section>
 
 <style lang="scss">
+    $nav-height: 69px;
+
     #nav {
         position: fixed;
         top: 0;
@@ -24,7 +26,7 @@
     }
 
     main {
-        min-height: 100vh;
+        min-height: calc(100vh - $nav-height);
     }
 
     * {
@@ -35,7 +37,7 @@
     main {
         // background: radial-gradient(circle at center, darken($background-color, 100%) 0%, $background-color 100%) !important;
         margin: 0;
-        margin-top: 69px;
+        margin-top: $nav-height;
         color: $text-color;
     }
 </style>
