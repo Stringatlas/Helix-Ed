@@ -68,9 +68,11 @@
 
         &.active {
             opacity: 1;
-            height: 46px;
-            bottom: -$card-padding - 16px;
-            background: radial-gradient(ellipse, lighten($background-color, 10%) 0%, rgba(255, 0, 0, 0) 75%);
+            // height: 46px;
+            // bottom: -$card-padding - 16px;
+            // background: radial-gradient(ellipse, lighten($background-color, 10%) 0%, rgba(255, 0, 0, 0) 75%);
+            background: none;
+
             bottom: svg {
                 transform: rotate(0deg);
             }
@@ -111,7 +113,7 @@
 
         transition:
             max-height $animation-duration ease,
-            margin-top $animation-duration * 2 ease;
+            margin-top $animation-duration ease;
 
         &.active {
             margin-top: 32px;

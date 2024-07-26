@@ -1,8 +1,9 @@
 <script>
     import Navbar from "$lib/components/Navbar.svelte";
+    import Footer from "$lib/components/Footer.svelte";
 </script>
 
-<section>
+<section id="nav">
     <Navbar />
 </section>
 
@@ -10,12 +11,20 @@
     <slot></slot>
 </main>
 
+<section>
+    <Footer />
+</section>
+
 <style lang="scss">
-    section {
+    #nav {
         position: fixed;
         top: 0;
         z-index: 1000;
         width: 100%;
+    }
+
+    main {
+        min-height: 100vh;
     }
 
     * {
