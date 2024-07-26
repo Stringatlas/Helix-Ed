@@ -8,13 +8,18 @@
 
     import testimonials from "$lib/testimonialData.json";
     import TestimonialCard from "$lib/components/TestimonialCard.svelte";
+    import FlippingText from "$lib/components/FlippingText.svelte";
+
     import type { TestimonialData } from "$lib/types";
+
+    let career: string = "{career}";
 </script>
 
 <body>
     <section id="landing-section">
-        <h1>Bringing scientific literacy to all students</h1>
-        <h2>Get ahead of the curve</h2>
+        <h1>Empowering future <FlippingText /> through personalized education</h1>
+
+        <h2>Igniting passion and mastery in the sciences</h2>
         <button>View our courses</button>
     </section>
     <h1>Why Helix Ed?</h1>
@@ -76,9 +81,6 @@
                 width: 100px;
                 height: 100px;
             }
-            h1 {
-                line-height: 0.8;
-            }
             p {
                 line-height: 1.5;
                 letter-spacing: 1.5;
@@ -94,7 +96,7 @@
         align-items: center;
         justify-content: center;
         color: $text-color;
-        padding: 0 20%;
+        padding: 0 15%;
         height: 100vh;
         text-align: center;
 

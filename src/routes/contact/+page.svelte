@@ -1,7 +1,4 @@
 <script lang="ts">
-    import classroom from "$lib/images/classroom.jpg";
-    import berkeley from "$lib/images/ucberkeley.jpg";
-
     import InstructorCard from "$lib/components/InstructorCard.svelte";
     import instructors from "$lib/instructorData.json";
     import { capitalizeFirstLetter } from "$lib/util";
@@ -42,11 +39,6 @@
             flex-direction: column;
             align-items: center;
             margin-top: 20px;
-        }
-        img {
-            width: auto;
-            min-width: 300px;
-            max-width: 400px;
         }
 
         h1 {
