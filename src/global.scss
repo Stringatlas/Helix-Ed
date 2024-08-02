@@ -4,11 +4,27 @@ $background-color: #dbe2e7;
 $background-darker: #9ebcb8;
 
 $text-color: #000000;
-$accent: #6e7e76;
+$accent: #293242;
 
 $primary: #fae5ba;
-$secondary: #beb595;
+$secondary: #b3c2af;
 
+
+@mixin button {
+    color: black;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+@mixin button-primary {
+    @include button;
+    background: $primary;
+}
+
+@mixin button-secondary {
+    @include button;
+    background: $secondary;
+}
 
 :root {
     --background-color: #{$background-color};
@@ -28,6 +44,7 @@ $secondary: #beb595;
     font-family: "Istok Web";
     src: url("/IstokWeb.ttf");
 }
+
 * {
     margin: 0;
     font-family: "Montserrat", "Istok Web", sans-serif;

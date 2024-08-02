@@ -17,7 +17,7 @@
 
 <body>
     <section id="landing-section">
-        <h1>Empowering future <FlippingText /> through personalized education</h1>
+        <h1>Empowering future <FlippingText /> <br />through personalized education</h1>
 
         <h2>Igniting passion and mastery in the sciences</h2>
         <button>View our courses</button>

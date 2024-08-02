@@ -19,8 +19,9 @@
             <h1>Our Mission</h1>
             <h2>Bringing academic excellence to every student</h2>
             <p>
-                Our goal is to supplement inadequate school resources, provide high-quality tutoring for students, assist them in transitioning smoothly to high school, and encourage deeper
-                exploration in their academic fields.
+                Our mission is to bridge the gap in school resources by providing exceptional academic support and instruction. We strive to ensure students transition smoothly to high school while
+                encouraging them to delve deeply into their areas of interest. Our team of instructors, hailing from prestigious universities from around the United States, is dedicated to helping
+                students uncover their passions and emerge as leaders in their chosen fields.
             </p>
         </div>
     </section>
@@ -29,8 +30,10 @@
         <div>
             <h1 style="margin-bottom: 16px;">Our Story</h1>
             <p>
-                In 2024, HelixEd began by hosting a biology bowl with over 40 participates. Shortly after, HelixEd ran online summer courses for middle school students in Physics, Biology, and
-                Chemistry. Ran by instructors who attend top universtiies, and high school TAs with excellent academic records, HelixEd has grown to a community of over 100 students.
+                With the goal of expanding academic opportunities to more students, HelixEd launched with the BioBrawl biology competition during the summer of 2024, featuring 8 teams and over 40
+                participants. Shortly after, HelixEd broadened its offerings beyond biology, introducing online summer courses in Physics, Biology, Chemistry, and Economics for middle school to early
+                high school students. Taught by instructors from top universities and supported by high school TAs with excellent academic records, HelixEd has grown into a thriving community of over
+                100 students.
             </p>
         </div>
         <img src={berkeley} alt="" />

@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { goto } from "$app/navigation";
+
     let isDropdownOpen = false;
 
     function toggleDropdown() {
@@ -28,7 +30,7 @@
 
             <li><a href="/about-us">About Us</a></li>
             <li><a href="/contact">Contact</a></li>
-            <button>Enroll</button>
+            <button on:click={() => goto("/enroll")}>Enroll</button>
         </div>
     </ul>
 </nav>

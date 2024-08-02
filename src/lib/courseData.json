@@ -1,0 +1,56 @@
+{
+    "physics": [
+        {
+            "title": "Intro to Mechanics",
+            "season": "Summer 2024",
+            "description": "15 classes in total. Will be taught by Sidhant Chaliha, who was admitted by Princeton University early and double bronze medalist in the USA Physics Olympiad. He graduated from Basis Independent Silicon Valley's Silicon Valley campus in 2024. This course is suitable for students with little to no prior physics knowledge, from 7th grade onwards. It is recommended that students have a basic understanding of algebra.",
+            "registrationForm": "https://tinyurl.com/24Sum-HelixEd-Physics",
+            "syllabus": "https://tinyurl.com/24Sum-HelixEd-Physics-Syllabus",
+            "status": "closed",
+            "studentDescription": "7th grade and up",
+            "tuition": 300,
+            "poster": "images/posters/physics-summer-24.png",
+            "content": "Physics at a high-school level, covering topics found in AP Physics 1 and AP Physics C: Mechanics"
+        }
+    ],
+    "chemistry": [
+        {
+            "title": "Intro to Chemistry",
+            "season": "Summer 2024",
+            "description": "10 classes in total. Will be taught by Derrick Liu, a rising sophomore at Johns Hopkins University majoring in Chemical Engineering (Pre-med track), and Emily Dai, a rising sophomore at UC Berkeley majoring in Chemistry. Both instructors have extensive tutoring experience. This course is suitable for students with little to no prior knowledge in chemistry, from 7th grade onwards. A basic understanding of algebra is recommended.",
+            "registrationForm": "https://tinyurl.com/24Sum-HelixEd-Chem",
+            "syllabus": "https://tinyurl.com/24Sum-Chem-Syllabus",
+            "status": "closed",
+            "studentDescription": "7th grade and up",
+            "tuition": 200,
+            "poster": "images/posters/chemistry-summer-24.png",
+            "content": "Physics at a high-school level, covering topics found in AP Physics 1 and AP Physics C: Mechanics"
+        }
+    ],
+    "economics": [
+        {
+            "title": "Intro to Macroeconomics",
+            "season": "Sometime",
+            "description": "10 classes in total. Will be taught by Derrick Liu, a rising sophomore at Johns Hopkins University majoring in Chemical Engineering (Pre-med track), and Emily Dai, a rising sophomore at UC Berkeley majoring in Chemistry. Both instructors have extensive tutoring experience. This course is suitable for students with little to no prior knowledge in chemistry, from 7th grade onwards. A basic understanding of algebra is recommended.",
+            "registrationForm": "https://tinyurl.com/24Sum-HelixEd-Chem",
+            "syllabus": "https://tinyurl.com/24Sum-Chem-Syllabus",
+            "status": "open",
+            "studentDescription": "7th grade and up",
+            "tuition": 300,
+            "content": "Physics at a high-school level, covering topics found in AP Physics 1 and AP Physics C: Mechanics"
+        }
+    ],
+    "biology": [
+        {
+            "title": "Intro to Biology",
+            "season": "Sometime",
+            "description": "10 classes in total. Will be taught by Derrick Liu, a rising sophomore at Johns Hopkins University majoring in Chemical Engineering (Pre-med track), and Emily Dai, a rising sophomore at UC Berkeley majoring in Chemistry. Both instructors have extensive tutoring experience. This course is suitable for students with little to no prior knowledge in chemistry, from 7th grade onwards. A basic understanding of algebra is recommended.",
+            "registrationForm": "https://tinyurl.com/24Sum-HelixEd-Chem",
+            "syllabus": "https://tinyurl.com/24Sum-Chem-Syllabus",
+            "status": "closed",
+            "studentDescription": "7th grade and up",
+            "tuition": 300,
+            "content": "Physics at a high-school level, covering topics found in AP Physics 1 and AP Physics C: Mechanics"
+        }
+    ]
+}
