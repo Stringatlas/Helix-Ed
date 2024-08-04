@@ -11,6 +11,7 @@
     import FlippingText from "$lib/components/FadingText.svelte";
     import Typewriter from "$lib/components/Typewriter.svelte";
     import type { TestimonialData } from "$lib/types";
+    import { goto } from "$app/navigation";
 
     let careers = ["engineers", "doctors", "chemists", "teachers", "physicists", "scientists", "astronomers", "biologists", "roboticists", "economists"];
 </script>
@@ -19,7 +20,7 @@
     <section id="landing-section">
         <h1>Empowering future <Typewriter words={careers} /><br />through personalized education</h1>
         <h2>Igniting passion and mastery in the sciences</h2>
-        <button>View our courses</button>
+        <button on:click={() => goto("/enroll")}>View our courses</button>
     </section>
     <h1>Why Helix Ed?</h1>
 

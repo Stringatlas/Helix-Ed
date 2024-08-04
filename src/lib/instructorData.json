@@ -5,8 +5,7 @@
             "role": "Instructor",
             "school": "Princeton University",
             "bio": "Sidhant Chaliha is a graduated senior from BASIS Independent Silicon Valley and a rising freshman at Princeton University, studying physics and mathematics. He has taken all of the AP Physics exams offered, has scored numerous bronze medals at the US Physics Olympiad, and he considers himself a lifelong student of physics, with the belief that it holds the deepest possible description of nature.",
-            "imagePath": "images/instructors/sidhantphoto.png",
-            "additionalRole": "Director"
+            "imagePath": "images/instructors/sidhantphoto.png"
         },
         {
             "name": "Brianna Zhang",
@@ -59,7 +58,8 @@
             "role": "Instructor",
             "school": "University of California, Berkeley",
             "bio": "Ivan Zhang graduated from BASIS Independent Silicon Valley and is a rising freshman at UC Berkeley studying Molecular and Cell Biology. Ivan has completed Honors Biology and Honors Chemistry, and self-studied AP Biology and AP Chemistry. His dedication to the life sciences led him to become a USABO semi-finalist. During high school, Ivan headed the Biology and Economics clubs and organized a Biology Bowl for middle school students. Additionally, he served as a teaching assistant for introductory chemistry at BASIS Independent Silicon Valley.",
-            "imagePath": "images/instructors/ivanphoto2.jpg"
+            "imagePath": "images/instructors/ivanphoto2.jpg",
+            "additionalRole": "Director"
         },
         {
             "name": "Angela Wang",

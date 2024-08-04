@@ -21,7 +21,7 @@
 
 <main>
     <section id="header">
-        <h1>Enroll</h1>
+        <h1>Our courses</h1>
     </section>
 
     <main>
