@@ -26,4 +26,5 @@ export type CourseData = {
     tuition: number,
     content: string,
     poster?: string,
+    dates: string,
 }

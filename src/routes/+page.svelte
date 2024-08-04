@@ -8,17 +8,16 @@
 
     import testimonials from "$lib/testimonialData.json";
     import TestimonialCard from "$lib/components/TestimonialCard.svelte";
-    import FlippingText from "$lib/components/FlippingText.svelte";
-
+    import FlippingText from "$lib/components/FadingText.svelte";
+    import Typewriter from "$lib/components/Typewriter.svelte";
     import type { TestimonialData } from "$lib/types";
 
-    let career: string = "{career}";
+    let careers = ["engineers", "doctors", "chemists", "teachers", "physicists", "scientists", "astronomers", "biologists", "roboticists", "economists"];
 </script>
 
 <body>
     <section id="landing-section">
-        <h1>Empowering future <FlippingText /> <br />through personalized education</h1>
-
+        <h1>Empowering future <Typewriter words={careers} /><br />through personalized education</h1>
         <h2>Igniting passion and mastery in the sciences</h2>
         <button>View our courses</button>
     </section>
@@ -71,6 +70,9 @@
         flex-direction: row;
         gap: 64px;
 
+        margin-bottom: 120px;
+        margin-top: 24px;
+
         div {
             display: flex;
             flex-direction: column;
@@ -86,9 +88,6 @@
                 letter-spacing: 1.5;
             }
         }
-
-        margin-bottom: 120px;
-        margin-top: 24px;
     }
     #landing-section {
         display: flex;

@@ -4,10 +4,13 @@
     export let courseData: CourseData;
 </script>
 
-<div class="card"></div>
+<div class="card">
+    <h1>{courseData.title}</h1>
+    <p>{courseData.description}</p>
+</div>
 
 <style lang="scss">
-    #card {
+    .card {
         width: 100%;
         height: 100%;
         background-color: $background-color;

@@ -10,6 +10,7 @@
             "studentDescription": "7th grade and up",
             "tuition": 300,
             "poster": "images/posters/physics-summer-24.png",
+            "dates": "Mon, Wed, Fri, 6/17 - 7/19",
             "content": "Physics at a high-school level, covering topics found in AP Physics 1 and AP Physics C: Mechanics"
         }
     ],
@@ -23,6 +24,7 @@
             "status": "closed",
             "studentDescription": "7th grade and up",
             "tuition": 200,
+            "dates": "Mon, Wed, Fri, 6/17 - 7/19",
             "poster": "images/posters/chemistry-summer-24.png",
             "content": "Physics at a high-school level, covering topics found in AP Physics 1 and AP Physics C: Mechanics"
         }
@@ -37,6 +39,7 @@
             "status": "open",
             "studentDescription": "7th grade and up",
             "tuition": 300,
+            "dates": "Mon, Wed, Fri, 6/17 - 7/19",
             "content": "Physics at a high-school level, covering topics found in AP Physics 1 and AP Physics C: Mechanics"
         }
     ],
@@ -47,9 +50,10 @@
             "description": "10 classes in total. Will be taught by Derrick Liu, a rising sophomore at Johns Hopkins University majoring in Chemical Engineering (Pre-med track), and Emily Dai, a rising sophomore at UC Berkeley majoring in Chemistry. Both instructors have extensive tutoring experience. This course is suitable for students with little to no prior knowledge in chemistry, from 7th grade onwards. A basic understanding of algebra is recommended.",
             "registrationForm": "https://tinyurl.com/24Sum-HelixEd-Chem",
             "syllabus": "https://tinyurl.com/24Sum-Chem-Syllabus",
-            "status": "closed",
+            "status": "open",
             "studentDescription": "7th grade and up",
             "tuition": 300,
+            "dates": "Mon, Wed, Fri, 6/17 - 7/19",
             "content": "Physics at a high-school level, covering topics found in AP Physics 1 and AP Physics C: Mechanics"
         }
     ]

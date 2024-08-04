@@ -61,6 +61,8 @@
                 <p>{currentCourse.studentDescription}</p>
                 <h1>Course content</h1>
                 <p>{currentCourse.content}</p>
+                <h1>Class Dates</h1>
+                <p>{currentCourse.dates}</p>
                 <h1>Refund Policy</h1>
                 <p>Full refund for two classes, no refund for further classes</p>
                 <h1>Class format</h1>
@@ -120,6 +122,7 @@
     }
 
     #actions {
+        margin-top: 24px;
         display: flex;
         flex-grow: 1;
         flex-direction: row;
@@ -153,6 +156,8 @@
         }
     }
     #instructors {
+        margin-top: 24px;
+
         > div {
             overflow-x: auto;
             scrollbar-color: rgb(122, 125, 136) lighten($background-color, 5%);
