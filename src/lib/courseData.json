@@ -3,6 +3,7 @@
         {
             "title": "Intro to Mechanics",
             "season": "Summer 2024",
+            "subject": "physics",
             "description": "15 classes in total. Will be taught by Sidhant Chaliha, who was admitted by Princeton University early and double bronze medalist in the USA Physics Olympiad. He graduated from Basis Independent Silicon Valley's Silicon Valley campus in 2024. This course is suitable for students with little to no prior physics knowledge, from 7th grade onwards. It is recommended that students have a basic understanding of algebra.",
             "registrationForm": "https://tinyurl.com/24Sum-HelixEd-Physics",
             "syllabus": "https://tinyurl.com/24Sum-HelixEd-Physics-Syllabus",
@@ -18,6 +19,7 @@
         {
             "title": "Intro to Chemistry",
             "season": "Summer 2024",
+            "subject": "chemistry",
             "description": "10 classes in total. Will be taught by Derrick Liu, a rising sophomore at Johns Hopkins University majoring in Chemical Engineering (Pre-med track), and Emily Dai, a rising sophomore at UC Berkeley majoring in Chemistry. Both instructors have extensive tutoring experience. This course is suitable for students with little to no prior knowledge in chemistry, from 7th grade onwards. A basic understanding of algebra is recommended.",
             "registrationForm": "https://tinyurl.com/24Sum-HelixEd-Chem",
             "syllabus": "https://tinyurl.com/24Sum-Chem-Syllabus",
@@ -33,6 +35,7 @@
         {
             "title": "Intro to Macroeconomics",
             "season": "Sometime",
+            "subject": "economics",
             "description": "10 classes in total. Will be taught by Derrick Liu, a rising sophomore at Johns Hopkins University majoring in Chemical Engineering (Pre-med track), and Emily Dai, a rising sophomore at UC Berkeley majoring in Chemistry. Both instructors have extensive tutoring experience. This course is suitable for students with little to no prior knowledge in chemistry, from 7th grade onwards. A basic understanding of algebra is recommended.",
             "registrationForm": "https://tinyurl.com/24Sum-HelixEd-Chem",
             "syllabus": "https://tinyurl.com/24Sum-Chem-Syllabus",
@@ -47,6 +50,7 @@
         {
             "title": "Intro to Biology",
             "season": "Sometime",
+            "subject": "biology",
             "description": "10 classes in total. Will be taught by Derrick Liu, a rising sophomore at Johns Hopkins University majoring in Chemical Engineering (Pre-med track), and Emily Dai, a rising sophomore at UC Berkeley majoring in Chemistry. Both instructors have extensive tutoring experience. This course is suitable for students with little to no prior knowledge in chemistry, from 7th grade onwards. A basic understanding of algebra is recommended.",
             "registrationForm": "https://tinyurl.com/24Sum-HelixEd-Chem",
             "syllabus": "https://tinyurl.com/24Sum-Chem-Syllabus",

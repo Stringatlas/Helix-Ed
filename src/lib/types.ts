@@ -17,7 +17,8 @@ export type TestimonialData = {
 
 export type CourseData = {
     title: string,
-    season: string,
+    season: string, 
+    subject: string,
     description: string,
     syllabus: string,
     registrationForm: string,

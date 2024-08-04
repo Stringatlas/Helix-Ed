@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { goto } from "$app/navigation";
     import type { CourseData } from "$lib/types";
 
     export let courseData: CourseData;
@@ -11,15 +12,25 @@
         <p>Registration {courseData.status}</p>
     </div>
 
-    <p>{courseData.description}</p>
+    <p>{courseData.content}</p>
+
+    {#if courseData.status == "open"}
+        <button on:click={() => goto("/classes/" + courseData.subject)}>Go to class page</button>
+    {/if}
 </div>
 
 <style lang="scss">
+    button {
+        @include button-primary;
+        margin-top: 32px;
+    }
+
     .status {
         background-color: white;
         border-radius: 8px;
         padding: 4px 12px;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
 
         #indicator {
             width: 16px;
@@ -32,6 +43,7 @@
 
         p {
             display: inline-block;
+            height: 100%;
         }
     }
 
@@ -41,9 +53,14 @@
         border-radius: 10px;
         box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
         padding: 24px;
+        background: radial-gradient(circle at top left, darken($background-color, 5%) 0%, darken($background-color, 2.5%) 80%);
 
         h1 {
-            margin-bottom: 0.6em;
+            margin-bottom: 8px;
+        }
+
+        .status {
+            margin-bottom: 16px;
         }
     }
 </style>
