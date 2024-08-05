@@ -74,6 +74,20 @@
             "school": "Basis Independent Silicon Valley",
             "bio": "Eric Li is a rising sophomore at BASIS Independent Silicon Valley. He has excelled in honors biology and participated actively in the USABO club, enriching his understanding of the field of natural sciences. He aspires to empower others to learn biology by sharing effective learning tools and resources.",
             "imagePath": "images/instructors/ericphoto.jpg"
+        },
+        {
+            "name": "Antony Wang",
+            "role": "TA",
+            "school": "Basis Independent Silicon Valley",
+            "bio": "Antony is a rising senior at BISV. He has a strong background in STEM and  has earned a score of 5 on AP biology. Antony has also achieved a top 125 score on the USA Biology Olympiad. At school, he is co-president of the USABO club and vice president of the neuroscience club.",
+            "imagePath": "images/instructors/antonyphoto.jpg"
+        },
+        {
+            "name": "Larry Zhao",
+            "role": "TA",
+            "school": "Basis Independent Silicon Valley",
+            "bio": "Larry Zhao is a rising freshman at BASIS Independent Silicon Valley. He has achieved gold for both the UKBC and the BiBO. He also made quarterfinals in the NBB, and will be teaching for the middle school branch of the USABO club next year.",
+            "imagePath": "images/instructors/larryphoto.jpg"
         }
     ],
     "economics": [
