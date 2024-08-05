@@ -53,7 +53,7 @@
         border-radius: 10px;
         box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
         padding: 24px;
-        background: radial-gradient(circle at top left, darken($background-color, 5%) 0%, darken($background-color, 2.5%) 80%);
+        background: radial-gradient(circle at top left, darken($background-color, 2.5%) 0%, lighten($background-color, 0%) 80%);
 
         h1 {
             margin-bottom: 8px;

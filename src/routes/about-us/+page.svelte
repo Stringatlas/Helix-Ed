@@ -42,14 +42,32 @@
 
 <section id="team">
     <h1>Our Team</h1>
-    {#each Object.entries(instructors) as [subject, subjectInstructors]}
-        <h2>{capitalizeFirstLetter(subject)}</h2>
-        <div style="margin-bottom: 50px">
+    <h2>Director</h2>
+    <div style="margin-bottom: 50px">
+        <InstructorCard instructorData={instructors.biology[0]} subject={"biology"} />
+    </div>
+
+    <h2>Our Instructors</h2>
+    <div style="margin-bottom: 50px">
+        {#each Object.entries(instructors) as [subject, subjectInstructors]}
             {#each subjectInstructors as instructor}
-                <InstructorCard instructorData={instructor} {subject} />
+                {#if instructor.role == "Instructor"}
+                    <InstructorCard instructorData={instructor} {subject} />
+                {/if}
             {/each}
-        </div>
-    {/each}
+        {/each}
+    </div>
+
+    <h2>Our TAs</h2>
+    <div style="margin-bottom: 50px">
+        {#each Object.entries(instructors) as [subject, subjectInstructors]}
+            {#each subjectInstructors as instructor}
+                {#if instructor.role == "TA"}
+                    <InstructorCard instructorData={instructor} {subject} />
+                {/if}
+            {/each}
+        {/each}
+    </div>
 </section>
 
 <style lang="scss">
@@ -107,6 +125,10 @@
         h1 {
             text-align: center;
             margin-bottom: 16px;
+        }
+
+        h2 {
+            margin-bottom: 12px;
         }
 
         div {
