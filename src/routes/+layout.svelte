@@ -3,20 +3,10 @@
     import Footer from "$lib/components/Footer.svelte";
 
     import BioBrawlNavbar from "$lib/components/BioBrawlNavbar.svelte";
-    import { page } from "$app/stores";
-    import { derived } from "svelte/store";
-
-    const isBioBrawl = derived(page, ($page) => {
-        return $page.url.pathname.startsWith("/bio-brawl");
-    });
 </script>
 
 <section id="nav">
-    {#if $isBioBrawl}
-        <BioBrawlNavbar />
-    {:else}
-        <Navbar />
-    {/if}
+    <BioBrawlNavbar />
 </section>
 
 <main>

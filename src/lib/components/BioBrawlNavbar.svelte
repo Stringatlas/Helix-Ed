@@ -2,12 +2,10 @@
     import { goto } from "$app/navigation";
     import { browser } from "$app/environment";
 
-    let baseRoute: string = "";
     let homePage: string = "";
 
     if (browser) {
-        baseRoute = window.location.hostname.includes("biobrawl") ? "/" : "/bio-brawl/";
-        homePage = window.location.hostname.includes("biobrawl") ? "https://www.helix-ed.org" : "/";
+        homePage = window.location.hostname.replace(/^biobrawl\./, "");
     }
 
     let isDropdownOpen = false;
@@ -27,17 +25,17 @@
             <a href={homePage}><img src="/logo.png" alt="logo" /></a>
         </li>
         <div class="nav-links">
-            <li><a href={baseRoute}>Home</a></li>
+            <li><a href="/">Home</a></li>
             <li class="dropdown" on:mouseleave={closeDropdown}>
                 <a id="our-classes" href="/" on:mouseenter={toggleDropdown} on:click|preventDefault={toggleDropdown}>Past competitions<span style="font-size: 16px">▼</span></a>
                 <ul class={`dropdown-menu ${isDropdownOpen ? "active" : ""}`}>
-                    <li><a href={baseRoute + "results/2024"}>BioBrawl 2024</a></li>
+                    <li><a href={"/results/2024"}>BioBrawl 2024</a></li>
                 </ul>
             </li>
 
-            <li><a href={baseRoute + "info"}>Info</a></li>
-            <li><a href={baseRoute + "faq"}>FAQ</a></li>
-            <button on:click={() => goto(baseRoute + "register")}>Register for BioBrawl 2025</button>
+            <li><a href={"/info"}>Info</a></li>
+            <li><a href={"/faq"}>FAQ</a></li>
+            <button on:click={() => goto("/register")}>Register for BioBrawl 2025</button>
         </div>
     </ul>
 </nav>
