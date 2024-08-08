@@ -29,3 +29,17 @@ export type CourseData = {
     poster?: string,
     dates: string,
 }
+
+export type EventData = {
+    eventID: number,
+    name: string,
+    date: string,
+    time: string,
+    location: string,
+    description: string,
+    rules: string,
+    prizes: string,
+    registration: string,
+    results: string,
+    contact: string
+}

@@ -22,7 +22,7 @@
 <nav>
     <ul>
         <li class="logo">
-            <a href={homePage}><img src="/logo.png" alt="logo" /></a>
+            <a href={"https://www." + homePage}><img src="/logo.png" alt="logo" /></a>
         </li>
         <div class="nav-links">
             <li><a href="/">Home</a></li>
@@ -33,7 +33,6 @@
                 </ul>
             </li>
 
-            <li><a href={"/info"}>Info</a></li>
             <li><a href={"/faq"}>FAQ</a></li>
             <button on:click={() => goto("/register")}>Register for BioBrawl 2025</button>
         </div>
