@@ -1,10 +1,9 @@
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
-    const host = event.url.hostname; // Get the hostname from the request URL
+    const host = event.url.hostname;
 
-    if (host.startsWith('cool.')) {
-        // Rewrite the URL path to the 'cool' page if accessed via 'cool.example.com'
-        event.url.pathname = '/cool' + event.url.pathname;
+    if (host.startsWith('biobrawl.')) {
+        event.url.pathname = '/biobrawl' + event.url.pathname;
     }
 
     const response = await resolve(event, {
