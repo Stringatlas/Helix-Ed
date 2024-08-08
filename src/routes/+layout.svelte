@@ -1,6 +1,7 @@
 <script lang="ts">
     import Navbar from "$lib/components/Navbar.svelte";
     import Footer from "$lib/components/Footer.svelte";
+
     import BioBrawlNavbar from "$lib/components/BioBrawlNavbar.svelte";
     import { page } from "$app/stores";
     import { derived } from "svelte/store";

@@ -1,14 +1,4 @@
 {
-  "rewrites": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "biobrawl.helix-ed.org"
-        }
-      ],
-      "destination": "/bio-brawl/:path*"
-    }
-  ]
+    
+
 }

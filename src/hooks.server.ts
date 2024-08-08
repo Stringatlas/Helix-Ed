@@ -1,14 +1,13 @@
-/** @type {import('@sveltejs/kit').Handle} */
-export async function handle({ event, resolve }) {
-    const host = event.url.hostname;
+import type { Handle } from '@sveltejs/kit';
 
-    if (host.startsWith('biobrawl.')) {
-        event.url.pathname = '/biobrawl' + event.url.pathname;
+export const handle: Handle = async ({ event, resolve }) => {
+    const host = event.request.headers.get('host');
+    const url = new URL(event.request.url);
+
+    if (host && host.startsWith('biobrawl.') && url.pathname === '/') {
+        url.pathname = '/bio-brawl';
+        return Response.redirect(url.toString(), 301);
     }
 
-    const response = await resolve(event, {
-            transformPageChunk: ({ html }) =>
-                html.replace('%svelte.head%', '<meta name="subdomain" content="biobrawl">')
-        });
-    return response;
-}
+    return resolve(event);
+};
