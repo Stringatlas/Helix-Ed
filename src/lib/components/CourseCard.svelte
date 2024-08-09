@@ -7,6 +7,7 @@
 
 <div class="card">
     <h1>{courseData.title}</h1>
+    <h2>{courseData.dates}</h2>
     <div class="status">
         <div id="indicator" style="background-color: {courseData.status == 'closed' ? 'red' : 'green'};"></div>
         <p>Registration {courseData.status}</p>
@@ -31,6 +32,9 @@
         padding: 4px 12px;
         display: inline-flex;
         align-items: center;
+        position: absolute;
+        right: 24px;
+        top: 24px;
 
         #indicator {
             width: 16px;
@@ -49,6 +53,7 @@
 
     .card {
         height: 100%;
+        position: relative;
         background-color: $background-color;
         border-radius: 10px;
         box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
@@ -56,7 +61,11 @@
         background: radial-gradient(circle at top left, darken($background-color, 2.5%) 0%, lighten($background-color, 0%) 80%);
 
         h1 {
-            margin-bottom: 8px;
+            margin-bottom: 0px;
+        }
+
+        h2 {
+            margin-bottom: 12px;
         }
 
         .status {
