@@ -41,5 +41,10 @@ export type EventData = {
     prizes: string,
     registration: string,
     results: string,
-    contact: string
+    contact: string,
+    winners: {
+        first?: string,
+        second?: string,
+        third: string,
+    }
 }

@@ -58,10 +58,6 @@
 
 <style>
     .typewriter {
-        /* font-size: 24px; */
-        /* border-right: 2px solid; */
-        /* white-space: nowrap; */
-        /* overflow: hidden; */
         display: inline-block;
     }
 

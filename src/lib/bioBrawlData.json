@@ -2,14 +2,21 @@
     "2024": {
         "eventID": 2024,
         "name": "Bio Brawl 2024",
-        "date": "2021-10-01",
-        "time": "10:00:00",
+        "date": "May 18, 2024",
+        "time": "8am",
         "location": "Virtual",
         "description": "Bio Brawl is a competition where students will be tested on their knowledge of biology.",
-        "rules": "1. Students must be in teams of 2-4. 2. Students must have a device with internet access. 3. Students must have a webcam.",
+        "rules": "1. Students must be in teams of 2-3. 2. Students must have a device with internet access. 3. Students must have a webcam.",
         "prizes": "1st Place: $100 Amazon Gift Card, 2nd Place: $50 Amazon Gift Card, 3rd Place: $25 Amazon Gift Card",
         "registration": "https://www.example.com/register",
         "results": "https://www.example.com/results",
-        "contact": "helix-ed@gmail.com"
+        "contact": "helix-ed@gmail.com",
+        "elimination-bracket": "https://docs.google.com/spreadsheets/d/1w_4QTDbdGRryWsohGlS5In2wJWqpfh-iDCCBy6pxvKY/edit?gid=0#gid=0",
+        
+        "winners" : {
+            "first": "team1",
+            "second": "team2",
+            "third": "team3"
+        }
     }
 }

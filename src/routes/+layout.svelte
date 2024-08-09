@@ -1,5 +1,4 @@
 <script lang="ts">
-    import Navbar from "$lib/components/Navbar.svelte";
     import Footer from "$lib/components/Footer.svelte";
 
     import BioBrawlNavbar from "$lib/components/BioBrawlNavbar.svelte";
@@ -29,15 +28,7 @@
 
     main {
         min-height: calc(100vh - $nav-height);
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-    }
-
-    main {
-        // background: radial-gradient(circle at center, darken($background-color, 100%) 0%, $background-color 100%) !important;
+        padding: 8px 12px;
         margin: 0;
         margin-top: $nav-height;
         color: $text-color;

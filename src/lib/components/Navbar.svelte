@@ -4,6 +4,7 @@
     import { browser } from "$app/environment";
 
     let bioBrawlLink: string = "";
+
     if (browser) {
         bioBrawlLink = window.location.hostname.includes("localhost") ? "/bio-brawl" : "https://biobrawl.helix-ed.org";
     }
@@ -24,10 +25,12 @@
         <li class="logo">
             <a href="/"><img src="/logo.png" alt="logo" /></a>
         </li>
+
         <div class="nav-links">
             <li><a href={bioBrawlLink}>Bio Brawl</a></li>
             <li class="dropdown" on:mouseleave={closeDropdown}>
                 <a id="our-classes" href="/" on:mouseenter={toggleDropdown} on:click|preventDefault={toggleDropdown}>Our classes<span style="font-size: 16px">▼</span></a>
+
                 <ul class={`dropdown-menu ${isDropdownOpen ? "active" : ""}`}>
                     <li><a href="/classes/physics">Physics</a></li>
                     <li><a href="/classes/chemistry">Chemistry</a></li>
