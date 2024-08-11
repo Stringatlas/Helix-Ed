@@ -38,7 +38,7 @@
         justify-content: flex-start;
         margin: 0 10px;
         width: 100px;
-        background-color: #71778f;
+        background-color: rgb(33, 136, 184);
         border-radius: 16px;
         position: relative;
         transition: height 0.8s ease-in-out;

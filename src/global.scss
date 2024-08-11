@@ -1,21 +1,22 @@
 $color: red;
 
-$background-color: #dbe2e7;
+$background-color: #ffffff;
 $background-darker: #9ebcb8;
 
 $text-color: #000000;
 $accent: #293242;
 
-$primary: #fae5ba;
+$primary: #016107;
 $secondary: #b3c2af;
 
 
 @mixin button {
-    color: black;
+    color: rgb(255, 255, 255);
     border: none;
     padding: 8px 16px;
     border-radius: 8px;
 }
+
 @mixin button-primary {
     @include button;
     background: $primary;

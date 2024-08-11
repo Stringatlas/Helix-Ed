@@ -3,15 +3,37 @@
 </script>
 
 <section id="header">
-    <h1>Bio Brawl 2025</h1>
-    <h2>May 18th, 8am-2pm PST</h2>
+    <img src="/images/biobrawl.png" alt="" />
+</section>
 
-    <button on:click={() => goto("/register")} class="button-primary">Register Now</button>
+<section id="announcement">
+    <h2>Registration for Bio Brawl 2025 will open on September 1st for both Middle school and High school</h2>
 </section>
 
 <section class="body">
     <div class="main-content">
-        <object title="bio brawl rules" class="pdf" data="/biobrawl-rules.pdf"> </object>
+        <h2 style="margin-top: 0">Rules</h2>
+        <a href="/biobrawl-rules.pdf">View our rules</a>
+        <h2>Important Dates</h2>
+        <h3>Middle School</h3>
+        <ul>
+            <li>Registration opens: September 1st, 2024, 12:00 am PST</li>
+            <li>Registration deadline: January 10th, 2025, 11:59 pm PST</li>
+            <li>Competition: January 17th, 2025, 8 am - 5 pm PST</li>
+        </ul>
+        <h3>High School</h3>
+        <ul>
+            <li>Registration opens: September 1st, 2024, 12:00 am PST</li>
+            <li>Registration deadline: January 11th, 2025, 11:59 pm PST</li>
+            <li>Competition: January 18th, 2025, 8 am - 5 pm PST</li>
+        </ul>
+
+        <h2>About Us</h2>
+        <p>
+            The BioBrawl Biology Bowl is a dynamic, student-led competition debuting in 2024, designed to ignite curiosity and passion for the life sciences. Through a quiz bowl-like format, BioBrawl
+            covers a wide range of topics, including human anatomy, physiology, pathology, botany, zoology, evolution, cell biology, genetics, ecology, and ethology. Our mission is to inspire students
+            to explore the frontiers of science and discover the endless possibilities within the life sciences.
+        </p>
     </div>
 
     <div class="cards-container">
@@ -37,28 +59,54 @@
 </section>
 
 <style lang="scss">
-    .pdf {
-        width: 100%;
-        aspect-ratio: 4 / 3;
-    }
+    // .pdf {
+    //     width: 100%;
+    //     aspect-ratio: 4 / 3;
+    // }
 
-    .button-primary {
-        @include button-primary;
-    }
+    // .button-primary {
+    //     @include button-primary;
+    // }
 
     .body {
         display: grid;
-        grid-template-columns: 1fr 0.3fr;
-        gap: 24px;
+        grid-template-columns: 1fr 0.5fr;
     }
 
     .main-content {
         border-right-style: solid;
+        padding: 16px 16px;
+
+        h2 {
+            margin-top: 1.5em;
+            margin-bottom: 0.2em;
+        }
+        h3 {
+            margin-bottom: 0.2em;
+            margin-top: 0.75em;
+        }
+
+        li,
+        p {
+            letter-spacing: 1.5;
+            line-height: 1.5;
+        }
+    }
+
+    #announcement {
+        padding: 2rem;
+        text-align: center;
+        background-color: #016107;
+        color: white;
     }
 
     #header {
         text-align: center;
-        margin: 40px 0px 40px 0px;
+        background-color: white;
+        img {
+            height: 80vh;
+            width: auto;
+        }
 
         h1 {
             margin-bottom: 24px;
@@ -78,6 +126,7 @@
         flex-direction: column;
         flex-wrap: wrap;
         gap: 16px;
+        padding: 12px 16px;
 
         .side-by-side {
             display: flex;

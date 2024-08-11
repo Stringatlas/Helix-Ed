@@ -28,7 +28,6 @@
 
     main {
         min-height: calc(100vh - $nav-height);
-        padding: 8px 12px;
         margin: 0;
         margin-top: $nav-height;
         color: $text-color;

@@ -41,11 +41,7 @@
 
 <style lang="scss">
     button {
-        background: $primary;
-        color: black;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 8px;
+        @include button-primary;
     }
 
     img {
