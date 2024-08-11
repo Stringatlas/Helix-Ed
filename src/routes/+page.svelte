@@ -48,21 +48,37 @@
             </div>
         </div>
 
-        <div class="card full-width">
-            <h2>Prizes</h2>
-            <p>1st place: $200</p>
-            <p>2nd place: $120</p>
-            <p>3rd place: $80</p>
-            <p>4th-6th place: $30</p>
+        <div class="card full-width prizes">
+            <h1>Prizes</h1>
+            <h2>1st Place</h2>
+            <p>$200</p>
+            <h2>2nd Place</h2>
+            <p>$120</p>
+            <h2>3rd Place</h2>
+            <p>$80</p>
+            <h2>4th-6th Places</h2>
+            <p>$30</p>
         </div>
     </div>
 </section>
 
 <style lang="scss">
-    // .pdf {
-    //     width: 100%;
-    //     aspect-ratio: 4 / 3;
-    // }
+    .prizes {
+        text-align: center;
+        h1 {
+            margin-bottom: 0.2em;
+        }
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            color: #016107;
+            font-weight: bold;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+    }
 
     .button-primary {
         @include button-primary;
@@ -141,6 +157,7 @@
         padding: 16px;
         display: inline-block;
         flex: 1;
+        text-align: center;
 
         h2 {
             margin-bottom: 0.25em;

@@ -1,20 +1,6 @@
 <script lang="ts">
     import FaqCard from "$lib/components/FaqCard.svelte";
-
-    let faqs = [
-        {
-            question: "Where will the contest be held?",
-            answer: "The contest will be held online on zoom",
-        },
-        {
-            question: "How many people per team?",
-            answer: "Each team consists of up to 3 members with an optional alternate",
-        },
-        {
-            question: "What topics will be covered in the contest?",
-            answer: "very intellectual content",
-        },
-    ];
+    import faqs from "$lib/faqs.json";
 </script>
 
 <h1>Frequently Asked Questions</h1>
