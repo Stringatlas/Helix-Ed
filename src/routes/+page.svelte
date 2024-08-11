@@ -64,9 +64,9 @@
     //     aspect-ratio: 4 / 3;
     // }
 
-    // .button-primary {
-    //     @include button-primary;
-    // }
+    .button-primary {
+        @include button-primary;
+    }
 
     .body {
         display: grid;
@@ -75,7 +75,7 @@
 
     .main-content {
         border-right-style: solid;
-        padding: 16px 16px;
+        padding: 2rem;
 
         h2 {
             margin-top: 1.5em;
@@ -126,7 +126,7 @@
         flex-direction: column;
         flex-wrap: wrap;
         gap: 16px;
-        padding: 12px 16px;
+        padding: 1.5rem;
 
         .side-by-side {
             display: flex;
