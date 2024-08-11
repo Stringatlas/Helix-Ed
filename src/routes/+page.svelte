@@ -11,8 +11,7 @@
 
 <section class="body">
     <div class="main-content">
-        <h2>Contest Format</h2>
-        <p>held on zoom. written rounds and elimation rounds</p>
+        <object title="bio brawl rules" class="pdf" data="/biobrawl-rules.pdf"> </object>
     </div>
 
     <div class="cards-container">
@@ -23,7 +22,7 @@
             </div>
             <div class="card half-width">
                 <h2>Team size</h2>
-                <p>Teams of 3</p>
+                <p>Teams of 3-5</p>
             </div>
         </div>
 
@@ -34,14 +33,15 @@
             <p>3rd place: $80</p>
             <p>4th-6th place: $30</p>
         </div>
-        <!-- <div class="card">
-        <h2>Entry</h2>
-        <p>free</p>
-    </div> -->
     </div>
 </section>
 
 <style lang="scss">
+    .pdf {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+    }
+
     .button-primary {
         @include button-primary;
     }
@@ -108,7 +108,7 @@
         flex: auto;
     }
 
-    // .full-width {
-    //     flex: 50% 0 0;
-    // }
+    .full-width {
+        flex: 0 0 0;
+    }
 </style>

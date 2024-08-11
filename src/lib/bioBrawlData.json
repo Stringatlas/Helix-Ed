@@ -6,17 +6,25 @@
         "time": "8am",
         "location": "Virtual",
         "description": "Bio Brawl is a competition where students will be tested on their knowledge of biology.",
-        "rules": "1. Students must be in teams of 2-3. 2. Students must have a device with internet access. 3. Students must have a webcam.",
-        "prizes": "1st Place: $100 Amazon Gift Card, 2nd Place: $50 Amazon Gift Card, 3rd Place: $25 Amazon Gift Card",
+        "rules": "/biobrawl-rules.pdf",
+        
+        "prizes": {
+            "first": "200",
+            "second": "120",
+            "third": "80"
+        },
+
+        "participants": 30,
+        "teams": 8,
+        
         "registration": "https://www.example.com/register",
         "results": "https://www.example.com/results",
         "contact": "helix-ed@gmail.com",
-        "elimination-bracket": "https://docs.google.com/spreadsheets/d/1w_4QTDbdGRryWsohGlS5In2wJWqpfh-iDCCBy6pxvKY/edit?gid=0#gid=0",
-        
+        "eliminationBracket": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRvvmbTEtXY2x6ejj4ogYVeSsv5X08QAE1ENSJiqJXLern89rG4BEH28Q_45Iul_0aXMe9pHJe_3-8z/pubhtml?gid=0&single=true&amp;widget=true&amp;headers=false",
         "winners" : {
-            "first": "team1",
-            "second": "team2",
-            "third": "team3"
+            "first": "Thiamine",
+            "second": "Riboflavin",
+            "third": "Niacin"
         }
     }
 }

@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { EventData } from "$lib/types";
     import bioBrawlData from "$lib/bioBrawlData.json";
+    import Podium from "$lib/components/Podium.svelte";
 
     export let data: { eventID: string };
 
@@ -25,14 +26,38 @@
         <h2>{eventData.date}</h2>
     {/if}
 </div>
+
 <div class="body">
-    <h2>Winners</h2>
-    <p>1st Place: {eventData.winners.first}</p>
-    <p>2nd Place: {eventData.winners.second}</p>
-    <p>3rd Place: {eventData.winners.third}</p>
+    <div id="winners">
+        <h1>Winners</h1>
+        <Podium first={eventData.winners.first} second={eventData.winners.second} third={eventData.winners.third} />
+    </div>
+
+    <div id="bracket">
+        <h1>Elimation Bracket</h1>
+        <iframe src={eventData.eliminationBracket} frameborder="0" class="sheet"></iframe>
+    </div>
 </div>
 
 <style lang="scss">
+    #bracket {
+        h1 {
+            text-align: center;
+        }
+    }
+
+    .sheet {
+        width: 100%;
+        height: 500px;
+    }
+    #winners {
+        margin-top: 100px;
+        h1 {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+    }
+
     .title {
         h1,
         h2 {

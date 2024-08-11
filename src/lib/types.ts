@@ -38,13 +38,18 @@ export type EventData = {
     location: string,
     description: string,
     rules: string,
-    prizes: string,
+    prizes: {
+        first?: string,
+        second?: string,
+        third?: string,
+    },
     registration: string,
     results: string,
     contact: string,
     winners: {
         first?: string,
         second?: string,
-        third: string,
-    }
+        third?: string,
+    },
+    eliminationBracket: string,
 }
