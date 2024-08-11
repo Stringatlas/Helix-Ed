@@ -11,36 +11,49 @@
     import FlippingText from "$lib/components/FadingText.svelte";
     import Typewriter from "$lib/components/Typewriter.svelte";
     import type { TestimonialData } from "$lib/types";
+    import { onMount } from "svelte";
     import { goto } from "$app/navigation";
+    import { createScene } from "$lib/landingScene";
+
+    let backgroundCanvas: HTMLCanvasElement;
+    let backgroundCanvasDiv: HTMLDivElement;
 
     let careers = ["engineers", "doctors", "chemists", "teachers", "physicists", "scientists", "astronomers", "biologists", "roboticists", "economists"];
+    onMount(() => {
+        createScene(backgroundCanvas);
+    });
 </script>
 
 <body>
     <section id="landing-section">
+        <canvas id="background" bind:this={backgroundCanvas}></canvas>
         <h1>Empowering future <Typewriter words={careers} /><br />through personalized education</h1>
         <h2>Igniting passion and mastery in the sciences</h2>
         <button on:click={() => goto("/enroll")}>View our courses</button>
     </section>
-    <h1>Why Helix Ed?</h1>
 
-    <section id="why">
-        <div>
-            <img src={BookIcon} alt="" />
-            <h2>Outstanding Curriculum</h2>
-            <p>Dive into a well-structured learning path that has been proven effective, setting you up for success in every lesson.</p>
-        </div>
-        <div>
-            <img src={SchoolIcon} alt="" />
-            <h2>Top-Tier Instructors</h2>
-            <p>Our instructors come from top universities, ensuring a learning experience that's both high-quality and personalized.</p>
-        </div>
-        <div>
-            <img src={MoneyIcon} alt="" />
-            <h2>Quality at a Low Cost</h2>
-            <p>Experience premium courses at affordable rates, making education both accessible and effective.</p>
-        </div>
-    </section>
+    <div>
+        <h1 style="text-align: center">Why Helix Ed?</h1>
+
+        <section id="why">
+            <div>
+                <img src={BookIcon} alt="" />
+                <h2>Outstanding Curriculum</h2>
+                <p>Dive into a well-structured learning path that has been proven effective, setting you up for success in every lesson.</p>
+            </div>
+            <div>
+                <img src={SchoolIcon} alt="" />
+                <h2>Top-Tier Instructors</h2>
+                <p>Our instructors come from top universities, ensuring a learning experience that's both high-quality and personalized.</p>
+            </div>
+            <div>
+                <img src={MoneyIcon} alt="" />
+                <h2>Quality at a Low Cost</h2>
+                <p>Experience premium courses at affordable rates, making education both accessible and effective.</p>
+            </div>
+        </section>
+    </div>
+
     <section id="testimonials">
         <h1>Reviews</h1>
         <div>
@@ -65,6 +78,7 @@
         font-size: 32px;
         margin-bottom: 16px;
     }
+
     #why {
         padding: 0 15%;
         display: flex;
@@ -90,6 +104,7 @@
             }
         }
     }
+
     #landing-section {
         display: flex;
         flex-direction: column;
@@ -97,15 +112,29 @@
         justify-content: center;
         color: $text-color;
         padding: 0 15%;
-        height: 100vh;
+        height: calc(100vh - $nav-height);
         text-align: center;
+        margin-bottom: 3rem;
+        position: relative;
+        z-index: 0;
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
 
         h1 {
             font-size: 52px;
             margin-bottom: 16px;
+            color: aliceblue;
         }
         h2 {
             margin-bottom: 64px;
+            color: aliceblue;
         }
     }
     #testimonials {
@@ -120,17 +149,16 @@
             margin-bottom: 16px;
             text-align: center;
         }
+        div {
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
     }
 
     body {
         padding: 8px;
-    }
-
-    div {
-        display: flex;
-        flex-direction: row;
-        gap: 16px;
-        flex-wrap: wrap;
-        align-items: flex-start;
     }
 </style>

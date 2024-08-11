@@ -28,8 +28,6 @@
 </section>
 
 <style lang="scss">
-    $nav-height: 69px;
-
     #nav {
         position: fixed;
         top: 0;
