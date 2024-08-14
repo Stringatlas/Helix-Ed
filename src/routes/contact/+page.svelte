@@ -17,8 +17,12 @@
     <section id="mission">
         <div>
             <h1 style="margin-bottom: 16px;">Support our vision</h1>
-            <h2>Donate - Powered by Benevity Company Match</h2>
-            <p>Donate through our zelle at helixed.org@gmail.com</p>
+            <h2>Donate with tax deductable methods</h2>
+            <p>HelixEd (Tax ID: 99-3230895) is a non profit organization under IRC 501(c)(3). Tax Deductible Donation Methods:</p>
+            <ul>
+                <li><p>Company matching program of "Benevity Cause Portal" (<a href="https://causes.benevity.org/causes/840-993230895">https://causes.benevity.org/causes/840-993230895</a>)</p></li>
+                <li><p>Direct donation through our Zelle at helixed.org@gmail.com</p></li>
+            </ul>
         </div>
     </section>
 </main>
@@ -33,6 +37,7 @@
         flex-direction: row;
         margin: 60px 120px;
         gap: 40px;
+
         div {
             display: flex;
             flex: 1;

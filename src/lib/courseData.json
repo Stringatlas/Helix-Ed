@@ -12,7 +12,7 @@
             "tuition": 300,
             "poster": "images/posters/physics-summer-24.png",
             "dates": "Mon, Wed, Fri, 6/17 - 7/19",
-            "content": "Physics at a high-school level, covering topics found in AP Physics 1 and AP Physics C: Mechanics"
+            "content": "Physics at a high-school level, covering topics found in AP Physics 1 and AP Physics C: Mechanics."
         }
     ],
     "chemistry": [
@@ -26,39 +26,41 @@
             "status": "closed",
             "studentDescription": "7th grade and up",
             "tuition": 200,
-            "dates": "Mon, Wed, Fri, 6/17 - 7/19",
+            "dates": "Tue, Thu, 7/16 - 8/15",
             "poster": "images/posters/chemistry-summer-24.png",
-            "content": "Physics at a high-school level, covering topics found in AP Physics 1 and AP Physics C: Mechanics"
+            "content": "AP Chemistry topics including matter, gas laws, chemical bonding, reactions and more!"
         }
     ],
     "economics": [
         {
             "title": "Intro to Macroeconomics",
-            "season": "Sometime",
+            "season": "Summer 2024",
             "subject": "economics",
-            "description": "10 classes in total. Will be taught by Derrick Liu, a rising sophomore at Johns Hopkins University majoring in Chemical Engineering (Pre-med track), and Emily Dai, a rising sophomore at UC Berkeley majoring in Chemistry. Both instructors have extensive tutoring experience. This course is suitable for students with little to no prior knowledge in chemistry, from 7th grade onwards. A basic understanding of algebra is recommended.",
-            "registrationForm": "https://tinyurl.com/24Sum-HelixEd-Chem",
-            "syllabus": "https://tinyurl.com/24Sum-Chem-Syllabus",
-            "status": "open",
+            "description": "10 classes in total. This course serves as a survey of the typical topics covered in an introductory high-school level macroeconomics class. A more detailed list of topics is provided below, but the topics closely resemble those found in the AP Macroeconomics curriculum. This class is usually taught at the late high school level; no prior knowledge is explicitly assumed. Familiarity with basic Algebra is strongly recommended.",
+            "registrationForm": "https://tinyurl.com/24Sum-MacroEcon",
+            "syllabus": "https://tinyurl.com/24Sum-MacroEconomics-Syllabus",
+            "status": "closed",
             "studentDescription": "7th grade and up",
-            "tuition": 300,
-            "dates": "Mon, Wed, Fri, 6/17 - 7/19",
-            "content": "Physics at a high-school level, covering topics found in AP Physics 1 and AP Physics C: Mechanics"
+            "tuition": 200,
+            "dates": "Tue, Thu, Sat, 7/30 - 8/20",
+            "poster": "images/posters/economics-summer-24.jpg",
+            "content": "High-school level macroeconomics, covering topics such as monetary policy, fiscal policy, supply & demand, and trade/exchange."
         }
     ],
     "biology": [
         {
             "title": "Intro to Biology",
-            "season": "Sometime",
+            "season": "Summer 2024",
             "subject": "biology",
-            "description": "10 classes in total. Will be taught by Derrick Liu, a rising sophomore at Johns Hopkins University majoring in Chemical Engineering (Pre-med track), and Emily Dai, a rising sophomore at UC Berkeley majoring in Chemistry. Both instructors have extensive tutoring experience. This course is suitable for students with little to no prior knowledge in chemistry, from 7th grade onwards. A basic understanding of algebra is recommended.",
-            "registrationForm": "https://tinyurl.com/24Sum-HelixEd-Chem",
-            "syllabus": "https://tinyurl.com/24Sum-Chem-Syllabus",
-            "status": "open",
+            "description": "10 classes in total. This course serves as a survey of the typical topics covered in an introductory high-school level biology class. A more detailed list of topics is provided below, but the topics closely resemble those found in AP Biology. They are taught at the late middle school or early high school level; no prior knowledge is explicitly assumed.",
+            "registrationForm": "https://tinyurl.com/24Sum-HelixEd-Bio",
+            "syllabus": "https://tinyurl.com/24Sum-Biology-Syllabus",
+            "status": "closed",
             "studentDescription": "7th grade and up",
-            "tuition": 300,
-            "dates": "Mon, Wed, Fri, 6/17 - 7/19",
-            "content": "Physics at a high-school level, covering topics found in AP Physics 1 and AP Physics C: Mechanics"
+            "tuition": 200,
+            "dates": "Fri, Sun, 7/19 - 8/18",
+            "poster": "images/posters/biology-summer-24.jpg",
+            "content": "Covers biochemistry, cell biology, genetics, evolution, etc. Great for USABO/Science Bowl prep."
         }
     ]
 }

@@ -6,7 +6,7 @@
 </script>
 
 <div class="card">
-    <h1>{courseData.title}</h1>
+    <h1>{courseData.season + " " + courseData.title}</h1>
     <h2>{courseData.dates}</h2>
     <div class="status">
         <div id="indicator" style="background-color: {courseData.status == 'closed' ? 'red' : 'green'};"></div>

@@ -19,9 +19,9 @@
     let backgroundCanvasDiv: HTMLDivElement;
 
     let careers = ["engineers", "doctors", "chemists", "teachers", "physicists", "scientists", "astronomers", "biologists", "roboticists", "economists"];
-    onMount(() => {
-        createScene(backgroundCanvas);
-    });
+    // onMount(() => {
+    //     createScene(backgroundCanvas);
+    // });
 </script>
 
 <body>
@@ -55,12 +55,12 @@
     </div>
 
     <section id="testimonials">
-        <h1>Reviews</h1>
+        <!-- <h1>Reviews</h1>
         <div>
             {#each testimonials as testimonial}
                 <TestimonialCard {...testimonial} />
             {/each}
-        </div>
+        </div> -->
     </section>
 </body>
 
@@ -130,11 +130,11 @@
         h1 {
             font-size: 52px;
             margin-bottom: 16px;
-            color: aliceblue;
+            color: black;
         }
         h2 {
             margin-bottom: 64px;
-            color: aliceblue;
+            color: black;
         }
     }
     #testimonials {
