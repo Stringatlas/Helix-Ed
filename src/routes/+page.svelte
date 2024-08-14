@@ -1,13 +1,15 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
+
+    let registrationOpens = "September 1st";
 </script>
 
 <section id="header">
-    <img src="/images/biobrawl.png" alt="" />
+    <img src="/images/biobrawl-2.webp" alt="" />
 </section>
 
 <section id="announcement">
-    <h2>Registration for Bio Brawl 2025 will open on September 1st for both Middle school and High school</h2>
+    <h2>Registration for Bio Brawl 2025 will open on {registrationOpens} for both Middle school and High school</h2>
 </section>
 
 <section class="body">
@@ -17,14 +19,14 @@
         <h2>Important Dates</h2>
         <h3>Middle School</h3>
         <ul>
-            <li>Registration opens: September 1st, 2024, 12:00 am PST</li>
-            <li>Registration deadline: January 3rd, 2025, 11:59 pm PST</li>
+            <li>Registration opens: {registrationOpens}, 2024, 12:00 am PST</li>
+            <li>Registration deadline: January 5th, 2025, 11:59 pm PST</li>
             <li>Competition: January 11th, 2025, 8 am - 5 pm PST</li>
         </ul>
         <h3>High School</h3>
         <ul>
-            <li>Registration opens: September 1st, 2024, 12:00 am PST</li>
-            <li>Registration deadline: January 11th, 2025, 11:59 pm PST</li>
+            <li>Registration opens: {registrationOpens}, 2024, 12:00 am PST</li>
+            <li>Registration deadline: January 12th, 2025, 11:59 pm PST</li>
             <li>Competition: January 18th, 2025, 8 am - 5 pm PST</li>
         </ul>
 
