@@ -1,7 +1,7 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
 
-    let registrationOpens = "September 1st";
+    let registrationOpens = "August 15th";
 </script>
 
 <section id="header">
