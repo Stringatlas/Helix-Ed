@@ -50,16 +50,18 @@
             </div>
         </div>
 
+        <div class="card full-width">
+            <h2>Registration fee</h2>
+            <p>$20 / team</p>
+        </div>
         <div class="card full-width prizes">
             <h1>Prizes</h1>
             <h2>1st Place</h2>
-            <p>$200</p>
+            <p>$200 / team</p>
             <h2>2nd Place</h2>
-            <p>$120</p>
+            <p>$120 / team</p>
             <h2>3rd Place</h2>
-            <p>$80</p>
-            <h2>4th-6th Places</h2>
-            <p>$30</p>
+            <p>$80 / team</p>
         </div>
     </div>
 </section>
