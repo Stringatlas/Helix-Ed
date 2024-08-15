@@ -33,7 +33,7 @@
                 </ul>
             </li>
 
-            <li><a href={"/faq"}>FAQ</a></li>
+            <li><a href={"https://www." + homePage}>HelixEd</a></li>
             <button on:click={() => goto("/register")}>Register for BioBrawl 2025</button>
         </div>
     </ul>

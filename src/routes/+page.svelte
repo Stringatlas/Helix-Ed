@@ -9,7 +9,7 @@
 </section>
 
 <section id="announcement">
-    <h2>Registration for Bio Brawl 2025 will open on {registrationOpens} for both Middle school and High school</h2>
+    <h2>Registration for Bio Brawl 2025 will open on {registrationOpens} for both Middle school and High school divisions</h2>
 </section>
 
 <section class="body">
@@ -51,11 +51,16 @@
         </div>
 
         <div class="card full-width">
+            <h2>Where</h2>
+            <p>Online on Zoom, 8am-5pm PST</p>
+        </div>
+
+        <div class="card full-width">
             <h2>Registration fee</h2>
             <p>$20 / team</p>
         </div>
         <div class="card full-width prizes">
-            <h1>Prizes</h1>
+            <h1>Prizes per division</h1>
             <h2>1st Place</h2>
             <p>$200 / team</p>
             <h2>2nd Place</h2>
@@ -70,6 +75,7 @@
     .prizes {
         text-align: center;
         h1 {
+            font-size: 2.5rem;
             margin-bottom: 0.2em;
         }
         h2 {
