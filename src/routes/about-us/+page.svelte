@@ -30,10 +30,11 @@
         <div>
             <h1 style="margin-bottom: 16px;">Our Story</h1>
             <p>
-                With the goal of expanding academic opportunities to more students, HelixEd launched with the BioBrawl biology competition during the summer of 2024, featuring 8 teams and over 40
-                participants. Shortly after, HelixEd broadened its offerings beyond biology, introducing online summer courses in Physics, Biology, Chemistry, and Economics for middle school to early
-                high school students. Taught by instructors from top universities and supported by high school TAs with excellent academic records, HelixEd has grown into a thriving community of over
-                100 students.
+                With the goal of expanding academic opportunities for more students, the club leaders of the Basis Independent Silicon Valley USABO Club launched the BioBrawl biology competition in
+                May 2024, featuring eight teams and over 40 participants. Building on this success, we soon founded HelixEd to broaden our educational offerings beyond biology by introducing online
+                summer courses in Physics, Biology, Chemistry, and Economics for middle school to early high school students. These courses are taught by instructors from top universities and
+                supported by high school TAs with excellent academic records, creating a vibrant and supportive learning community. Since its inception, HelixEd has grown into a thriving community,
+                providing valuable educational experiences to an increasing number of students.
             </p>
         </div>
         <img src={berkeley} alt="" />
@@ -42,16 +43,22 @@
 
 <section id="team">
     <h1>Our Team</h1>
-    <h2>Director</h2>
+    <h2>Founders</h2>
     <div style="margin-bottom: 50px">
-        <InstructorCard instructorData={instructors.biology[0]} subject={"biology"} />
+        {#each Object.entries(instructors) as [subject, subjectInstructors]}
+            {#each subjectInstructors as instructor}
+                {#if "additionalRole" in instructor}
+                    <InstructorCard instructorData={instructor} {subject} />
+                {/if}
+            {/each}
+        {/each}
     </div>
 
     <h2>Our Instructors</h2>
     <div style="margin-bottom: 50px">
         {#each Object.entries(instructors) as [subject, subjectInstructors]}
             {#each subjectInstructors as instructor}
-                {#if instructor.role == "Instructor"}
+                {#if instructor.role == "Instructor" && !("additionalRole" in instructor)}
                     <InstructorCard instructorData={instructor} {subject} />
                 {/if}
             {/each}
@@ -62,7 +69,7 @@
     <div style="margin-bottom: 50px">
         {#each Object.entries(instructors) as [subject, subjectInstructors]}
             {#each subjectInstructors as instructor}
-                {#if instructor.role == "TA"}
+                {#if instructor.role == "TA" && !("additionalRole" in instructor)}
                     <InstructorCard instructorData={instructor} {subject} />
                 {/if}
             {/each}

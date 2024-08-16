@@ -67,8 +67,9 @@
 <style lang="scss">
     button {
         border: none;
-        padding: 20px 16px;
-        background: radial-gradient(circle at top left, darken($primary, 10%) 0%, $primary 100%);
+        padding: 1rem 1.25rem;
+        font-size: 1.5rem;
+        background: radial-gradient(circle at top left, darken($primary, 5%) 0%, $primary 100%);
         border-radius: 16px;
         font-weight: bold;
     }
@@ -111,7 +112,7 @@
         align-items: center;
         justify-content: center;
         color: $text-color;
-        padding: 0 15%;
+        // padding: 0 15%;
         height: calc(100vh - $nav-height);
         text-align: center;
         margin-bottom: 3rem;

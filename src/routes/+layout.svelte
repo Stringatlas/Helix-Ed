@@ -2,7 +2,6 @@
     import Navbar from "$lib/components/Navbar.svelte";
     import Footer from "$lib/components/Footer.svelte";
 
-    import BioBrawlNavbar from "$lib/components/BioBrawlNavbar.svelte";
     import { page } from "$app/stores";
     import { derived } from "svelte/store";
 
@@ -12,11 +11,7 @@
 </script>
 
 <section id="nav">
-    {#if $isBioBrawl}
-        <BioBrawlNavbar />
-    {:else}
-        <Navbar />
-    {/if}
+    <Navbar />
 </section>
 
 <main>

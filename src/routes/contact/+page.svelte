@@ -45,6 +45,9 @@
             align-items: center;
             margin-top: 20px;
         }
+        p {
+            line-height: 2;
+        }
 
         h1 {
             margin-bottom: 8px;

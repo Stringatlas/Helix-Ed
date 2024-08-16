@@ -38,6 +38,7 @@
 
             <li><a href="/about-us">About Us</a></li>
             <li><a href="/contact">Contact</a></li>
+            <li><a href="/recruiting">Recruiting</a></li>
             <button on:click={() => goto("/enroll")}>Enroll</button>
         </div>
     </ul>

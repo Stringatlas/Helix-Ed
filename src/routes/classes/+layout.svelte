@@ -81,11 +81,9 @@
         </section>
 
         <section id="poster-section">
-            <div>
-                {#if currentCourse.poster}
-                    <img id="poster" src={"/" + currentCourse.poster} alt="" />
-                {/if}
-            </div>
+            {#if currentCourse.poster}
+                <img id="poster" src={"/" + currentCourse.poster} alt="" />
+            {/if}
         </section>
     </div>
 
@@ -114,11 +112,15 @@
     // }
 
     #poster-section {
-        padding: 72px;
+        // padding: 10%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
     }
 
     #poster {
-        width: 100%;
+        width: 70%;
     }
 
     #actions {

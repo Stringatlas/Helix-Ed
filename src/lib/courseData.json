@@ -10,7 +10,7 @@
             "status": "closed",
             "studentDescription": "7th grade and up",
             "tuition": 300,
-            "poster": "images/posters/physics-summer-24.png",
+            "poster": "images/posters/physics-summer-24.jpg",
             "dates": "Mon, Wed, Fri, 6/17 - 7/19",
             "content": "Physics at a high-school level, covering topics found in AP Physics 1 and AP Physics C: Mechanics."
         }
@@ -27,7 +27,7 @@
             "studentDescription": "7th grade and up",
             "tuition": 200,
             "dates": "Tue, Thu, 7/16 - 8/15",
-            "poster": "images/posters/chemistry-summer-24.png",
+            "poster": "images/posters/chemistry-summer-24.jpg",
             "content": "AP Chemistry topics including matter, gas laws, chemical bonding, reactions and more!"
         }
     ],

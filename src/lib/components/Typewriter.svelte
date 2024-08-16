@@ -60,9 +60,12 @@
     .typewriter {
         /* font-size: 24px; */
         /* border-right: 2px solid; */
-        /* white-space: nowrap; */
         /* overflow: hidden; */
+        text-align: start;
         display: inline-block;
+        overflow: visible;
+        white-space: nowrap;
+        width: 300px;
     }
 
     .caret {
