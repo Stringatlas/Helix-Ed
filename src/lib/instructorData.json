@@ -11,21 +11,21 @@
             "name": "Brianna Zhang",
             "role": "TA",
             "school": "Basis Independent Silicon Valley",
-            "bio": "Brianna Zheng is a rising senior at BASIS Independent Silicon Valley. She has taken all of the physics APs, receiving 5s on AP Physics 1, AP Physics 2, and hopefully AP Physics C: Mechanics and AP Physics C: Electricity and Magnetism. She received an Honorable Mention at the United States Physics Olympiad. She hopes to share the beauty of physics and its connection to everyday occurrences with others.",
+            "bio": "Brianna Zheng is a rising senior at BASIS Independent Silicon Valley. She has taken all of the physics APs, receiving 5s on AP Physics 1, AP Physics 2, and AP Physics C: Mechanics and AP Physics C: Electricity and Magnetism. She received an Honorable Mention at the United States Physics Olympiad. She hopes to share the beauty of physics and its connection to everyday occurrences with others.",
             "imagePath": "images/instructors/briannaphoto.jpg"
         },
         {
             "name": "Kevin Zhang",
             "role": "TA",
             "school": "The King's Academy",
-            "bio": "Kevin Zhang is a junior at The King's Academy. He has taken AP Physics 1 and is part of his school's physics team. He is excited to share his passion for physics with others.",
+            "bio": "Kevin Zhang is a junior at The King's Academy. He has taken AP Physics 1 with a 5 and is part of his school's physics and robotics team. He is excited to share his passion for physics with others.",
             "imagePath": "images/instructors/kevinphoto.jpg"
         },
         {
             "name": "Lucas Quan",
             "role": "TA",
             "school": "Basis Independent Silicon Valley",
-            "bio": "Lucas Quan is a rising sophomore at BASIS Independent Silicon Valley. He has taken AP Physics 1 and probably got a 5. He has received the same number of USAPhO gold medals as Professor Sidhant Chaliha. He was also on the BISV science bowl team B as a physics main.",
+            "bio": "Lucas Quan is a rising sophomore at BASIS Independent Silicon Valley. He has taken AP Physics 1 and got a 5. He has received the same number of USAPhO gold medals as Professor Sidhant Chaliha. He was also on the BISV science bowl team B as a physics main.",
             "imagePath": "images/instructors/lucasphoto2.jpeg"
         }
     ],
