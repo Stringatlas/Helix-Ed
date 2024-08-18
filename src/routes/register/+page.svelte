@@ -11,7 +11,7 @@
     </div>
     <div class="body">
         <button class="primary" on:click={() => (window.location.href = current.registration)}>Register with Google Forms</button>
-        <button class="secondary" on:click={() => (window.location.href = current.registrationAlternative)}>Register through QQ</button>
+        <button class="secondary" on:click={() => (window.location.href = current.registrationAlternative)}>Register through WeChat</button>
     </div>
 </div>
 
