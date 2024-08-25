@@ -33,6 +33,7 @@
                     <li><a href="/classes/chemistry">Chemistry</a></li>
                     <li><a href="/classes/biology">Biology</a></li>
                     <li><a href="/classes/economics">Economics</a></li>
+                    <li><a href="https://www.math-for-real.org/">Math</a></li>
                 </ul>
             </li>
 

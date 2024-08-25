@@ -22,6 +22,20 @@
     // onMount(() => {
     //     createScene(backgroundCanvas);
     // });
+
+    let mouseX: number;
+    let mouseY: number;
+
+    function handleMouseMove(event: MouseEvent) {
+        const { offsetX, offsetY, target } = event;
+        const { clientWidth, clientHeight } = target as HTMLButtonElement;
+        const posX = (offsetX / clientWidth) * 100;
+        const posY = (offsetY / clientHeight) * 100;
+        mouseX = posX;
+        mouseY = posY;
+
+        // gradientStyle = `radial-gradient(circle at ${posX}% ${posY}%, darken(var(--primary), 5%), var(--primary))`;
+    }
 </script>
 
 <body>
@@ -29,7 +43,7 @@
         <canvas id="background" bind:this={backgroundCanvas}></canvas>
         <h1>Empowering future <Typewriter words={careers} /><br />through personalized education</h1>
         <h2>Igniting passion and mastery in the sciences</h2>
-        <button on:click={() => goto("/enroll")}>View our courses</button>
+        <button on:click={() => goto("/enroll")} on:mousemove={handleMouseMove} style="--x: {mouseX}%; --y: {mouseY}%; ">View our courses</button>
     </section>
 
     <div>
@@ -67,11 +81,17 @@
 <style lang="scss">
     button {
         border: none;
-        padding: 1rem 1.25rem;
+        padding: 1rem 1.75rem;
         font-size: 1.5rem;
-        background: radial-gradient(circle at top left, darken($primary, 5%) 0%, $primary 100%);
+        background-color: $primary;
+
         border-radius: 16px;
         font-weight: bold;
+        // transition: background 0.3s ease;
+
+        &:hover {
+            background: radial-gradient(circle at var(--x) var(--y), darken($primary, 5%) 0%, $primary 100%);
+        }
     }
 
     h1 {
