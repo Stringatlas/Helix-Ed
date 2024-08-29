@@ -88,12 +88,10 @@
     </div>
 
     <section id="instructors">
-        <h1 id="instructors">Meet the instructors</h1>
-        <div>
+        <h1 id="instructors-label">Meet the instructors</h1>
+        <div class="flex-div">
             {#each instructors as instructor}
-                <div>
-                    <InstructorCard instructorData={instructor} {subject} />
-                </div>
+                <div><InstructorCard instructorData={instructor} {subject} /></div>
             {/each}
             {#each tas as ta}
                 <div>
@@ -160,14 +158,22 @@
     #instructors {
         margin-top: 24px;
 
-        > div {
-            overflow-x: auto;
-            scrollbar-color: rgb(122, 125, 136) lighten($background-color, 5%);
-            scrollbar-width: thin;
+        .flex-div {
+            overflow-x: scroll;
             display: flex;
             flex-direction: row;
-            gap: 16px;
+
+            scrollbar-color: rgb(122, 125, 136) lighten($background-color, 5%);
+            scrollbar-width: thin;
+
+            gap: 52px;
             padding: 16px;
+
+            > div {
+                flex: 0 0 auto;
+                width: 400px;
+                box-sizing: content-box;
+            }
         }
     }
     main {
@@ -193,5 +199,22 @@
         @include button;
         font-size: large;
         padding: 1em 1.5em;
+    }
+
+    @media (max-width: $mobile-width) {
+        #body-content {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        #poster-section {
+            #poster {
+                width: 100%;
+            }
+        }
+
+        #text-content {
+            width: 100%;
+        }
     }
 </style>

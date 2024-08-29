@@ -14,8 +14,18 @@
         isDropdownOpen = !isDropdownOpen;
     }
 
+    function openDropdown() {
+        isDropdownOpen = true;
+    }
+
     function closeDropdown() {
         isDropdownOpen = false;
+    }
+
+    let mobileMenuOpen = false;
+
+    function toggleMobileMenu() {
+        mobileMenuOpen = !mobileMenuOpen;
     }
 </script>
 
@@ -24,10 +34,10 @@
         <li class="logo">
             <a href="/"><img src="/logo.png" alt="logo" /></a>
         </li>
-        <div class="nav-links">
+        <div class={"nav-links" + (mobileMenuOpen ? " active" : "")}>
             <li><a href={bioBrawlLink}>Bio Brawl</a></li>
             <li class="dropdown" on:mouseleave={closeDropdown}>
-                <a id="our-classes" href="/" on:mouseenter={toggleDropdown} on:click|preventDefault={toggleDropdown}>Our classes<span style="font-size: 16px">▼</span></a>
+                <a id="our-classes" href="/" on:mouseenter={() => console.log()} on:click|preventDefault={toggleDropdown}>Our classes<span style="font-size: 16px">▼</span></a>
                 <ul class={`dropdown-menu ${isDropdownOpen ? "active" : ""}`}>
                     <li><a href="/classes/physics">Physics</a></li>
                     <li><a href="/classes/chemistry">Chemistry</a></li>
@@ -40,13 +50,30 @@
             <li><a href="/about-us">About Us</a></li>
             <li><a href="/contact">Contact</a></li>
             <li><a href="/recruiting">Recruiting</a></li>
-            <button on:click={() => goto("/enroll")}>Enroll</button>
+            <button class="enroll-button" on:click={() => goto("/enroll")}>Enroll</button>
+        </div>
+
+        <div class="mobile-menu">
+            <button class="hamburger-menu" on:click={toggleMobileMenu}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="black" class="bi bi-list" viewBox="0 0 16 16">
+                    <path
+                        fill-rule="evenodd"
+                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+                    />
+                </svg>
+            </button>
         </div>
     </ul>
 </nav>
 
 <style lang="scss">
-    button {
+    .hamburger-menu {
+        @include invisible-button;
+        display: none;
+        pointer-events: none;
+    }
+
+    .enroll-button {
         background: $primary;
         color: black;
         border: none;
@@ -120,11 +147,14 @@
         padding: 8px 0;
         z-index: 1;
 
+        pointer-events: none;
+
         opacity: 0;
         transition: opacity 0.3s ease;
 
         &.active {
             opacity: 1;
+            pointer-events: all;
         }
     }
 
@@ -142,5 +172,34 @@
 
     .dropdown-menu a:hover {
         background-color: lighten($background-color, 10%);
+    }
+
+    @media (max-width: $mobile-width) {
+        .hamburger-menu {
+            display: inline;
+            pointer-events: all;
+        }
+
+        .nav-links {
+            display: none;
+            pointer-events: none;
+
+            &.active {
+                display: flex;
+                pointer-events: all;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                width: 100%;
+                left: 0;
+                background: $background-color;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+                padding: 8px 0;
+                z-index: 1;
+
+                font-size: large;
+            }
+        }
     }
 </style>

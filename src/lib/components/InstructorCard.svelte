@@ -136,7 +136,9 @@
     }
 
     #card-container {
-        width: $card-width;
+        width: 100%;
+        max-width: $card-width;
+
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
         padding: $card-padding;
         border-radius: 8px;

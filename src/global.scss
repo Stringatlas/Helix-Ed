@@ -11,12 +11,22 @@ $secondary: #b3c2af;
 
 $nav-height: 69px;
 
+$mobile-width: 750px;
+
 @mixin button {
     color: black;
     border: none;
     padding: 8px 16px;
     border-radius: 8px;
 }
+
+@mixin invisible-button {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    margin: 0;
+}
+
 @mixin button-primary {
     @include button;
     background: $primary;

@@ -65,7 +65,6 @@
         display: inline-block;
         overflow: visible;
         white-space: nowrap;
-        width: 300px;
     }
 
     .caret {

@@ -13,7 +13,7 @@
         <h2>Meet our instructors</h2>
     </section>
 
-    <section id="mission">
+    <section class="middle-section">
         <img src={classroom} alt="" />
         <div>
             <h1>Our Mission</h1>
@@ -26,7 +26,7 @@
         </div>
     </section>
 
-    <section id="mission">
+    <section class="middle-section reverse">
         <div>
             <h1 style="margin-bottom: 16px;">Our Story</h1>
             <p>
@@ -86,7 +86,7 @@
         background-color: darken($background-color, 10%);
     }
 
-    #mission {
+    .middle-section {
         display: flex;
         flex-direction: row;
         margin: 60px 120px;
@@ -150,5 +150,42 @@
 
     section {
         padding: 8px;
+    }
+
+    @media (max-width: $mobile-width) {
+        main {
+            // margin: 0 12px;
+
+            #title {
+            }
+            .middle-section {
+                display: flex;
+                flex-direction: column;
+                gap: 40px;
+                margin: 40px 8px;
+
+                div {
+                    display: flex;
+                    flex: 1;
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                img {
+                    width: 100%;
+                }
+
+                h1 {
+                    margin-bottom: 8px;
+                }
+                h2 {
+                    margin-bottom: 16px;
+                }
+            }
+
+            .reverse {
+                flex-direction: column-reverse;
+            }
+        }
     }
 </style>

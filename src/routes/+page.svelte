@@ -33,15 +33,13 @@
         const posY = (offsetY / clientHeight) * 100;
         mouseX = posX;
         mouseY = posY;
-
-        // gradientStyle = `radial-gradient(circle at ${posX}% ${posY}%, darken(var(--primary), 5%), var(--primary))`;
     }
 </script>
 
 <body>
     <section id="landing-section">
         <canvas id="background" bind:this={backgroundCanvas}></canvas>
-        <h1>Empowering future <Typewriter words={careers} /><br />through personalized education</h1>
+        <h1>Empowering future <span class="typewriter-wrapper"><Typewriter words={careers} /></span><br />through personalized education</h1>
         <h2>Igniting passion and mastery in the sciences</h2>
         <button on:click={() => goto("/enroll")} on:mousemove={handleMouseMove} style="--x: {mouseX}%; --y: {mouseY}%; ">View our courses</button>
     </section>
@@ -181,5 +179,28 @@
 
     body {
         padding: 8px;
+    }
+
+    @media (max-width: $mobile-width) {
+        #landing-section {
+            h1 {
+                font-size: 10vw;
+                margin-bottom: 16px;
+                color: black;
+            }
+            h2 {
+                margin-bottom: 64px;
+                margin-left: 8px;
+                margin-right: 8px;
+                color: black;
+            }
+        }
+
+        #why {
+            margin-top: 64px;
+            display: flex;
+            flex-direction: column;
+            gap: 64px;
+        }
     }
 </style>
