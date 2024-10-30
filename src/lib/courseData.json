@@ -29,6 +29,20 @@
             "dates": "Tue, Thu, 7/16 - 8/15",
             "poster": "images/posters/chemistry-summer-24.jpg",
             "content": "AP Chemistry topics including matter, gas laws, chemical bonding, reactions and more!"
+        },
+        {
+            "title": "Winter Boost Chemistry",
+            "season": "Winter 2024",
+            "subject": "chemistry",
+            "description": "10 classes in total. Will be taught by Emily Dai, a rising sophomore at UC Berkeley majoring in Chemistry, having extensive tutoring experience in Chemistry. This course is suitable for students with little to no prior knowledge in chemistry, from 7th grade onwards. A basic understanding of algebra is recommended.",
+            "registrationForm": "https://tinyurl.com/24Winter-HelixEd-Chem",
+            "syllabus": "https://tinyurl.com/HelixEd-Chemistry-Syllabus",
+            "status": "open",
+            "studentDescription": "7th grade and up",
+            "tuition": 200,
+            "dates": "Sun, Mon, Thu, 7-8:30pm on Zoom from 12/21/24 - 1/11/25",
+            "poster": "images/posters/chemistry-winter-24.webp",
+            "content": "AP Chemistry topics including matter, gas laws, chemical bonding, reactions and more!"
         }
     ],
     "economics": [
