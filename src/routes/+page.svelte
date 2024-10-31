@@ -9,7 +9,7 @@
 </section>
 
 <section id="announcement">
-    <h2>Registration for Bio Brawl 2025 will open on {registrationOpens} for both Middle school and High school divisions</h2>
+    <h2>Registration is OPEN</h2>
 </section>
 
 <section class="body">
@@ -62,7 +62,7 @@
         <div class="card full-width prizes">
             <h1>Prizes per division</h1>
             <h2>1st Place</h2>
-            <p>$200 / team</p>
+            <p>$300 / team</p>
             <h2>2nd Place</h2>
             <p>$120 / team</p>
             <h2>3rd Place</h2>
