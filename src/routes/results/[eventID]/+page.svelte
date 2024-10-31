@@ -38,16 +38,32 @@
 
         <div id="bracket">
             <h1>Elimation Bracket</h1>
+            <a href={eventData.eliminationBracket}>Elimination bracket link</a>
             <iframe title="elimation bracket sheet" src={eventData.eliminationBracket} frameborder="0" class="sheet"></iframe>
         </div>
     </div>
 </body>
 
 <style lang="scss">
+    @media (max-width: $mobile-width) {
+        #bracket {
+            iframe {
+                display: none;
+            }
+
+            margin-bottom: 2rem;
+        }
+    }
     #bracket {
         margin-top: 200px;
         h1 {
             text-align: center;
+        }
+        a {
+            margin-top: 1.5rem;
+            font-size: large;
+            text-align: center;
+            display: block;
         }
     }
 

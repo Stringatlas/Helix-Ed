@@ -1,7 +1,7 @@
 <script lang="ts">
     import Footer from "$lib/components/Footer.svelte";
 
-    import BioBrawlNavbar from "$lib/components/BioBrawlNavbar.svelte";
+    import BioBrawlNavbar from "$lib/components/Navbar.svelte";
 </script>
 
 <section id="nav">

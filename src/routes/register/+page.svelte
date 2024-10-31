@@ -55,4 +55,11 @@
         padding: 1rem 2rem;
         border-radius: 1rem;
     }
+
+    @media (max-width: $mobile-width) {
+        .page > .body {
+            flex-direction: column;
+            padding: 16px;
+        }
+    }
 </style>

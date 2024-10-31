@@ -2,9 +2,10 @@
     import { goto } from "$app/navigation";
     import bioBrawlData from "$lib/bioBrawlData.json";
 
-    let currentYear: ValidYear = "2025";
-    let registrationOpens = "August 15th";
     type ValidYear = keyof typeof bioBrawlData;
+    let currentYear: ValidYear = Object.keys(bioBrawlData).at(-1) as ValidYear;
+
+    let registrationOpens = "August 15th";
 
     function isValidYear(year: string): year is ValidYear {
         return year in bioBrawlData;
@@ -194,5 +195,22 @@
 
     .full-width {
         flex: 0 0 0;
+    }
+
+    @media (max-width: $mobile-width) {
+        .body {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .main-content {
+            border-right-style: none;
+        }
+        #header {
+            img {
+                height: auto;
+                width: 100%;
+            }
+        }
     }
 </style>

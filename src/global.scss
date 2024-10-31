@@ -9,6 +9,14 @@ $accent: #293242;
 $primary: #016107;
 $secondary: #5f9baa;
 
+$mobile-width: 750px;
+
+@mixin invisible-button {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    margin: 0;
+}
 
 @mixin button {
     color: rgb(255, 255, 255);
