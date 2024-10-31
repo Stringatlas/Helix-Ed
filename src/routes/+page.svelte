@@ -1,5 +1,8 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
+    import bioBrawlData from "../lib/bioBrawlData.json";
+
+    let currentYear = new Date().getFullYear();
 
     let registrationOpens = "August 15th";
 </script>
@@ -62,7 +65,7 @@
         <div class="card full-width prizes">
             <h1>Prizes per division</h1>
             <h2>1st Place</h2>
-            <p>$300 / team</p>
+            <p>${bioBrawlData[currentYear]} / team</p>
             <h2>2nd Place</h2>
             <p>$120 / team</p>
             <h2>3rd Place</h2>

@@ -45,6 +45,7 @@
 
         "participants": 30,
         "teams": 8,
+        "registrationFee": 20,
         
         "registration": "https://tinyurl.com/BioBrawl-25-BiologyBowl",
         "registrationAlternative": "https://wj.qq.com/s2/15088554/1af7/",
