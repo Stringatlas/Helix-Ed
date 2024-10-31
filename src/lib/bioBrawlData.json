@@ -14,13 +14,20 @@
             "third": "80"
         },
 
-        "participants": 30,
-        "teams": 8,
+        "registrationFee": 20,
+        "teamSize": "3-5",
+        "grades": "6-12",
+
+        "postEventData": {
+            "participants": 30,
+            "teams": 8
+        },
         
         "registration": "https://www.example.com/register",
         "results": "https://www.example.com/results",
         "contact": "helix-ed@gmail.com",
         "eliminationBracket": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRvvmbTEtXY2x6ejj4ogYVeSsv5X08QAE1ENSJiqJXLern89rG4BEH28Q_45Iul_0aXMe9pHJe_3-8z/pubhtml?gid=0&single=true&amp;widget=true&amp;headers=false",
+        
         "winners" : {
             "first": "Thiamine",
             "second": "Riboflavin",
@@ -32,8 +39,8 @@
         "eventID": 2025,
         "name": "Bio Brawl 2025",
         "date": "May 18, 2024",
-        "time": "8am-5pm",
-        "location": "Virtual",
+        "time": "8am-5pm PST",
+        "location": "Online on Zoom",
         "description": "Bio Brawl is a competition where students will be tested on their knowledge of biology.",
         "rules": "/biobrawl-rules.pdf",
         
@@ -43,9 +50,10 @@
             "third": "80"
         },
 
-        "participants": 30,
-        "teams": 8,
         "registrationFee": 20,
+        "teamSize": "3-5",
+        "grades": "6-12",
+
         
         "registration": "https://tinyurl.com/BioBrawl-25-BiologyBowl",
         "registrationAlternative": "https://wj.qq.com/s2/15088554/1af7/",

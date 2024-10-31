@@ -1,10 +1,15 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-    import bioBrawlData from "../lib/bioBrawlData.json";
+    import bioBrawlData from "$lib/bioBrawlData.json";
 
-    let currentYear = new Date().getFullYear();
-
+    let currentYear: ValidYear = "2025";
     let registrationOpens = "August 15th";
+    type ValidYear = keyof typeof bioBrawlData;
+
+    function isValidYear(year: string): year is ValidYear {
+        return year in bioBrawlData;
+    }
+    let currentEvent = bioBrawlData[currentYear];
 </script>
 
 <section id="header">
@@ -45,31 +50,31 @@
         <div class="side-by-side">
             <div class="card half-width">
                 <h2>Who can register</h2>
-                <p>Grades 6-12</p>
+                <p>Grades {currentEvent.grades}</p>
             </div>
             <div class="card half-width">
                 <h2>Team size</h2>
-                <p>Teams of 3-5</p>
+                <p>Teams of {currentEvent.teamSize}</p>
             </div>
         </div>
 
         <div class="card full-width">
             <h2>Where</h2>
-            <p>Online on Zoom, 8am-5pm PST</p>
+            <p>{currentEvent.location}, {currentEvent.time}</p>
         </div>
 
         <div class="card full-width">
             <h2>Registration fee</h2>
-            <p>$20 / team</p>
+            <p>${currentEvent.registrationFee} / team</p>
         </div>
         <div class="card full-width prizes">
             <h1>Prizes per division</h1>
             <h2>1st Place</h2>
-            <p>${bioBrawlData[currentYear]} / team</p>
+            <p>${currentEvent.prizes.first} / team</p>
             <h2>2nd Place</h2>
-            <p>$120 / team</p>
+            <p>${currentEvent.prizes.second} / team</p>
             <h2>3rd Place</h2>
-            <p>$80 / team</p>
+            <p>${currentEvent.prizes.third} / team</p>
         </div>
     </div>
 </section>
