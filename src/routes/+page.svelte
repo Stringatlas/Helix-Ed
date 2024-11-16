@@ -14,7 +14,7 @@
 </script>
 
 <section id="header">
-    <img src="/images/biobrawl-2.webp" alt="" />
+    <img src="/images/biobrawl-2.webp" alt="biobrawl background logo" />
 </section>
 
 <section id="announcement">

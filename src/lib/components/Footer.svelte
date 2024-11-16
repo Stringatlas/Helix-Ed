@@ -11,22 +11,11 @@
 <section>
     <div id="social">
         <hr />
-        <a href={linkedin}><img src={linkedIcon} alt="" /></a>
-        <a href={instagram}><img src={instaIcon} alt="" /></a>
-        <a href={facebook}><img src={fbIcon} alt="" /></a>
+        <a href={linkedin}><img src={linkedIcon} alt="linkedin" /></a>
+        <a href={instagram}><img src={instaIcon} alt="instagram" /></a>
+        <a href={facebook}><img src={fbIcon} alt="facebook" /></a>
         <hr />
     </div>
-    <!-- <div>
-        
-    </div>
-
-    <div>
-        
-    </div>
-
-    <div>
-        
-    </div> -->
 
     <div class="credit">
         <div>
