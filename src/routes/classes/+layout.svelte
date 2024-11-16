@@ -82,7 +82,7 @@
 
         <section id="poster-section">
             {#if currentCourse.poster}
-                <img id="poster" src={"/" + currentCourse.poster} alt="" />
+                <img id="poster" src={"/" + currentCourse.poster} alt="class poster" />
             {/if}
         </section>
     </div>

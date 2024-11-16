@@ -41,30 +41,34 @@
         <canvas id="background" bind:this={backgroundCanvas}></canvas>
         <h1>Empowering future <span class="typewriter-wrapper"><Typewriter words={careers} /></span><br />through personalized education</h1>
         <h2>Igniting passion and mastery in the sciences</h2>
-        <button on:click={() => goto("/enroll")} on:mousemove={handleMouseMove} style="--x: {mouseX}%; --y: {mouseY}%; ">View our courses</button>
+        <button on:click={() => goto("/enroll")} on:mousemove={handleMouseMove} style="--x: {mouseX}%; --y: {mouseY}%; ">View our courses →</button>
     </section>
 
     <div>
-        <h1 style="text-align: center">Why Helix Ed?</h1>
+        <h2 style="text-align: center; font-size: 32px">Why Helix Ed?</h2>
 
         <section id="why">
             <div>
-                <img src={BookIcon} alt="" />
+                <img src={BookIcon} alt="book icon" />
                 <h2>Outstanding Curriculum</h2>
                 <p>Dive into a well-structured learning path that has been proven effective, setting you up for success in every lesson.</p>
             </div>
             <div>
-                <img src={SchoolIcon} alt="" />
+                <img src={SchoolIcon} alt="school icon" />
                 <h2>Top-Tier Instructors</h2>
                 <p>Our instructors come from top universities, ensuring a learning experience that's both high-quality and personalized.</p>
             </div>
             <div>
-                <img src={MoneyIcon} alt="" />
+                <img src={MoneyIcon} alt="money icon" />
                 <h2>Quality at a Low Cost</h2>
                 <p>Experience premium courses at affordable rates, making education both accessible and effective.</p>
             </div>
         </section>
     </div>
+
+    <!-- <section id="courses">
+        <h2 style="text-align: center; font-size: 32px">Our Courses</h2>
+    </section> -->
 
     <section id="testimonials">
         <!-- <h1>Reviews</h1>
@@ -79,12 +83,13 @@
 <style lang="scss">
     button {
         border: none;
-        padding: 1rem 1.75rem;
+        padding: 1rem 3rem;
         font-size: 1.5rem;
+        font-family: "Inter";
         background-color: $primary;
 
         border-radius: 16px;
-        font-weight: bold;
+        // font-weight: bold;
         // transition: background 0.3s ease;
 
         &:hover {
@@ -105,7 +110,7 @@
         gap: 64px;
 
         margin-bottom: 120px;
-        margin-top: 24px;
+        margin-top: 64px;
 
         div {
             display: flex;
@@ -116,6 +121,10 @@
             img {
                 width: 100px;
                 height: 100px;
+                margin-bottom: 24px;
+            }
+            h2 {
+                margin-bottom: 4px;
             }
             p {
                 line-height: 1.5;
@@ -148,7 +157,7 @@
 
         h1 {
             font-size: 52px;
-            margin-bottom: 16px;
+            margin-bottom: 32px;
             color: black;
         }
         h2 {
@@ -197,7 +206,6 @@
         }
 
         #why {
-            margin-top: 64px;
             display: flex;
             flex-direction: column;
             gap: 64px;

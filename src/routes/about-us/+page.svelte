@@ -14,7 +14,7 @@
     </section>
 
     <section class="middle-section">
-        <img src={classroom} alt="" />
+        <img src={classroom} alt="classroom" />
         <div>
             <h1>Our Mission</h1>
             <h2>Bringing academic excellence to every student</h2>
@@ -37,7 +37,7 @@
                 providing valuable educational experiences to an increasing number of students.
             </p>
         </div>
-        <img src={berkeley} alt="" />
+        <img src={berkeley} alt="uc berkeley" />
     </section>
 </main>
 
@@ -154,10 +154,6 @@
 
     @media (max-width: $mobile-width) {
         main {
-            // margin: 0 12px;
-
-            #title {
-            }
             .middle-section {
                 display: flex;
                 flex-direction: column;
