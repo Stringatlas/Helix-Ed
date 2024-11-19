@@ -36,6 +36,15 @@
     }
 </script>
 
+<svelte:head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <link rel="apple-touch-icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Helix-Ed | University-Led Education for High School Success</title>
+    <meta name="description" content="Igniting passion and mastery in the sciences! Helix-Ed offers affordable, high-level instruction from university students for middle and high schoolers." />
+</svelte:head>
+
 <body>
     <section id="landing-section">
         <canvas id="background" bind:this={backgroundCanvas}></canvas>
@@ -79,6 +88,8 @@
         </div> -->
     </section>
 </body>
+
+// TODO - use schema.org to improve SEO // TODO - finish courses section in home page
 
 <style lang="scss">
     button {
