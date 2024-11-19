@@ -36,15 +36,6 @@
     }
 </script>
 
-<svelte:head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
-    <link rel="apple-touch-icon" href="%sveltekit.assets%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Helix-Ed | University-Led Education for High School Success</title>
-    <meta name="description" content="Igniting passion and mastery in the sciences! Helix-Ed offers affordable, high-level instruction from university students for middle and high schoolers." />
-</svelte:head>
-
 <body>
     <section id="landing-section">
         <canvas id="background" bind:this={backgroundCanvas}></canvas>
@@ -176,26 +167,26 @@
             color: black;
         }
     }
-    #testimonials {
-        margin: 20px;
+    // #testimonials {
+    //     margin: 20px;
 
-        div {
-            justify-content: center;
-        }
+    //     div {
+    //         justify-content: center;
+    //     }
 
-        h1 {
-            font-size: 32px;
-            margin-bottom: 16px;
-            text-align: center;
-        }
-        div {
-            display: flex;
-            flex-direction: row;
-            gap: 16px;
-            flex-wrap: wrap;
-            align-items: flex-start;
-        }
-    }
+    //     h1 {
+    //         font-size: 32px;
+    //         margin-bottom: 16px;
+    //         text-align: center;
+    //     }
+    //     div {
+    //         display: flex;
+    //         flex-direction: row;
+    //         gap: 16px;
+    //         flex-wrap: wrap;
+    //         align-items: flex-start;
+    //     }
+    // }
 
     body {
         padding: 8px;
