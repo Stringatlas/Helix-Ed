@@ -80,7 +80,7 @@
     </section>
 </body>
 
-// TODO - use schema.org to improve SEO // TODO - finish courses section in home page
+<!-- // TODO - use schema.org to improve SEO, structured data // TODO - finish courses section in home page-->
 
 <style lang="scss">
     button {
