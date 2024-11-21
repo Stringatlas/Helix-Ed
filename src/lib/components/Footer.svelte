@@ -22,7 +22,7 @@
             <a href="/privacy-policy" style="margin-right: 1rem">Privacy Policy</a>
             <a href="/attributions">Attributions</a>
             <p>Contact: <a href="mailto:helix-ed.org@gmail.com">helix-ed.org@gmail.com</a></p>
-            <p>&copy; 2024 HelixEd. All rights reserved. Website by Kevin Zhang</p>
+            <p>&copy; 2024 HelixEd. All rights reserved. Website by <a href="https://github.com/Stringatlas">Kevin Zhang</a></p>
         </div>
     </div>
 </section>
