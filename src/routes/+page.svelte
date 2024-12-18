@@ -26,18 +26,18 @@
         <h2 style="margin-top: 0">Rules</h2>
         <a href="/biobrawl-rules.pdf">View our rules</a>
         <h2>Important Dates</h2>
-        <h3>Middle School</h3>
+        <!-- <h3>Middle School</h3> -->
         <ul>
             <li>Registration opens: {registrationOpens}, 2024, 12:00 am PST</li>
             <li>Registration deadline: January 5th, 2025, 11:59 pm PST</li>
             <li>Competition: January 11th, 2025, 8 am - 5 pm PST</li>
         </ul>
-        <h3>High School</h3>
+        <!-- <h3>High School</h3>
         <ul>
             <li>Registration opens: {registrationOpens}, 2024, 12:00 am PST</li>
             <li>Registration deadline: January 12th, 2025, 11:59 pm PST</li>
             <li>Competition: January 18th, 2025, 8 am - 5 pm PST</li>
-        </ul>
+        </ul> -->
 
         <h2>About Us</h2>
         <p>
