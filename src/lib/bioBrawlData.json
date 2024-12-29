@@ -22,8 +22,17 @@
             "participants": 30,
             "teams": 8
         },
+        "registration" : {
+            "opens": "August 15, 2023, 12:00 am PST",
+            "closes": "January 8th, 2024, 11:59 pm PST",
+            "link": "https://tinyurl.com/BioBrawl-25-BiologyBowl",
+            "alternativeLink": "https://wj.qq.com/s2/15088554/1af7/"
+        },
+        "mock": {
+            "date": "January 4th, 2025"
+        },
         
-        "registration": "https://www.example.com/register",
+
         "results": "https://www.example.com/results",
         "contact": "helix-ed@gmail.com",
         "eliminationBracket": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRvvmbTEtXY2x6ejj4ogYVeSsv5X08QAE1ENSJiqJXLern89rG4BEH28Q_45Iul_0aXMe9pHJe_3-8z/pubhtml?gid=0&single=true&amp;widget=true&amp;headers=false",
@@ -44,6 +53,17 @@
         "description": "Bio Brawl is a competition where students will be tested on their knowledge of biology.",
         "rules": "/biobrawl-rules.pdf",
         
+        "registration" : {
+            "opens": "August 15, 2024, 12:00 am PST",
+            "closes": "January 8th, 2025, 11:59 pm PST",
+            "link": "https://tinyurl.com/BioBrawl-25-BiologyBowl",
+            "alternativeLink": "https://wj.qq.com/s2/15088554/1af7/"
+        },
+
+        "mock": {
+            "date": "January 4th, 2025"
+        },
+
         "prizes": {
             "first": "200",
             "second": "120",
@@ -53,10 +73,7 @@
         "registrationFee": 20,
         "teamSize": "3-5",
         "grades": "6-12",
-
         
-        "registration": "https://tinyurl.com/BioBrawl-25-BiologyBowl",
-        "registrationAlternative": "https://wj.qq.com/s2/15088554/1af7/",
         "results": "https://www.example.com/results",
         "contact": "helix-ed@gmail.com",
         "eliminationBracket": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRvvmbTEtXY2x6ejj4ogYVeSsv5X08QAE1ENSJiqJXLern89rG4BEH28Q_45Iul_0aXMe9pHJe_3-8z/pubhtml?gid=0&single=true&amp;widget=true&amp;headers=false",

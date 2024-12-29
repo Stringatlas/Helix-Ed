@@ -1,8 +1,6 @@
 <script>
     import { goto } from "$app/navigation";
-    import bioBrawlData from "$lib/bioBrawlData.json";
-
-    let current = bioBrawlData["2025"];
+    import { currentEvent } from "$lib/stores";
 </script>
 
 <div class="page">
@@ -10,8 +8,8 @@
         <h1>Register for Biobrawl 2025</h1>
     </div>
     <div class="body">
-        <button class="primary" on:click={() => (window.location.href = current.registration)}>Register with Google Forms</button>
-        <button class="secondary" on:click={() => (window.location.href = current.registrationAlternative)}>Register through WeChat</button>
+        <button class="primary" on:click={() => (window.location.href = $currentEvent.registration.link)}>Register with Google Forms</button>
+        <button class="secondary" on:click={() => (window.location.href = $currentEvent.registration.alternativeLink)}>Register through WeChat</button>
     </div>
 </div>
 

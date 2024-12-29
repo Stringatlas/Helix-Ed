@@ -1,16 +1,6 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-    import bioBrawlData from "$lib/bioBrawlData.json";
-
-    type ValidYear = keyof typeof bioBrawlData;
-    let currentYear: ValidYear = Object.keys(bioBrawlData).at(-1) as ValidYear;
-
-    let registrationOpens = "August 15th";
-
-    function isValidYear(year: string): year is ValidYear {
-        return year in bioBrawlData;
-    }
-    let currentEvent = bioBrawlData[currentYear];
+    import { currentEvent } from "$lib/stores";
 </script>
 
 <section id="header">
@@ -28,9 +18,10 @@
         <h2>Important Dates</h2>
         <!-- <h3>Middle School</h3> -->
         <ul>
-            <li>Registration opens: {registrationOpens}, 2024, 12:00 am PST</li>
-            <li>Registration deadline: January 5th, 2025, 11:59 pm PST</li>
-            <li>Competition: January 11th, 2025, 8 am - 5 pm PST</li>
+            <li><b>Registration opens:</b> {$currentEvent.registration.opens}</li>
+            <li><b>Registration deadline:</b> {$currentEvent.registration.closes}</li>
+            <li><b>Mock competition:</b> {$currentEvent.mock.date}</li>
+            <li><b>Competition:</b> January 11th, 2025, 8 am - 5 pm PST</li>
         </ul>
         <!-- <h3>High School</h3>
         <ul>
@@ -51,31 +42,31 @@
         <div class="side-by-side">
             <div class="card half-width">
                 <h2>Who can register</h2>
-                <p>Grades {currentEvent.grades}</p>
+                <p>Grades {$currentEvent.grades}</p>
             </div>
             <div class="card half-width">
                 <h2>Team size</h2>
-                <p>Teams of {currentEvent.teamSize}</p>
+                <p>Teams of {$currentEvent.teamSize}</p>
             </div>
         </div>
 
         <div class="card full-width">
             <h2>Where</h2>
-            <p>{currentEvent.location}, {currentEvent.time}</p>
+            <p>{$currentEvent.location}, {$currentEvent.time}</p>
         </div>
 
         <div class="card full-width">
             <h2>Registration fee</h2>
-            <p>${currentEvent.registrationFee} / team</p>
+            <p>${$currentEvent.registrationFee} / team</p>
         </div>
         <div class="card full-width prizes">
             <h1>Prizes per division</h1>
             <h2>1st Place</h2>
-            <p>${currentEvent.prizes.first} / team</p>
+            <p>${$currentEvent.prizes.first} / team</p>
             <h2>2nd Place</h2>
-            <p>${currentEvent.prizes.second} / team</p>
+            <p>${$currentEvent.prizes.second} / team</p>
             <h2>3rd Place</h2>
-            <p>${currentEvent.prizes.third} / team</p>
+            <p>${$currentEvent.prizes.third} / team</p>
         </div>
     </div>
 </section>
@@ -99,9 +90,9 @@
         }
     }
 
-    .button-primary {
-        @include button-primary;
-    }
+    // .button-primary {
+    //     @include button-primary;
+    // }
 
     .body {
         display: grid;
@@ -123,8 +114,8 @@
 
         li,
         p {
-            letter-spacing: 1.5;
-            line-height: 1.5;
+            line-height: 1.75;
+            letter-spacing: 1.75;
         }
     }
 
@@ -143,13 +134,13 @@
             width: auto;
         }
 
-        h1 {
-            margin-bottom: 24px;
-        }
+        // h1 {
+        //     margin-bottom: 24px;
+        // }
 
-        h2 {
-            margin-bottom: 12px;
-        }
+        // h2 {
+        //     margin-bottom: 12px;
+        // }
     }
 
     h1 {
@@ -173,7 +164,7 @@
     .card {
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         border-radius: 20px;
-        padding: 16px;
+        padding: 24px 8px;
         display: inline-block;
         flex: 1;
         text-align: center;
@@ -184,8 +175,8 @@
         }
 
         p {
-            line-height: 1.5;
-            letter-spacing: 1.5;
+            line-height: 1.75;
+            letter-spacing: 1.75;
         }
     }
 
