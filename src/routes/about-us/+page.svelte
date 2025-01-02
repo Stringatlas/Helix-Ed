@@ -83,7 +83,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: darken($background-color, 10%);
+        background-color: darken($background-color, 0%);
     }
 
     .middle-section {

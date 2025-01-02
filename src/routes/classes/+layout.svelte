@@ -177,7 +177,7 @@
         }
     }
     main {
-        padding: 20px 16px;
+        padding: 20px 40px;
     }
 
     .primary {

@@ -87,7 +87,7 @@
         border: none;
         padding: 1rem 3rem;
         font-size: 1.5rem;
-        font-family: "Inter";
+        // font-family: "Inter";
         background-color: $primary;
 
         border-radius: 16px;
