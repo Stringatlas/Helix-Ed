@@ -12,3 +12,4 @@ function isValidYear(year: string): year is ValidYear {
 }
 
 export const currentEvent = writable(bioBrawlData[currentYear]);
+export const events = writable(bioBrawlData);

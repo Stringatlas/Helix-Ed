@@ -13,7 +13,7 @@
 
     $: {
         if (isValidEventID(data.eventID)) {
-            eventData = bioBrawlData[data.eventID];
+            eventData = { ...bioBrawlData[data.eventID], eventID: data.eventID };
         }
     }
 </script>
@@ -31,20 +31,27 @@
     <div class="body">
         <div id="winners">
             <h1>Congratulations to our winners</h1>
-            <Podium first={eventData.winners.first} second={eventData.winners.second} third={eventData.winners.third} />
+            <Podium first={eventData.results.winners.first} second={eventData.results.winners.second} third={eventData.results.winners.third} />
 
             <h1 style="margin-top: 2em">Thank you to everyone for participating</h1>
+
+            <p>{eventData.results.description}</p>
         </div>
 
         <div id="bracket">
             <h1>Elimation Bracket</h1>
-            <a href={eventData.eliminationBracket}>Elimination bracket link</a>
-            <iframe title="elimation bracket sheet" src={eventData.eliminationBracket} frameborder="0" class="sheet"></iframe>
+            <a href={eventData.results.eliminationBracket}>Elimination bracket link</a>
+            <iframe title="elimation bracket sheet" src={eventData.results.eliminationBracket} frameborder="0" class="sheet"></iframe>
         </div>
     </div>
 </body>
 
 <style lang="scss">
+    p {
+        line-height: 1.5;
+        letter-spacing: 1.5;
+        padding: 0 25vw;
+    }
     @media (max-width: $mobile-width) {
         #bracket {
             iframe {

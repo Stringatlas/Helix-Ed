@@ -49,6 +49,7 @@
                 <a id="our-classes" href="/" on:mouseenter={toggleDropdown} on:click|preventDefault={toggleDropdown}>Past competitions<span style="font-size: 16px">▼</span></a>
                 <ul class={`dropdown-menu ${isDropdownOpen ? "active" : ""}`}>
                     <li><a href={"/results/2024"}>BioBrawl 2024</a></li>
+                    <li><a href={"/results/2025"}>BioBrawl 2025</a></li>
                 </ul>
             </li>
 

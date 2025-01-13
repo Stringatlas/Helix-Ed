@@ -38,6 +38,7 @@
         justify-content: flex-start;
         margin: 0 10px;
         width: 100px;
+        padding: 16px;
         background-color: rgb(33, 136, 184);
         border-radius: 16px;
         position: relative;
@@ -121,8 +122,6 @@
         font-size: 24px;
         font-weight: bold;
         text-align: center;
-        position: absolute;
-        top: -48px;
         opacity: 0;
         animation: fade-in $animation-time ease-in $animation-time forwards;
     }

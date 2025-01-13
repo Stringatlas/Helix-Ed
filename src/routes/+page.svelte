@@ -107,10 +107,10 @@
             margin-top: 1.5em;
             margin-bottom: 0.2em;
         }
-        h3 {
-            margin-bottom: 0.2em;
-            margin-top: 0.75em;
-        }
+        // h3 {
+        //     margin-bottom: 0.2em;
+        //     margin-top: 0.75em;
+        // }
 
         li,
         p {

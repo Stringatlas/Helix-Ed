@@ -29,25 +29,28 @@
             "alternativeLink": "https://wj.qq.com/s2/15088554/1af7/"
         },
         "mock": {
-            "date": "January 4th, 2025"
+            "date": "January 4th, 2024"
         },
         
-
-        "results": "https://www.example.com/results",
         "contact": "helix-ed@gmail.com",
-        "eliminationBracket": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRvvmbTEtXY2x6ejj4ogYVeSsv5X08QAE1ENSJiqJXLern89rG4BEH28Q_45Iul_0aXMe9pHJe_3-8z/pubhtml?gid=0&single=true&amp;widget=true&amp;headers=false",
-        
-        "winners" : {
-            "first": "Thiamine",
-            "second": "Riboflavin",
-            "third": "Niacin"
+
+        "results": {
+            "eliminationBracket": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRvvmbTEtXY2x6ejj4ogYVeSsv5X08QAE1ENSJiqJXLern89rG4BEH28Q_45Iul_0aXMe9pHJe_3-8z/pubhtml?gid=0&single=true&amp;widget=true&amp;headers=false",
+            
+            "winners" : {
+                "first": "Thiamine",
+                "second": "Riboflavin",
+                "third": "Niacin"
+            },
+            "description": ""
         }
+
     },
 
      "2025": {
         "eventID": 2025,
         "name": "Bio Brawl 2025",
-        "date": "May 18, 2024",
+        "date": "January 11th, 2025",
         "time": "8am-5pm PST",
         "location": "Online on Zoom",
         "description": "Bio Brawl is a competition where students will be tested on their knowledge of biology.",
@@ -73,14 +76,17 @@
         "registrationFee": 20,
         "teamSize": "3-5",
         "grades": "6-12",
-        
-        "results": "https://www.example.com/results",
+
         "contact": "helix-ed@gmail.com",
-        "eliminationBracket": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRvvmbTEtXY2x6ejj4ogYVeSsv5X08QAE1ENSJiqJXLern89rG4BEH28Q_45Iul_0aXMe9pHJe_3-8z/pubhtml?gid=0&single=true&amp;widget=true&amp;headers=false",
-        "winners" : {
-            "first": "Thiamine",
-            "second": "Riboflavin",
-            "third": "Niacin"
+        "results": {
+            "eliminationBracket": "https://docs.google.com/spreadsheets/d/1cqFAOtyQB-iQSg53h94A5OLOsTpqoEnCxK1zoP1wZN0/edit?gid=0#gid=0",
+            "winners" : {
+                "first": "Taurine",
+                "second": "Caudates",
+                "third": "Red Queens"
+            },
+            "description": "Our competition attracted 14 teams with 56 participants from BASIS Independent Silicon Valley, Mission San Jose High School, Lynbrook High School, North Hollywood High School, and Montgomery Blair High School. This diverse group of students came together to showcase their skills in biology and compete in a friendly yet challenging environment."
         }
+
     }   
 }
