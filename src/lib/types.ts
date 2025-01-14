@@ -34,59 +34,35 @@ export type CourseData = {
 export interface EventData {
     eventID: string;
     name: string;
-
     date: string;
-
     time: string;
-
     location: string;
-
     description: string;
-
     rules: string;
-
     prizes: {
-
         first: string;
-
         second: string;
-
         third: string;
-
     };
 
     registrationFee: number;
-
     teamSize: string;
-
     registration: {
-
         opens: string;
-
         closes: string;
-
         link: string;
-
         alternativeLink: string;
-
     };
 
     results: {
-
         winners: {
-
             first: string;
-
             second: string;
-
             third: string;
-
         };
 
         description: string;
-
         eliminationBracket: string;
-
     };
 
 }

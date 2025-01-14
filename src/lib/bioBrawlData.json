@@ -87,6 +87,46 @@
             },
             "description": "Our competition attracted 14 teams with 56 participants from BASIS Independent Silicon Valley, Mission San Jose High School, Lynbrook High School, North Hollywood High School, and Montgomery Blair High School. This diverse group of students came together to showcase their skills in biology and compete in a friendly yet challenging environment."
         }
+    },
+    "2026": {
+        "eventID": 2026,
+        "name": "Bio Brawl 2026",
+        "date": "Estimated Early January 2026",
+        "time": "8am-5pm PST",
+        "location": "Online on Zoom",
+        "description": "Bio Brawl is a competition where students will be tested on their knowledge of biology.",
+        "rules": "/biobrawl-rules.pdf",
+        
+        "registration" : {
+            "opens": "Estimated Late August 2025",
+            "closes": "Estimated Early January 2026",
+            "link": "https://tinyurl.com/BioBrawl-25-BiologyBowl",
+            "alternativeLink": "https://wj.qq.com/s2/15088554/1af7/"
+        },
 
-    }   
+        "mock": {
+            "date": "TBD"
+        },
+
+        "prizes": {
+            "first": "200",
+            "second": "120",
+            "third": "80"
+        },
+
+        "registrationFee": 20,
+        "teamSize": "3-5",
+        "grades": "6-12",
+
+        "contact": "helix-ed@gmail.com",
+        "results": {
+            "eliminationBracket": "https://docs.google.com/spreadsheets/d/1cqFAOtyQB-iQSg53h94A5OLOsTpqoEnCxK1zoP1wZN0/edit?gid=0#gid=0",
+            "winners" : {
+                "first": "Taurine",
+                "second": "Caudates",
+                "third": "Red Queens"
+            },
+            "description": "Our competition attracted 14 teams with 56 participants from BASIS Independent Silicon Valley, Mission San Jose High School, Lynbrook High School, North Hollywood High School, and Montgomery Blair High School. This diverse group of students came together to showcase their skills in biology and compete in a friendly yet challenging environment."
+        }
+    }
 }

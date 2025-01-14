@@ -8,7 +8,7 @@
 </section>
 
 <section id="announcement">
-    <h2>Registration is OPEN</h2>
+    <h2>Registration Closed</h2>
 </section>
 
 <section class="body">
