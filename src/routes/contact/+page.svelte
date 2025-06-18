@@ -1,6 +1,5 @@
 <script lang="ts">
     import InstructorCard from "$lib/components/InstructorCard.svelte";
-    import instructors from "$lib/instructorData.json";
     import { capitalizeFirstLetter } from "$lib/util";
 </script>
 

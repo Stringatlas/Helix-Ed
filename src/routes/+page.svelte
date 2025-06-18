@@ -1,6 +1,5 @@
 <script lang="ts">
     import InstructorCard from "$lib/components/InstructorCard.svelte";
-    import instructors from "$lib/instructorData.json";
 
     import BookIcon from "$lib/images/icons/book.png";
     import MoneyIcon from "$lib/images/icons/money.png";
@@ -19,9 +18,10 @@
     let backgroundCanvasDiv: HTMLDivElement;
 
     let careers = ["engineers", "doctors", "chemists", "teachers", "physicists", "scientists", "astronomers", "biologists", "roboticists", "economists"];
-    // onMount(() => {
-    //     createScene(backgroundCanvas);
-    // });
+    
+    onMount(() => {
+        // createScene(backgroundCanvas);
+    });
 
     let mouseX: number;
     let mouseY: number;

@@ -1,35 +1,7 @@
 <script lang="ts">
-    import courseData from "$lib/courseData.json";
-    import type { CourseData } from "$lib/types";
     import CourseCard from "$lib/components/CourseCard.svelte";
+    import { openCourses, closedCourses } from "$lib/stores/stores";
 
-    let openClasses: CourseData[] = [];
-    let closedClasses: CourseData[] = [];
-
-    $: {
-        Object.entries(courseData).forEach(([subject, courses]) => {
-            openClasses = openClasses.concat(courses.filter((course) => course.status == "open"));
-            closedClasses = closedClasses.concat(courses.filter((course) => course.status == "closed"));
-        });
-
-        console.log(openClasses);
-        console.log(closedClasses);
-
-        // for (const subject in courseData) {
-        //     //@ts-ignore
-        //     for (const course of courseData[subject]) {
-        //         console.log(course);
-        //         if (course.status == "open") {
-        //             openClasses.push(course);
-        //         } else {
-        //             closedClasses.push(course);
-        //         }
-        //     }
-        // }
-
-        // console.log(openClasses);
-        // console.log(closedClasses);
-    }
 </script>
 
 <main>
@@ -38,10 +10,10 @@
     </section>
 
     <div>
-        {#each openClasses as course}
+        {#each $openCourses as course}
             <CourseCard courseData={course} />
         {/each}
-        {#each closedClasses as course}
+        {#each $closedCourses as course}
             <CourseCard courseData={course} />
         {/each}
     </div>

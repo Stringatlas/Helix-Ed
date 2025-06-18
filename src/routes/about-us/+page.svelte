@@ -3,8 +3,10 @@
     import berkeley from "$lib/images/ucberkeley.jpg";
 
     import InstructorCard from "$lib/components/InstructorCard.svelte";
-    import instructors from "$lib/instructorData.json";
     import { capitalizeFirstLetter } from "$lib/util";
+    import { instructors, courses, tas, teachers, openCourses, closedCourses, officers } from "$lib/stores/stores";
+
+    import { onMount } from "svelte";
 </script>
 
 <main>
@@ -45,34 +47,22 @@
     <h1>Our Team</h1>
     <h2>Founders</h2>
     <div style="margin-bottom: 50px">
-        {#each Object.entries(instructors) as [subject, subjectInstructors]}
-            {#each subjectInstructors as instructor}
-                {#if "additionalRole" in instructor}
-                    <InstructorCard instructorData={instructor} {subject} />
-                {/if}
-            {/each}
+        {#each $officers as instructor}
+            <InstructorCard instructorData={instructor} />
         {/each}
     </div>
 
     <h2>Our Instructors</h2>
     <div style="margin-bottom: 50px">
-        {#each Object.entries(instructors) as [subject, subjectInstructors]}
-            {#each subjectInstructors as instructor}
-                {#if instructor.role == "Instructor" && !("additionalRole" in instructor)}
-                    <InstructorCard instructorData={instructor} {subject} />
-                {/if}
-            {/each}
+        {#each $teachers as instructor}
+            <InstructorCard instructorData={instructor} />
         {/each}
     </div>
 
     <h2>Our TAs</h2>
     <div style="margin-bottom: 50px">
-        {#each Object.entries(instructors) as [subject, subjectInstructors]}
-            {#each subjectInstructors as instructor}
-                {#if instructor.role == "TA" && !("additionalRole" in instructor)}
-                    <InstructorCard instructorData={instructor} {subject} />
-                {/if}
-            {/each}
+        {#each $tas as instructor}
+            <InstructorCard instructorData={instructor} />
         {/each}
     </div>
 </section>
@@ -97,10 +87,13 @@
             flex-direction: column;
             align-items: center;
         }
+        
         img {
             width: auto;
+            height: auto;
             min-width: 300px;
             max-width: 400px;
+            object-fit: contain;
         }
 
         h1 {
@@ -159,6 +152,7 @@
                 flex-direction: column;
                 gap: 40px;
                 margin: 40px 8px;
+                align-items: center;
 
                 div {
                     display: flex;

@@ -37,12 +37,12 @@
         <div class={"nav-links" + (mobileMenuOpen ? " active" : "")}>
             <li><a href={bioBrawlLink}>Bio Brawl</a></li>
             <li class="dropdown" on:mouseleave={closeDropdown}>
-                <a id="our-classes" href="/" on:mouseenter={() => console.log()} on:click|preventDefault={toggleDropdown}>Our classes<span style="font-size: 16px">▼</span></a>
+                <a id="our-classes" href="/" on:mouseenter={() => {}} on:click|preventDefault={toggleDropdown}>Our classes<span style="font-size: 16px">▼</span></a>
                 <ul class={`dropdown-menu ${isDropdownOpen ? "active" : ""}`}>
-                    <li><a href="/classes/physics">Physics</a></li>
-                    <li><a href="/classes/chemistry">Chemistry</a></li>
-                    <li><a href="/classes/biology">Biology</a></li>
-                    <li><a href="/classes/economics">Economics</a></li>
+                    <li><a href="/subjects/physics">Physics</a></li>
+                    <li><a href="/subjects/chemistry">Chemistry</a></li>
+                    <li><a href="/subjects/biology">Biology</a></li>
+                    <li><a href="/subjects/economics">Economics</a></li>
                     <li><a href="https://www.math-for-real.org/">Math</a></li>
                 </ul>
             </li>

@@ -1,11 +1,10 @@
 <script lang="ts">
-    import type { InstructorData } from "$lib/types";
+    import type { Instructor} from "$lib/types";
     import { capitalizeFirstLetter } from "$lib/util";
 
     const images = import.meta.glob("/src/lib/image/*.{png,jpg,jpeg,svg}", { eager: false });
 
-    export let instructorData: InstructorData;
-    export let subject: string;
+    export let instructorData: Instructor;
 
     let showBio: boolean = false;
     let imageUrl: string | undefined = undefined;
@@ -13,7 +12,7 @@
     type Module = {
         default: string;
     };
-
+    
     async function loadImage(imagePath: string): Promise<string | undefined> {
         try {
             const module: Module = (await images[`/src/lib/image/${imagePath}`]()) as Module;
@@ -35,10 +34,15 @@
     <div id="top-container">
         <div class="text-container">
             <h2>{instructorData.name}</h2>
-            <h3>{instructorData.additionalRole ? instructorData.additionalRole + ", " : ""}{capitalizeFirstLetter(subject)} {instructorData.role}</h3>
+            <h3>
+                {instructorData.additionalRole ? instructorData.additionalRole + ", " : ""}
+                {instructorData.subjects
+                    .map(subject => capitalizeFirstLetter(subject))
+                    .join(", ")} {instructorData.role}
+            </h3>
             <h4>{instructorData.school}</h4>
         </div>
-        <img src={"/" + instructorData.imagePath} alt="instructor" />
+        <img src={instructorData.imageUrl} alt="instructor" />
         <button id="toggle-button" class={showBio ? "active" : ""} on:click={toggleBio}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" viewBox="0 0 16 16">
                 <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />

@@ -1,21 +1,21 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-    import type { CourseData } from "$lib/types";
+    import type { Course } from "$lib/types";
 
-    export let courseData: CourseData;
+    export let courseData: Course;
 </script>
 
 <div class="card">
     <h1>{courseData.season + " " + courseData.title}</h1>
     <h2>{courseData.dates}</h2>
     <div class="status">
-        <div id="indicator" style="background-color: {courseData.status == 'closed' ? 'red' : 'green'};"></div>
-        <p>Registration {courseData.status}</p>
+        <div id="indicator" style="background-color: {courseData.registrationOpen ? 'green' : 'red'};"></div>
+        <p>Registration {courseData.registrationOpen ? 'Open' : 'Closed'}</p>
     </div>
 
     <p>{courseData.content}</p>
 
-    {#if courseData.status == "open"}
+    {#if courseData.registrationOpen}
         <button on:click={() => goto("/classes/" + courseData.subject)}>Go to class page</button>
     {/if}
 </div>
