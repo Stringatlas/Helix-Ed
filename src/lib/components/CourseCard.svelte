@@ -16,7 +16,7 @@
     <p>{courseData.content}</p>
 
     {#if courseData.registrationOpen}
-        <button on:click={() => goto("/classes/" + courseData.slug)}>Go to class page</button>
+        <button on:click={() => goto("/classes/" + courseData.slug.current)}>Go to class page</button>
     {/if}
 </div>
 
