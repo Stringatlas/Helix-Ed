@@ -16,8 +16,16 @@
     course = $courses.find((c) => c.slug.current == slug);
 
     let subject = course?.subject ?? "";
-    subjectTeachers = $teachers.filter((instructor) => instructor.subjects && instructor.subjects.includes(subject));
-    subjectTAs = $tas.filter((instructor) => instructor.subjects && instructor.subjects.includes(subject));
+    subjectTeachers = $teachers.filter(
+      (instructor) =>
+        instructor.subjects &&
+        instructor.subjects.some((s) => s.toLowerCase() === subject.toLowerCase())
+    );
+    subjectTAs = $tas.filter(
+      (instructor) =>
+        instructor.subjects &&
+        instructor.subjects.some((s) => s.toLowerCase() === subject.toLowerCase())
+    );
   }
 </script>
 
@@ -130,9 +138,6 @@
             display: flex;
             flex-direction: row;
 
-            scrollbar-color: rgb(122, 125, 136) lighten($background-color, 5%);
-            scrollbar-width: thin;
-
             gap: 52px;
             padding: 16px;
 
@@ -172,16 +177,57 @@
         #body-content {
             display: flex;
             flex-direction: column-reverse;
+            margin-bottom: 24px;
+        }
+
+        main {
+            padding: 20px 8px;
+        }
+
+        #title {
+            h1 {
+                font-size: 52px;
+                text-align: center;
+            }
+        }
+
+        #body-content {
+            padding: 0 8px;
         }
 
         #poster-section {
             #poster {
-                width: 100%;
+                width: 60%;
             }
         }
 
         #text-content {
             width: 100%;
+        }
+
+        #instructors {
+            margin-top: 48px;
+
+            h1 {
+                text-align: center;
+                margin-bottom: 8px;
+            }
+
+            .flex-div {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                overflow-x: hidden;
+
+                padding: 16px;
+                gap: 16px;
+                align-items: center;
+                justify-content: center;
+
+                > div {
+                    display: contents;
+                }
+            }
         }
     }
 </style>

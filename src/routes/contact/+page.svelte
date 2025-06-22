@@ -72,4 +72,20 @@
     section {
         padding: 8px;
     }
+
+    @media (max-width: $mobile-width) {
+        #mission {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin: 40px 8px;
+            align-items: center;
+        }
+
+        
+        h1 {
+            font-size: 36px;
+            text-align: center;
+        }
+    }
 </style>

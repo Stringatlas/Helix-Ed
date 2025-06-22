@@ -50,12 +50,15 @@
     }
     h2 {
         margin-top: 2.25rem;
+        margin-bottom: 0.25rem;
     }
     h3 {
         margin-top: 0.75rem;
+        margin-bottom: 0.25rem;
     }
     p,
     li {
         line-height: 1.5;
+        margin-top: 0.25rem;
     }
 </style>
