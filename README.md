@@ -1,3 +1,3 @@
-# Helix-Ed
+# Biobrawl subdomain of Helix-Ed
 
-www.helix-ed.org
+www.biobrawl.helix-ed.org
