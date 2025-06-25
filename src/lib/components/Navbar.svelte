@@ -43,7 +43,7 @@
                     <li><a href="/subjects/chemistry">Chemistry</a></li>
                     <li><a href="/subjects/biology">Biology</a></li>
                     <li><a href="/subjects/economics">Economics</a></li>
-                    <li><a href="https://www.math-for-real.org/">Math</a></li>
+                    <li><a href="/subjects/math">Math</a></li>
                 </ul>
             </li>
 

@@ -82,6 +82,9 @@
 
 <!-- // TODO - use schema.org to improve SEO, structured data // TODO - finish courses section in home page-->
 
+
+<!-- TODO - biobrawl and mathforreal subsections-->
+
 <style lang="scss">
     button {
         border: none;
