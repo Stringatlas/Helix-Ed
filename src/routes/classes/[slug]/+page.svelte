@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { page } from "$app/stores";
+//   import { page } from "$app/stores";
+  import { page } from "$app/state";
   import { capitalizeFirstLetter } from "$lib/util";
   import { instructors, teachers, tas, officers, courses } from "$lib/stores/stores";
   import type { Instructor, Course } from "$lib/types";
-  import { onMount } from "svelte";
   import InstructorCard from "$lib/components/InstructorCard.svelte";
 
   let slug: string;
@@ -11,10 +11,10 @@
   let subjectTAs: Instructor[] = [];
   let course: Course | undefined;
 
+  $: slug = page.params.slug;
+  $: course = $courses.find((c) => c.slug.current == slug);
+  
   $: {
-    slug = $page.params.slug;
-    course = $courses.find((c) => c.slug.current == slug);
-
     let subject = course?.subject ?? "";
     subjectTeachers = $teachers.filter(
       (instructor) =>
@@ -49,7 +49,7 @@
         <h1>Class format</h1>
         <p>Small sized zoom classes with recordings available for two months</p>
         <div id="actions">
-          {#if course.status == "open"}
+          {#if course.registrationOpen}
             <button class="button primary" on:click={() => (window.location.href = course?.registrationForm ?? "#")}>Register</button>
           {:else}
             <button class="button" disabled>Registration closed</button>

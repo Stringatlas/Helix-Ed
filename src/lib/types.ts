@@ -20,7 +20,6 @@ export type Course = {
     description: string;
     registrationForm: string;
     syllabus: string;
-    status: string;
     studentDescription: string;
     tuition: number;
     posterUrl: string;
