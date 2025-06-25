@@ -9,69 +9,71 @@
     <img src="/images/biobrawl-2.webp" alt="biobrawl background logo" />
 </section>
 
-<section id="announcement">
-    <h2>Registration Closed</h2>
-</section>
+{#if $currentEvent}
+    <section id="announcement">
+        <h2>Registration {$currentEvent.registration?.isOpen ? 'Open' : 'Closed'}</h2>
+    </section>
 
-<section class="body">
-    <div class="main-content">
-        <h2 style="margin-top: 0">Rules</h2>
-        <a href="/biobrawl-rules.pdf">View our rules</a>
-        <h2>Important Dates</h2>
-        <!-- <h3>Middle School</h3> -->
-        <ul>
-            <li><b>Registration opens:</b> {$currentEvent.registration?.opens}</li>
-            <li><b>Registration deadline:</b> {$currentEvent.registration?.closes}</li>
-            <li><b>Mock competition:</b> {$currentEvent.mock?.date}</li>
-            <li><b>Competition:</b> {$currentEvent.date}, {$currentEvent.time} PST</li>
-        </ul>
-        <!-- <h3>High School</h3>
-        <ul>
-            <li>Registration opens: {registrationOpens}, 2024, 12:00 am PST</li>
-            <li>Registration deadline: January 12th, 2025, 11:59 pm PST</li>
-            <li>Competition: January 18th, 2025, 8 am - 5 pm PST</li>
-        </ul> -->
+    <section class="body">
+        <div class="main-content">
+            <h2 style="margin-top: 0">Rules</h2>
+            <a href="/biobrawl-rules.pdf">View our rules</a>
+            <h2>Important Dates</h2>
+            <!-- <h3>Middle School</h3> -->
+            <ul>
+                <li><b>Registration opens:</b> {$currentEvent.registration?.opens}</li>
+                <li><b>Registration deadline:</b> {$currentEvent.registration?.closes}</li>
+                <li><b>Mock competition:</b> {$currentEvent.mock?.date}</li>
+                <li><b>Competition:</b> {$currentEvent.date}, {$currentEvent.time} PST</li>
+            </ul>
+            <!-- <h3>High School</h3>
+            <ul>
+                <li>Registration opens: {registrationOpens}, 2024, 12:00 am PST</li>
+                <li>Registration deadline: January 12th, 2025, 11:59 pm PST</li>
+                <li>Competition: January 18th, 2025, 8 am - 5 pm PST</li>
+            </ul> -->
 
-        <h2>About Us</h2>
-        <p>
-            The BioBrawl Biology Bowl is a dynamic, student-led competition debuting in 2024, designed to ignite curiosity and passion for the life sciences. Through a quiz bowl-like format, BioBrawl
-            covers a wide range of topics, including human anatomy, physiology, pathology, botany, zoology, evolution, cell biology, genetics, ecology, and ethology. Our mission is to inspire students
-            to explore the frontiers of science and discover the endless possibilities within the life sciences.
-        </p>
-    </div>
+            <h2>About Us</h2>
+            <p>
+                The BioBrawl Biology Bowl is a dynamic, student-led competition debuting in 2024, designed to ignite curiosity and passion for the life sciences. Through a quiz bowl-like format, BioBrawl
+                covers a wide range of topics, including human anatomy, physiology, pathology, botany, zoology, evolution, cell biology, genetics, ecology, and ethology. Our mission is to inspire students
+                to explore the frontiers of science and discover the endless possibilities within the life sciences.
+            </p>
+        </div>
 
-    <div class="cards-container">
-        <div class="side-by-side">
-            <div class="card half-width">
-                <h2>Who can register</h2>
-                <p>Grades {$currentEvent.grades}</p>
+        <div class="cards-container">
+            <div class="side-by-side">
+                <div class="card half-width">
+                    <h2>Who can register</h2>
+                    <p>Grades {$currentEvent.grades}</p>
+                </div>
+                <div class="card half-width">
+                    <h2>Team size</h2>
+                    <p>Teams of {$currentEvent.teamSize}</p>
+                </div>
             </div>
-            <div class="card half-width">
-                <h2>Team size</h2>
-                <p>Teams of {$currentEvent.teamSize}</p>
+
+            <div class="card full-width">
+                <h2>Where</h2>
+                <p>{$currentEvent.location}, {$currentEvent.time}</p>
+            </div>
+
+            <div class="card full-width">
+                <h2>Registration fee</h2>
+                <p>${$currentEvent.registrationFee} / team</p>
+            </div>
+            <div class="card full-width prizes">
+                <h1>Prizes per division</h1>
+                <h2>1st Place</h2>
+                <p>${$currentEvent.prizes?.first} / team</p>
+                <h2>2nd Place</h2>
+                <p>${$currentEvent.prizes?.second} / team</p>
+                <h2>3rd Place</h2>
+                <p>${$currentEvent.prizes?.third} / team</p>
             </div>
         </div>
-
-        <div class="card full-width">
-            <h2>Where</h2>
-            <p>{$currentEvent.location}, {$currentEvent.time}</p>
-        </div>
-
-        <div class="card full-width">
-            <h2>Registration fee</h2>
-            <p>${$currentEvent.registrationFee} / team</p>
-        </div>
-        <div class="card full-width prizes">
-            <h1>Prizes per division</h1>
-            <h2>1st Place</h2>
-            <p>${$currentEvent.prizes?.first} / team</p>
-            <h2>2nd Place</h2>
-            <p>${$currentEvent.prizes?.second} / team</p>
-            <h2>3rd Place</h2>
-            <p>${$currentEvent.prizes?.third} / team</p>
-        </div>
-    </div>
-</section>
+    </section>
+{/if}
 
 <style lang="scss">
     .prizes {

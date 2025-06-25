@@ -25,6 +25,7 @@ export interface EventData {
         closes?: string;
         link?: string;
         alternativeLink?: string;
+        isOpen?: boolean;
     };
     mock?: {
         date?: string;

@@ -3,14 +3,8 @@
     import { events } from "$lib/stores/stores";
     import Podium from "$lib/components/Podium.svelte";
 
-    import { onMount } from "svelte";
-
     export let data: { eventID: string };
-    let eventData: EventData | undefined;
-    onMount(() => {
-        eventData = $events.find(event => event.eventID == data.eventID);
-    })
-
+    $: eventData = $events.find(event => event.eventID == data.eventID);
 </script>
 
 <body>
