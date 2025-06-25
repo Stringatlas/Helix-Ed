@@ -1,4 +1,3 @@
-
 import { writable } from 'svelte/store';
 import type { EventData } from "$lib/types";
 import type { Writable } from "svelte/store";
@@ -30,3 +29,18 @@ currentEvent.subscribe((value) => {
 });
 
 getEvents()
+
+export interface FAQData {
+    question: string;
+    answer: string;
+}
+
+export let faqs = writable<FAQData[]>([]);
+
+export async function getFAQs() {
+    const query = `*[_type == "faq"] | order(_createdAt asc)`;
+    const data: FAQData[] = await client.fetch(query);
+    faqs.set(data);
+}
+
+getFAQs();

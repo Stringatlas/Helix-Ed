@@ -1,11 +1,11 @@
 <script lang="ts">
     import FaqCard from "$lib/components/FaqCard.svelte";
-    import faqs from "$lib/faqs.json";
+    import { faqs } from "$lib/stores/stores";
 </script>
 
 <h1>Frequently Asked Questions</h1>
 <div class="faq">
-    {#each faqs as faq}
+    {#each $faqs as faq}
         <FaqCard question={faq.question} answer={faq.answer} />
         <hr />
     {/each}
