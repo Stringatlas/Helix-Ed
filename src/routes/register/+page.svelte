@@ -1,6 +1,6 @@
 <script>
     import { goto } from "$app/navigation";
-    import { currentEvent } from "$lib/stores";
+    import { currentEvent } from "$lib/stores/stores";
 </script>
 
 <div class="page">
@@ -8,8 +8,12 @@
         <h1>Register for Biobrawl 2025</h1>
     </div>
     <div class="body">
-        <button class="primary" on:click={() => (window.location.href = $currentEvent.registration.link)}>Register with Google Forms</button>
-        <button class="secondary" on:click={() => (window.location.href = $currentEvent.registration.alternativeLink)}>Register through WeChat</button>
+        {#if $currentEvent.registration?.link}
+            <button class="primary" on:click={() => (window.location.href = $currentEvent.registration?.link ?? "")}>Register (primary)</button>
+        {:else}
+            // alternative link
+            <button class="secondary" on:click={() => (window.location.href = $currentEvent.registration?.alternativeLink ?? "")}>Register (alternative)</button>
+        {/if}
     </div>
 </div>
 

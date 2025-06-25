@@ -1,6 +1,6 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-    import { currentEvent } from "$lib/stores";
+    import { currentEvent } from "$lib/stores/stores";
 </script>
 
 <section id="header">
@@ -18,9 +18,9 @@
         <h2>Important Dates</h2>
         <!-- <h3>Middle School</h3> -->
         <ul>
-            <li><b>Registration opens:</b> {$currentEvent.registration.opens}</li>
-            <li><b>Registration deadline:</b> {$currentEvent.registration.closes}</li>
-            <li><b>Mock competition:</b> {$currentEvent.mock.date}</li>
+            <li><b>Registration opens:</b> {$currentEvent.registration?.opens}</li>
+            <li><b>Registration deadline:</b> {$currentEvent.registration?.closes}</li>
+            <li><b>Mock competition:</b> {$currentEvent.mock?.date}</li>
             <li><b>Competition:</b> January 11th, 2025, 8 am - 5 pm PST</li>
         </ul>
         <!-- <h3>High School</h3>
@@ -62,11 +62,11 @@
         <div class="card full-width prizes">
             <h1>Prizes per division</h1>
             <h2>1st Place</h2>
-            <p>${$currentEvent.prizes.first} / team</p>
+            <p>${$currentEvent.prizes?.first} / team</p>
             <h2>2nd Place</h2>
-            <p>${$currentEvent.prizes.second} / team</p>
+            <p>${$currentEvent.prizes?.second} / team</p>
             <h2>3rd Place</h2>
-            <p>${$currentEvent.prizes.third} / team</p>
+            <p>${$currentEvent.prizes?.third} / team</p>
         </div>
     </div>
 </section>
