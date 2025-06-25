@@ -1,4 +1,4 @@
-import bioBrawlData from "$lib/bioBrawlData.json";
+
 import { writable } from 'svelte/store';
 import type { EventData } from "$lib/types";
 import type { Writable } from "svelte/store";
@@ -12,8 +12,8 @@ async function getEvents() {
     const query = `*[_type == "event"] | order(date desc)`;
     const data: EventData[] = await client.fetch(query);
     events.set(data);
-    const activeEvent = data.find(event => event.active === true);
 
+    const activeEvent = data.find(event => event.active);
     if (activeEvent) {
         currentEvent.set(activeEvent);
     } else if (data.length > 0) {
@@ -23,6 +23,10 @@ async function getEvents() {
 
 events.subscribe((value) => {
     console.log('Updated events:', value);
+});
+
+currentEvent.subscribe((value) => {
+    console.log('Updated current event:', value);
 });
 
 getEvents()

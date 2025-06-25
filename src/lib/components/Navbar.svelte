@@ -2,14 +2,13 @@
     import { goto } from "$app/navigation";
 
     import { browser } from "$app/environment";
-    import bioBrawlData from "$lib/bioBrawlData.json";
+    import {events, currentEvent} from "$lib/stores/stores";
 
     let bioBrawlLink: string = "";
+
     if (browser) {
         bioBrawlLink = window.location.hostname.includes("localhost") ? "/bio-brawl" : "https://biobrawl.helix-ed.org";
     }
-
-    let currentYear = Object.keys(bioBrawlData).at(-1);
 
     let isDropdownOpen = false;
 
@@ -43,18 +42,19 @@
         <li class="logo">
             <a href={"https://www." + homePage}><img src="/logo.png" alt="logo" /></a>
         </li>
-        <div class={"nav-links" + (mobileMenuOpen ? " active" : "")}>
+        <div class={"nav-links" + (mobileMenuOpen ? " active" : "")}> 
             <li><a href="/">Home</a></li>
             <li class="dropdown" on:mouseleave={closeDropdown}>
                 <a id="our-classes" href="/" on:mouseenter={toggleDropdown} on:click|preventDefault={toggleDropdown}>Past competitions<span style="font-size: 16px">▼</span></a>
-                <ul class={`dropdown-menu ${isDropdownOpen ? "active" : ""}`}>
-                    <li><a href={"/results/2024"}>BioBrawl 2024</a></li>
-                    <li><a href={"/results/2025"}>BioBrawl 2025</a></li>
+                <ul class={`dropdown-menu ${isDropdownOpen ? "active" : ""}`}> 
+                    {#each $events.filter(e => !e.active) as event}
+                        <li><a href={`/results/${event.eventID}`}>BioBrawl {event.year}</a></li>
+                    {/each}
                 </ul>
             </li>
 
             <li><a href={"https://www." + homePage}>HelixEd</a></li>
-            <button on:click={() => goto("/register")}>Register for BioBrawl {currentYear}</button>
+            <button on:click={() => goto("/register")}>Register for BioBrawl {$currentEvent?.year}</button>
         </div>
 
         <div class="mobile-menu">

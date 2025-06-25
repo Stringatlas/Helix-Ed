@@ -1,6 +1,8 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { currentEvent } from "$lib/stores/stores";
+
+    console.log("Current Event:", $currentEvent);
 </script>
 
 <section id="header">
@@ -21,7 +23,7 @@
             <li><b>Registration opens:</b> {$currentEvent.registration?.opens}</li>
             <li><b>Registration deadline:</b> {$currentEvent.registration?.closes}</li>
             <li><b>Mock competition:</b> {$currentEvent.mock?.date}</li>
-            <li><b>Competition:</b> January 11th, 2025, 8 am - 5 pm PST</li>
+            <li><b>Competition:</b> {$currentEvent.date}, {$currentEvent.time} PST</li>
         </ul>
         <!-- <h3>High School</h3>
         <ul>

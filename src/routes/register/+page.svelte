@@ -5,14 +5,14 @@
 
 <div class="page">
     <div class="header">
-        <h1>Register for Biobrawl 2025</h1>
+        <h1>Register for Biobrawl {$currentEvent?.eventID}</h1>
     </div>
     <div class="body">
         {#if $currentEvent.registration?.link}
-            <button class="primary" on:click={() => (window.location.href = $currentEvent.registration?.link ?? "")}>Register (primary)</button>
+            <button class="primary" on:click={() => (window.location.href = $currentEvent.registration?.link ?? "/")}>Register</button>
         {:else}
             // alternative link
-            <button class="secondary" on:click={() => (window.location.href = $currentEvent.registration?.alternativeLink ?? "")}>Register (alternative)</button>
+            <button class="secondary" on:click={() => (window.location.href = $currentEvent.registration?.alternativeLink ?? "/")}>Register</button>
         {/if}
     </div>
 </div>

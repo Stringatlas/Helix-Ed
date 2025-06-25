@@ -1,5 +1,5 @@
 export interface EventData {
-    eventID: number;
+    eventID: string;
     active?: boolean;
     year: number;
     name: string;
