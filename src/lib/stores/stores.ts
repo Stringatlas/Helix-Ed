@@ -13,19 +13,7 @@ export const closedCourses = writable<Course[]>([]);
 
 
 export async function fetchInstructors() {
-    const query = `*[_type == "instructor"]{
-        name,
-        school,
-        subjects,
-        role,
-        officer,
-        additionalRole,
-        bio,
-        "imageUrl": image.asset->url,
-        image {
-            alt
-        }
-    }`;
+    const query = `*[_type == "instructor"]{..., "imageUrl": image.asset->url}`;
     const data: Instructor[] = await client.fetch(query);
     instructors.set(data);
     teachers.set(data.filter((i) => i.role === "Teacher"));
@@ -34,22 +22,7 @@ export async function fetchInstructors() {
 }
 
 export async function fetchCourses() {
-    const query = `*[_type == "course"]{
-        title,
-        season,
-        subject,
-        slug,
-        description,
-        registrationForm,
-        syllabus,
-        status,
-        studentDescription,
-        tuition,
-        "posterUrl": poster.asset->url,
-        dates,
-        content,
-        registrationOpen
-    }`;
+    const query = `*[_type == "course"]{..., "posterUrl": poster.asset->url}`;
     const data: Course[] = await client.fetch(query);
     courses.set(data);
     openCourses.set(data.filter((c) => c.registrationOpen));

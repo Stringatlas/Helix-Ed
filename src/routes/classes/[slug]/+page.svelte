@@ -19,12 +19,14 @@
     subjectTeachers = $teachers.filter(
       (instructor) =>
         instructor.subjects &&
-        instructor.subjects.some((s) => s.toLowerCase() === subject.toLowerCase())
+        instructor.subjects.some((s) => s.toLowerCase() === subject.toLowerCase()) &&
+        course?.instructors?.includes(instructor.name)
     );
     subjectTAs = $tas.filter(
       (instructor) =>
         instructor.subjects &&
-        instructor.subjects.some((s) => s.toLowerCase() === subject.toLowerCase())
+        instructor.subjects.some((s) => s.toLowerCase() === subject.toLowerCase()) &&
+        course?.instructors?.includes(instructor.name)
     );
   }
 </script>

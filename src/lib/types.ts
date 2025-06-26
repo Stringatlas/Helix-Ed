@@ -1,3 +1,4 @@
+import type { instructors } from "./stores/stores";
 
 // types from sanityio schemas
 export type Instructor = {
@@ -26,6 +27,7 @@ export type Course = {
     dates: string;
     content: string;
     registrationOpen: boolean;
+    instructors: Array<String>;
 };
 
 // Deprecated types
