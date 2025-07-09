@@ -1,12 +1,12 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { client } from "$lib/stores/sanityClient";
-    import { page } from "$app/state";
+    import { page } from "$app/stores";
 
     let subject: string;
     let notFound = false;
 
-    $: subject = page.params.slug;
+    $: subject = $page.params.slug;
 
     $: (async () => {
         if (!subject) return;
