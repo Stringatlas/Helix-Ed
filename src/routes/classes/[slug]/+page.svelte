@@ -1,6 +1,6 @@
 <script lang="ts">
 //   import { page } from "$app/stores";
-  import { page } from "$app/state";
+  import { page } from "$app/stores";
   import { capitalizeFirstLetter } from "$lib/util";
   import { instructors, teachers, tas, officers, courses } from "$lib/stores/stores";
   import type { Instructor, Course } from "$lib/types";
@@ -11,7 +11,7 @@
   let subjectTAs: Instructor[] = [];
   let course: Course | undefined;
 
-  $: slug = page.params.slug;
+  $: slug = $page.params.slug;
   $: course = $courses.find((c) => c.slug.current == slug);
   
   $: {
