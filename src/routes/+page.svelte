@@ -65,11 +65,19 @@
             <div class="card full-width prizes">
                 <h1>Prizes per division</h1>
                 <h2>1st Place</h2>
-                <p>${$currentEvent.prizes?.first} / team</p>
+                <p>{$currentEvent.prizes?.first} / team</p>
                 <h2>2nd Place</h2>
-                <p>${$currentEvent.prizes?.second} / team</p>
+                <p>{$currentEvent.prizes?.second} / team</p>
                 <h2>3rd Place</h2>
-                <p>${$currentEvent.prizes?.third} / team</p>
+                <p>{$currentEvent.prizes?.third} / team</p>
+                {#if $currentEvent.prizes?.fourth}
+                    <h2>4th Place</h2>
+                    <p>{$currentEvent.prizes.fourth} / team</p>
+                {/if}
+                {#if $currentEvent.prizes?.fifth}
+                    <h2>5th Place</h2>
+                    <p>{$currentEvent.prizes.fifth} / team</p>
+                {/if}
             </div>
         </div>
     </section>

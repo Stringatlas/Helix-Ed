@@ -12,6 +12,8 @@ export interface EventData {
         first?: string;
         second?: string;
         third?: string;
+        fourth?: string;
+        fifth?: string;
     };
     registrationFee?: number;
     teamSize?: string;
