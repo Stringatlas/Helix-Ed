@@ -32,6 +32,9 @@ export interface EventData {
     mock?: {
         date?: string;
     };
+    rulesWorkshop?: {
+        date?: string;
+    };
     contact?: string;
     results?: {
         eliminationBracket?: string;

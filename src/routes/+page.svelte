@@ -21,7 +21,12 @@
             <h2>Important Dates</h2>
             <!-- <h3>Middle School</h3> -->
             <ul>
-                <li><b>Registration opens:</b> {$currentEvent.registration?.opens}</li>
+                {#if !$currentEvent.registration?.isOpen}
+                    <li><b>Registration opens:</b> {$currentEvent.registration?.opens}</li>
+                {/if}
+                {#if $currentEvent.rulesWorkshop?.date}
+                    <li><b>Rules Workshop:</b> {$currentEvent.rulesWorkshop.date}</li>
+                {/if}
                 <li><b>Registration deadline:</b> {$currentEvent.registration?.closes}</li>
                 <li><b>Mock competition:</b> {$currentEvent.mock?.date}</li>
                 <li><b>Competition:</b> {$currentEvent.date}, {$currentEvent.time} PST</li>
