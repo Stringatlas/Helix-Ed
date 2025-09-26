@@ -55,9 +55,10 @@ $mobile-width: 750px;
 }
 
 @mixin button-primary {
-    @include button;
     background: linear-gradient(135deg, $primary 0%, darken($primary, 15%) 100%);
     box-shadow: 0 4px 15px rgba($primary, 0.3);
+    
+    @include button;
     
     &:hover {
         transform: translateY(-3px);
@@ -67,9 +68,10 @@ $mobile-width: 750px;
 }
 
 @mixin button-secondary {
-    @include button;
     background: linear-gradient(135deg, $secondary 0%, darken($secondary, 15%) 100%);
     box-shadow: 0 4px 15px rgba($secondary, 0.3);
+    
+    @include button;
     
     &:hover {
         transform: translateY(-3px);
