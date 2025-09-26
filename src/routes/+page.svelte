@@ -111,7 +111,7 @@
     }
 
     .announcement-banner {
-        padding: $spacing-2xl;
+        padding: $spacing-xl;
         text-align: center;
         background: linear-gradient(135deg, $primary, $primary-dark);
         color: white;

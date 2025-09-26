@@ -6,6 +6,9 @@
     let instagram = "https://www.instagram.com/realhelixed";
     let linkedin = "https://www.linkedin.com/company/102697298/";
     let facebook = "https://www.facebook.com/profile.php?id=61563365050376";
+    
+    // Automatically get current year
+    const currentYear = new Date().getFullYear();
 </script>
 
 <section>
@@ -20,7 +23,7 @@
     <div class="credit">
         <div>
             <p>Contact: <a href="mailto:helix-ed.org@gmail.com">helix-ed.org@gmail.com</a></p>
-            <p>&copy; 2024 HelixEd. All rights reserved. Website by Kevin Zhang</p>
+            <p>&copy; {currentYear} HelixEd. All rights reserved. Website by Kevin Zhang</p>
         </div>
     </div>
 </section>
