@@ -44,8 +44,8 @@
         <button on:click={() => goto("/enroll")} on:mousemove={handleMouseMove} style="--x: {mouseX}%; --y: {mouseY}%; ">View our courses →</button>
     </section>
 
-    <div>
-        <h2 style="text-align: center; font-size: 32px">Why Helix Ed?</h2>
+    <div class="why-helix-section">
+        <h2 class="section-title">Why Helix Ed?</h2>
 
         <section id="why">
             <div>
@@ -87,18 +87,81 @@
 
 <style lang="scss">
     button {
-        border: none;
-        padding: 1rem 3rem;
-        font-size: 1.5rem;
-        // font-family: "Inter";
-        background-color: $primary;
-
-        border-radius: 16px;
-        // font-weight: bold;
-        // transition: background 0.3s ease;
-
+        @include button-primary;
+        font-size: 1.2rem;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        
+        // Enhanced interactive effect
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease;
+            z-index: -1;
+        }
+        
         &:hover {
-            background: radial-gradient(circle at var(--x) var(--y), darken($primary, 5%) 0%, $primary 100%);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 30px rgba($primary, 0.4);
+            
+            &::before {
+                width: 300px;
+                height: 300px;
+            }
+        }
+        
+        &:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+        
+        // Optional: Add a subtle pulse animation
+        animation: subtle-pulse 3s ease-in-out infinite;
+    }
+    
+    @keyframes subtle-pulse {
+        0%, 100% { 
+            box-shadow: 0 4px 15px rgba($primary, 0.3);
+        }
+        50% { 
+            box-shadow: 0 4px 20px rgba($primary, 0.4);
+        }
+    }
+
+    .why-helix-section {
+        background: transparent; // Let the body gradient show through seamlessly
+        padding: 4rem 0;
+        margin-top: 0; // No overlap needed with transparent background
+        position: relative;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: $accent;
+        font-weight: 700;
+        position: relative;
+        z-index: 1;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, $primary 0%, $secondary 100%);
+            border-radius: 2px;
         }
     }
 
@@ -113,29 +176,50 @@
         display: flex;
         flex-direction: row;
         gap: 64px;
-
         margin-bottom: 120px;
-        margin-top: 64px;
+        margin-top: 0; // Remove top margin since it's now in the section wrapper
+        position: relative;
+        z-index: 1;
 
         div {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-
             flex: 1;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            
+            &:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+                background: rgba(255, 255, 255, 0.85);
+            }
+            
             img {
-                width: 100px;
-                height: 100px;
+                width: 80px;
+                height: 80px;
                 margin-bottom: 24px;
+                filter: drop-shadow(0 4px 8px rgba($primary, 0.3));
             }
+            
             h2 {
-                margin-bottom: 4px;
+                margin-bottom: 12px;
+                color: $accent;
+                font-size: 1.5rem;
+                font-weight: 600;
             }
+            
             p {
-                line-height: 1.5;
-                letter-spacing: 1.5;
+                line-height: 1.6;
+                letter-spacing: 0.5px;
+                color: darken($text-color, 10%);
+                font-size: 1rem;
             }
-        }
+            }
     }
 
     #landing-section {
@@ -147,9 +231,11 @@
         // padding: 0 15%;
         height: calc(100vh - $nav-height);
         text-align: center;
-        margin-bottom: 3rem;
+        margin-bottom: 0; // Remove margin to allow seamless transition
         position: relative;
         z-index: 0;
+        background: transparent; // Let body gradient show through
+        padding: 0 2rem;
 
         canvas {
             position: absolute;
@@ -163,11 +249,21 @@
         h1 {
             font-size: 52px;
             margin-bottom: 32px;
-            color: black;
+            color: $accent;
+            font-weight: 700;
+            line-height: 1.2;
+            
+            .typewriter-wrapper {
+                color: $primary;
+            }
         }
         h2 {
             margin-bottom: 64px;
-            color: black;
+            color: lighten($accent, 20%);
+            font-size: 1.5rem;
+            font-weight: 400;
+            max-width: 600px;
+            line-height: 1.4;
         }
     }
     // #testimonials {
@@ -193,6 +289,8 @@
 
     body {
         padding: 8px;
+        background: linear-gradient(135deg, $background-color 0%, rgba($primary, 0.05) 50%, rgba($secondary, 0.1) 100%);
+        min-height: 100vh;
     }
 
     @media (max-width: $mobile-width) {
@@ -213,7 +311,40 @@
         #why {
             display: flex;
             flex-direction: column;
-            gap: 64px;
+            gap: 2rem;
+            padding: 0 1rem;
+            
+            div {
+                padding: 1.5rem;
+                text-align: center;
+                align-items: center;
+                
+                img {
+                    width: 60px;
+                    height: 60px;
+                    margin-bottom: 1rem;
+                }
+                
+                h2 {
+                    font-size: 1.3rem;
+                    margin-bottom: 0.8rem;
+                }
+                
+                p {
+                    font-size: 0.9rem;
+                    letter-spacing: 0.3px;
+                }
+            }
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .why-helix-section {
+            padding: 3rem 0;
+            margin-top: 0; // No negative margin needed
         }
     }
 </style>

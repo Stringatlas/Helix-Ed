@@ -34,8 +34,10 @@
     <div id="top-container">
         <div class="text-container">
             <h2>{instructorData.name}</h2>
+            {#if instructorData.additionalRole}
+                <h3 class="additional-role">{instructorData.additionalRole}</h3>
+            {/if}
             <h3>
-                {instructorData.additionalRole ? instructorData.additionalRole + ", " : ""}
                 {instructorData.subjects
                     .map(subject => capitalizeFirstLetter(subject))
                     .join(", ")} {instructorData.role}
@@ -56,65 +58,90 @@
 </div>
 
 <style lang="scss">
-    $card-height: 150px;
-    $card-padding: 16px;
-    $card-width: 500px;
+    $card-height: 160px;
+    $card-padding: 20px;
+    $card-width: 520px;
 
-    $animation-duration: 0.5s;
+    $animation-duration: 0.3s;
 
     #toggle-button {
         position: absolute;
-        // background: linear-gradient(to top, rgb(65, 70, 79), rgba(255, 0, 0, 0));
-        background: radial-gradient(ellipse at bottom, lighten($background-color, 10%) 0%, rgba(255, 0, 0, 0) 75%);
-        height: 30px;
-
+        background: linear-gradient(135deg, rgba($primary, 0.8) 0%, rgba($primary, 0.6) 100%);
+        height: 36px;
+        width: 36px;
+        border-radius: 50%;
         border-style: none;
-        bottom: -$card-padding;
-        left: -$card-padding;
-        width: calc(100% + 2 * $card-padding);
+        bottom: -18px;
+        right: $card-padding;
+        cursor: pointer;
 
-        transition:
-            transform $animation-duration ease,
-            opacity $animation-duration ease,
-            bottom $animation-duration ease;
+        transition: all $animation-duration cubic-bezier(0.4, 0, 0.2, 1);
 
-        opacity: 0.2;
+        opacity: 0.7;
 
         svg {
             transform: rotate(180deg);
             transition: transform $animation-duration ease;
+            color: white;
         }
 
         &.active {
             opacity: 1;
-            // height: 46px;
-            // bottom: -$card-padding - 16px;
-            // background: radial-gradient(ellipse, lighten($background-color, 10%) 0%, rgba(255, 0, 0, 0) 75%);
-            background: none;
+            background: linear-gradient(135deg, rgba($secondary, 0.9) 0%, rgba($secondary, 0.7) 100%);
+            transform: scale(1.1);
 
-            bottom: svg {
+            svg {
                 transform: rotate(0deg);
             }
         }
 
         &:hover {
             opacity: 1;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba($primary, 0.4);
+        }
+
+        &.active:hover {
+            box-shadow: 0 8px 20px rgba($secondary, 0.4);
         }
     }
 
     h2 {
         letter-spacing: -0.03em;
-        margin-bottom: 4px;
+        margin-bottom: 6px;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: $accent;
     }
 
     h3 {
         letter-spacing: -0.02em;
-        margin-bottom: 24px;
+        margin-bottom: 8px;
+        font-size: 1rem;
+        font-weight: 500;
+        color: darken($text-color, 15%);
+        
+        &.additional-role {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: $secondary;
+            margin-bottom: 4px;
+            margin-top: 2px;
+        }
+    }
+
+    h4 {
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: lighten($accent, 30%);
+        margin: 0;
     }
 
     p {
-        line-height: 1.25;
+        line-height: 1.5;
         text-align: justify;
+        color: darken($text-color, 10%);
+        font-size: 0.95rem;
     }
 
     #top-container {
@@ -122,6 +149,7 @@
         position: relative;
         flex-direction: row;
         align-items: center;
+        gap: 1.5rem;
     }
 
     #bottom-container {
@@ -129,26 +157,36 @@
         max-height: 0px;
         margin-top: 0px;
 
-        transition:
-            max-height $animation-duration ease,
-            margin-top $animation-duration ease;
+        transition: all $animation-duration cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
 
         &.active {
-            margin-top: 32px;
-            max-height: 500px;
+            margin-top: 24px;
+            max-height: 400px;
+            opacity: 1;
         }
     }
 
     #card-container {
         width: 100%;
         max-width: $card-width;
-
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         padding: $card-padding;
-        border-radius: 8px;
-
+        border-radius: 16px;
         position: relative;
-        background: radial-gradient(circle at top left, darken($background-color, 5%) 0%, $background-color 80%);
+        background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.9) 0%, 
+            rgba($background-color, 0.8) 100%
+        );
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        transition: all $animation-duration cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+            border-color: rgba($primary, 0.3);
+        }
     }
 
     .text-container {
@@ -160,5 +198,12 @@
         width: $card-height;
         border-radius: 50%;
         object-fit: cover;
+        border: 3px solid rgba($primary, 0.2);
+        transition: all $animation-duration ease;
+
+        &:hover {
+            border-color: $primary;
+            transform: scale(1.02);
+        }
     }
 </style>

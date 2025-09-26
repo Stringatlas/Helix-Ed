@@ -6,6 +6,8 @@
     let instagram = "https://www.instagram.com/realhelixed";
     let linkedin = "https://www.linkedin.com/company/102697298/";
     let facebook = "https://www.facebook.com/profile.php?id=61563365050376";
+
+    const currentYear = new Date().getFullYear();
 </script>
 
 <section>
@@ -22,7 +24,7 @@
             <a href="/privacy-policy" style="margin-right: 1rem">Privacy Policy</a>
             <a href="/attributions">Attributions</a>
             <p>Contact: <a href="mailto:helix-ed.org@gmail.com">helix-ed.org@gmail.com</a></p>
-            <p>&copy; 2024 HelixEd. All rights reserved. Website by <a href="https://github.com/Stringatlas">Kevin Zhang</a></p>
+            <p>&copy; {currentYear} HelixEd. All rights reserved. Website by <a href="https://github.com/Stringatlas">Kevin Zhang</a></p>
         </div>
     </div>
 </section>

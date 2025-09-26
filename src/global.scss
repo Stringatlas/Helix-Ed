@@ -1,23 +1,49 @@
 $color: red;
 
-$background-color: #dbe2e7;
-$background-darker: #9ebcb8;
+// Brand-aligned color scheme matching the Helix-Ed logo
+$background-color: #f8fafc;  // Light blue-gray (keeping this as it works well)
+$background-darker: #64748b; // Slate blue-gray
 
-$text-color: #000000;
-$accent: #293242;
+$text-color: #1e293b;        // Dark slate
+$accent: #0f172a;            // Very dark slate (matches logo black)
 
-$primary: #fae5ba;
-$secondary: #b3c2af;
+// Brand colors inspired by your logo
+$primary: #00e000;           // Electric/neon green (matches your logo)
+$secondary: #fbbf24;         // Warm amber/gold (complements the green)
+
+// Additional brand-inspired colors
+$neon-green: #00ff41;        // Brighter neon variant
+$dark-green: #00aa00;        // Darker green for hover states
+$electric-blue: #00d4ff;     // Complementary electric blue
+$warm-white: #fafbfc;        // Softer white with warm undertone
 
 $nav-height: 69px;
 
 $mobile-width: 750px;
 
 @mixin button {
-    color: black;
+    color: white;
     border: none;
-    padding: 8px 16px;
-    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    &:active {
+        transform: translateY(0);
+    }
 }
 
 @mixin invisible-button {
@@ -25,16 +51,31 @@ $mobile-width: 750px;
     border: none;
     background-color: transparent;
     margin: 0;
+    cursor: pointer;
 }
 
 @mixin button-primary {
     @include button;
-    background: $primary;
+    background: linear-gradient(135deg, $primary 0%, darken($primary, 15%) 100%);
+    box-shadow: 0 4px 15px rgba($primary, 0.3);
+    
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba($primary, 0.4);
+        background: linear-gradient(135deg, lighten($primary, 10%) 0%, $primary 100%);
+    }
 }
 
 @mixin button-secondary {
     @include button;
-    background: $secondary;
+    background: linear-gradient(135deg, $secondary 0%, darken($secondary, 15%) 100%);
+    box-shadow: 0 4px 15px rgba($secondary, 0.3);
+    
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba($secondary, 0.4);
+        background: linear-gradient(135deg, lighten($secondary, 10%) 0%, $secondary 100%);
+    }
 }
 
 :root {
