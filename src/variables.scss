@@ -1,0 +1,227 @@
+// Color System
+$background-color: #ffffff;
+$background-darker: #f8f9fa;
+$background-light: #f8f9fa;
+
+$text-color: #1a1a1a;
+$text-secondary: #6c757d;
+$text-muted: #868e96;
+
+$primary: #016107;
+$primary-light: #28a745;
+$primary-dark: #004d05;
+$secondary: #5f9baa;
+$secondary-light: #7fb3c3;
+$secondary-dark: #4a7a87;
+
+$accent: #293242;
+$success: #28a745;
+$warning: #ffc107;
+$danger: #dc3545;
+$info: #17a2b8;
+
+$border-color: #dee2e6;
+$border-light: #f0f0f0;
+
+// Typography Scale
+$font-size-xs: 0.75rem;    // 12px
+$font-size-sm: 0.875rem;   // 14px
+$font-size-base: 1rem;     // 16px
+$font-size-lg: 1.125rem;   // 18px
+$font-size-xl: 1.25rem;    // 20px
+$font-size-2xl: 1.5rem;    // 24px
+$font-size-3xl: 1.875rem;  // 30px
+$font-size-4xl: 2.25rem;   // 36px
+$font-size-5xl: 3rem;      // 48px
+
+// Line Heights
+$line-height-tight: 1.25;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.75;
+
+// Spacing Scale
+$spacing-xs: 0.25rem;   // 4px
+$spacing-sm: 0.5rem;    // 8px
+$spacing-md: 1rem;      // 16px
+$spacing-lg: 1.5rem;    // 24px
+$spacing-xl: 2rem;      // 32px
+$spacing-2xl: 3rem;     // 48px
+$spacing-3xl: 4rem;     // 64px
+
+// Breakpoints
+$mobile-width: 768px;
+$tablet-width: 1024px;
+$desktop-width: 1200px;
+$max-content-width: 1400px;
+
+// Border Radius
+$radius-sm: 0.25rem;    // 4px
+$radius-md: 0.375rem;   // 6px
+$radius-lg: 0.5rem;     // 8px
+$radius-xl: 0.75rem;    // 12px
+$radius-2xl: 1rem;      // 16px
+$radius-full: 50%;
+
+// Shadows
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+
+// Transitions
+$transition-fast: 0.15s ease;
+$transition-normal: 0.2s ease;
+$transition-slow: 0.3s ease;
+
+// Z-index Scale
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-fixed: 1030;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-popover: 1060;
+$z-tooltip: 1070;
+
+// Button Mixins
+@mixin invisible-button {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    margin: 0;
+    cursor: pointer;
+}
+
+@mixin button-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    padding: $spacing-md $spacing-lg;
+    border: none;
+    border-radius: $radius-lg;
+    font-weight: 600;
+    font-size: $font-size-base;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all $transition-normal;
+    line-height: 1;
+    user-select: none;
+    
+    &:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+        box-shadow: 0 0 0 2px rgba($primary, 0.2);
+    }
+    
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+@mixin button-sm {
+    @include button-base;
+    padding: $spacing-sm $spacing-md;
+    font-size: $font-size-sm;
+}
+
+@mixin button-md {
+    @include button-base;
+    padding: $spacing-md $spacing-lg;
+}
+
+@mixin button-lg {
+    @include button-base;
+    padding: $spacing-lg $spacing-xl;
+    font-size: $font-size-lg;
+}
+
+@mixin button-primary {
+    @include button-base;
+    background: $primary;
+    color: white;
+    
+    &:hover:not(:disabled) {
+        background: $primary-dark;
+        transform: translateY(-2px);
+        box-shadow: $shadow-lg;
+        text-decoration: none;
+    }
+    
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+@mixin button-secondary {
+    @include button-base;
+    background: $secondary;
+    color: white;
+    
+    &:hover:not(:disabled) {
+        background: $secondary-dark;
+        transform: translateY(-2px);
+        box-shadow: $shadow-lg;
+        text-decoration: none;
+    }
+    
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+@mixin button-outline {
+    @include button-base;
+    background: transparent;
+    color: $primary;
+    border: 2px solid $primary;
+    
+    &:hover:not(:disabled) {
+        background: $primary;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: $shadow-lg;
+        text-decoration: none;
+    }
+    
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+// Form Input Mixins
+@mixin input-base {
+    width: 100%;
+    padding: $spacing-md;
+    border: 2px solid $border-color;
+    border-radius: $radius-lg;
+    font-size: $font-size-base;
+    transition: border-color $transition-normal, box-shadow $transition-normal;
+    background: white;
+    
+    &:focus {
+        outline: none;
+        border-color: $primary;
+        box-shadow: 0 0 0 3px rgba($primary, 0.1);
+    }
+    
+    &::placeholder {
+        color: $text-muted;
+    }
+}
+
+// Card Mixins
+@mixin card-base {
+    background: white;
+    border-radius: $radius-xl;
+    box-shadow: $shadow-md;
+    border: 1px solid $border-light;
+    transition: all $transition-normal;
+}
+
+@mixin card-hover {
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: $shadow-xl;
+    }
+}

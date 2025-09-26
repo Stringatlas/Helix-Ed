@@ -11,11 +11,24 @@
     }
 
     let isDropdownOpen = false;
+    let isMobile = false;
 
     let homePage: string = "";
 
     if (browser) {
         homePage = window.location.hostname.replace(/^biobrawl\./, "");
+        // Check if device is mobile/touch device
+        isMobile = window.matchMedia("(max-width: 768px)").matches;
+        
+        // Update mobile detection on resize
+        const mediaQuery = window.matchMedia("(max-width: 768px)");
+        mediaQuery.addEventListener('change', (e) => {
+            isMobile = e.matches;
+            if (!isMobile && isDropdownOpen) {
+                // Close dropdown when switching to desktop
+                isDropdownOpen = false;
+            }
+        });
     }
 
     function toggleDropdown() {
@@ -23,11 +36,17 @@
     }
 
     function openDropdown() {
-        isDropdownOpen = true;
+        // Only auto-open on hover for desktop
+        if (!isMobile) {
+            isDropdownOpen = true;
+        }
     }
 
     function closeDropdown() {
-        isDropdownOpen = false;
+        // Only auto-close on mouse leave for desktop
+        if (!isMobile) {
+            isDropdownOpen = false;
+        }
     }
 
     let mobileMenuOpen = false;
@@ -37,169 +56,310 @@
     }
 </script>
 
-<nav>
-    <ul>
-        <li class="logo">
-            <a href={"https://www." + homePage}><img src="/logo.png" alt="logo" /></a>
-        </li>
-        <div class={"nav-links" + (mobileMenuOpen ? " active" : "")}> 
-            <li><a href="/">Home</a></li>
-            <li class="dropdown" on:mouseleave={closeDropdown}>
-                <a id="our-classes" href="/" on:mouseenter={toggleDropdown} on:click|preventDefault={toggleDropdown}>Past competitions<span style="font-size: 16px">▼</span></a>
-                <ul class={`dropdown-menu ${isDropdownOpen ? "active" : ""}`}> 
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <a href={"https://www." + homePage} aria-label="HelixEd home">
+                <img src="/logo.png" alt="HelixEd logo" />
+            </a>
+        </div>
+        
+        <div class={"nav-links" + (mobileMenuOpen ? " active" : "")} role="menubar"> 
+            <a href={"https://www." + homePage} role="menuitem">HelixEd</a>
+            <a href="/" role="menuitem">Home</a>
+            <a href="/faq" role="menuitem">Competition FAQ</a>
+            
+            <div class="dropdown" role="group" on:mouseleave={closeDropdown}>
+                <button 
+                    id="past-competitions" 
+                    on:mouseenter={openDropdown} 
+                    on:click={toggleDropdown}
+                    aria-expanded={isDropdownOpen}
+                    aria-haspopup="true"
+                    aria-controls="dropdown-menu"
+                    class="dropdown-trigger"
+                    role="menuitem"
+                >
+                    Past competitions
+                    <svg class="dropdown-icon" class:open={isDropdownOpen} width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M4 6l4 4 4-4H4z"/>
+                    </svg>
+                </button>
+                <ul 
+                    id="dropdown-menu"
+                    class="dropdown-menu"
+                    class:active={isDropdownOpen}
+                    role="menu"
+                    aria-labelledby="past-competitions"
+                > 
                     {#each $events.filter(e => !e.active) as event}
-                        <li><a href={`/results/${event.eventID}`}>BioBrawl {event.year}</a></li>
+                        <li role="none">
+                            <a href={`/results/${event.eventID}`} role="menuitem">BioBrawl {event.year}</a>
+                        </li>
                     {/each}
                 </ul>
-            </li>
-
-            <li><a href={"https://www." + homePage}>HelixEd</a></li>
-            <button on:click={() => goto("/register")}>Register for BioBrawl {$currentEvent?.year}</button>
-        </div>
-
-        <div class="mobile-menu">
-            <button class="hamburger-menu" on:click={toggleMobileMenu}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="black" class="bi bi-list" viewBox="0 0 16 16">
-                    <path
-                        fill-rule="evenodd"
-                        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
-                    />
-                </svg>
+            </div>
+            
+            <button 
+                class="btn-primary" 
+                on:click={() => goto("/register")}
+                aria-label="Register for BioBrawl {$currentEvent?.year}"
+            >
+                Register for BioBrawl {$currentEvent?.year}
             </button>
         </div>
-    </ul>
+
+        <button 
+            class="mobile-menu-toggle" 
+            on:click={toggleMobileMenu}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="nav-links"
+            aria-label="Toggle navigation menu"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+            </svg>
+        </button>
+    </div>
 </nav>
 
 <style lang="scss">
-    .hamburger-menu {
-        @include invisible-button;
-        display: none;
-        pointer-events: none;
-    }
-
-    button {
-        @include button-primary;
-    }
-
-    img {
-        height: 40px;
-    }
-
-    #our-classes {
-        display: flex;
-        flex-direction: row;
-        gap: 4px;
-        align-items: center;
-    }
-
-    a {
-        font-size: 16px;
-        color: $text-color;
-        text-decoration: none;
-    }
-
-    a:hover {
-        text-decoration: underline;
-    }
-
     nav {
         background: $background-color;
-        color: white;
-        padding: 12px 20px;
-        border-style: solid;
-        border-width: 0px 0px 1px 0px;
-        border-color: black;
-        margin: 0;
+        border-bottom: 1px solid $border-color;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: $shadow-sm;
     }
 
-    ul {
+    .nav-container {
         display: flex;
         align-items: center;
-        list-style: none;
-        margin: 0;
-        padding: 0;
+        justify-content: space-between;
+        max-width: $desktop-width;
+        margin: 0 auto;
+        padding: $spacing-sm $spacing-lg;
+        
+        @media (max-width: $tablet-width) {
+            padding: $spacing-sm $spacing-md;
+        }
     }
 
-    .logo {
-        margin-right: auto;
+    .nav-brand {
+        flex-shrink: 0;
+        
+        img {
+            height: 40px;
+            width: auto;
+        }
     }
 
     .nav-links {
-        margin-right: 20px;
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: $spacing-xl;
+        
+        a {
+            color: $text-color;
+            font-weight: 500;
+            font-size: $font-size-base;
+            padding: $spacing-sm 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            
+            &:hover {
+                color: $primary;
+                border-bottom-color: $primary;
+                text-decoration: none;
+            }
+        }
     }
 
     .dropdown {
         position: relative;
-        display: inline-block;
+    }
+
+    .dropdown-trigger {
+        @include invisible-button;
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+        color: $text-color;
+        font-weight: 500;
+        font-size: $font-size-base;
+        font-family: inherit;
+        padding: $spacing-sm 0;
+        border-bottom: 2px solid transparent;
+        transition: all 0.2s ease;
+        
+        &:hover,
+        &[aria-expanded="true"] {
+            color: $primary;
+            border-bottom-color: $primary;
+        }
+    }
+
+    .dropdown-icon {
+        transition: transform 0.2s ease;
+        
+        &.open {
+            transform: rotate(180deg);
+        }
     }
 
     .dropdown-menu {
-        display: block;
         position: absolute;
         top: 100%;
         left: 0;
+        min-width: 200px;
         background: $background-color;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        border-radius: 12px;
-        padding: 8px 0;
-        z-index: 1;
-
-        pointer-events: none;
-
+        border: 1px solid $border-light;
+        border-radius: $radius-lg;
+        box-shadow: $shadow-lg;
+        padding: $spacing-sm 0;
         opacity: 0;
-        transition: opacity 0.3s ease;
-
+        visibility: hidden;
+        transform: translateY(-$spacing-xs);
+        transition: all 0.2s ease;
+        list-style: none;
+        margin: 0;
+        
         &.active {
             opacity: 1;
-            pointer-events: all;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        a {
+            display: block;
+            padding: $spacing-md $spacing-lg;
+            color: $text-color;
+            border-bottom: none !important;
+            border-radius: 0;
+            
+            &:hover {
+                background: $background-light;
+                color: $primary;
+            }
         }
     }
 
-    .dropdown-menu li {
-        display: block;
+    .btn-primary {
+        @include button-sm;
+        background: $primary;
+        color: white;
+        white-space: nowrap;
+        
+        &:hover:not(:disabled) {
+            background: $primary-dark;
+            transform: translateY(-1px);
+            box-shadow: $shadow-md;
+        }
+        
+        &:active:not(:disabled) {
+            transform: translateY(0);
+            box-shadow: $shadow-sm;
+        }
     }
 
-    .dropdown-menu a {
+    .mobile-menu-toggle {
+        @include invisible-button;
+        display: none;
+        padding: $spacing-sm;
         color: $text-color;
-        padding: 10px 20px;
-        display: block;
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-    }
-
-    .dropdown-menu a:hover {
-        background-color: lighten($background-color, 10%);
+        
+        svg {
+            width: 24px;
+            height: 24px;
+        }
     }
 
     @media (max-width: $mobile-width) {
-        .hamburger-menu {
-            display: inline;
-            pointer-events: all;
-        }
-
         .nav-links {
             display: none;
-            pointer-events: none;
-
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            flex-direction: column;
+            background: $background-color;
+            border-top: 1px solid $border-color;
+            padding: $spacing-lg;
+            gap: $spacing-lg;
+            box-shadow: $shadow-lg;
+            
             &.active {
                 display: flex;
-                pointer-events: all;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                width: 100%;
-                left: 0;
-                background: $background-color;
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-
-                padding: 8px 0;
-                z-index: 1;
-
-                font-size: large;
             }
+            
+            a {
+                font-size: $font-size-lg;
+                padding: $spacing-md 0;
+                text-align: center;
+                border-bottom: 1px solid $border-light;
+                
+                &:last-of-type {
+                    border-bottom: none;
+                }
+            }
+        }
+        
+        .dropdown {
+            width: 100%;
+            
+            .dropdown-trigger {
+                width: 100%;
+                justify-content: center;
+                padding: $spacing-md 0;
+                border-bottom: 1px solid $border-light;
+                font-size: $font-size-lg;
+            }
+        }
+        
+        .dropdown-menu {
+            position: static;
+            box-shadow: none;
+            border: none;
+            background: $background-light;
+            margin-top: 0;
+            border-radius: 0;
+            padding: 0;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.2s ease;
+            
+            &.active {
+                max-height: 300px; // Enough for several menu items
+                opacity: 1;
+            }
+            
+            a {
+                padding: $spacing-sm $spacing-lg;
+                font-size: $font-size-base;
+                border-bottom: 1px solid $border-light !important;
+                text-align: left;
+                
+                &:hover {
+                    background: $background-darker;
+                }
+                
+                &:last-child {
+                    border-bottom: none !important;
+                }
+            }
+        }
+        
+        .mobile-menu-toggle {
+            display: block;
+        }
+        
+        .btn-primary {
+            width: 100%;
+            justify-content: center;
+            margin-top: $spacing-md;
+            border-bottom: none !important;
         }
     }
 </style>

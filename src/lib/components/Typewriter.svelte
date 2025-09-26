@@ -59,23 +59,27 @@
 <style>
     .typewriter {
         display: inline-block;
+        min-height: 1.5em;
+        font-weight: 500;
     }
 
     .caret {
         display: inline-block;
-        background-color: rgb(0, 0, 0);
         width: 2px;
-        color: transparent;
-        animation: blink 0.7s step-end infinite;
+        height: 1.2em;
+        background-color: currentColor;
+        margin-left: 1px;
+        animation: blink 1s step-end infinite;
+        vertical-align: text-bottom;
     }
 
     @keyframes blink {
         from,
         to {
-            background-color: transparent;
+            opacity: 1;
         }
         50% {
-            background-color: rgb(0, 0, 0);
+            opacity: 0;
         }
     }
 </style>

@@ -1,60 +1,114 @@
-$color: red;
+@import './variables.scss';
 
-$background-color: #ffffff;
-$background-darker: #9ebcb8;
-
-$text-color: #000000;
-$accent: #293242;
-
-$primary: #016107;
-$secondary: #5f9baa;
-
-$mobile-width: 750px;
-
-@mixin invisible-button {
-    padding: 0;
-    border: none;
-    background-color: transparent;
-    margin: 0;
-}
-
-@mixin button {
-    color: rgb(255, 255, 255);
-    border: none;
-    padding: 8px 16px;
-    border-radius: 8px;
-}
-
-@mixin button-primary {
-    @include button;
-    background: $primary;
-}
-
-@mixin button-secondary {
-    @include button;
-    background: $secondary;
-}
-
-:root {
-    --background-color: #{$background-color};
-}
-
+// Font Loading
 @font-face {
     font-family: "Inter";
-    src: url("/Inter.ttf")
+    src: url("/Inter.ttf");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Montserrat";
-    src: url("/Montserrat.ttf")
+    src: url("/Montserrat.ttf");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Istok Web";
     src: url("/IstokWeb.ttf");
+    font-display: swap;
 }
 
-* {
-    margin: 0;
-    font-family: "Montserrat", "Istok Web", sans-serif;
+// CSS Custom Properties
+:root {
+    --background-color: #{$background-color};
+    --text-color: #{$text-color};
+    --primary-color: #{$primary};
+    --secondary-color: #{$secondary};
 }
+
+// Base Styles
+* {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", "Inter", "Istok Web", system-ui, -apple-system, sans-serif;
+    font-size: $font-size-base;
+    line-height: $line-height-normal;
+    color: $text-color;
+    background-color: $background-color;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// Typography Utilities
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 $spacing-md 0;
+    font-weight: 600;
+    line-height: $line-height-tight;
+}
+
+h1 { font-size: $font-size-4xl; }
+h2 { font-size: $font-size-3xl; }
+h3 { font-size: $font-size-2xl; }
+h4 { font-size: $font-size-xl; }
+h5 { font-size: $font-size-lg; }
+h6 { font-size: $font-size-base; }
+
+p {
+    margin: 0 0 $spacing-md 0;
+}
+
+a {
+    color: $primary;
+    text-decoration: none;
+    transition: color 0.15s ease;
+    
+    &:hover {
+        color: $primary-dark;
+        text-decoration: underline;
+    }
+    
+    &:focus {
+        outline: 2px solid $primary;
+        outline-offset: 2px;
+    }
+}
+
+// Utility Classes
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.font-medium { font-weight: 500; }
+
+.text-muted { color: $text-muted; }
+.text-secondary { color: $text-secondary; }

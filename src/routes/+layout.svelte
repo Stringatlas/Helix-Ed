@@ -1,35 +1,28 @@
 <script lang="ts">
     import Footer from "$lib/components/Footer.svelte";
-
     import BioBrawlNavbar from "$lib/components/Navbar.svelte";
+    import "../global.scss";
 </script>
 
-<section id="nav">
+<div class="app-layout">
     <BioBrawlNavbar />
-</section>
-
-<main>
-    <slot></slot>
-</main>
-
-<section id="footer">
+    
+    <main class="main-content">
+        <slot></slot>
+    </main>
+    
     <Footer />
-</section>
+</div>
 
 <style lang="scss">
-    $nav-height: 69px;
-
-    #nav {
-        position: fixed;
-        top: 0;
-        z-index: 1000;
-        width: 100%;
+    .app-layout {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
     }
 
-    main {
-        min-height: calc(100vh - $nav-height);
-        margin: 0;
-        margin-top: $nav-height;
-        color: $text-color;
+    .main-content {
+        flex: 1;
+        width: 100%;
     }
 </style>

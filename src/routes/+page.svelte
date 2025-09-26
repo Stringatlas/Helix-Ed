@@ -5,219 +5,297 @@
     console.log("Current Event:", $currentEvent);
 </script>
 
-<section id="header">
-    <img src="/images/biobrawl-2.webp" alt="biobrawl background logo" />
+<section class="hero-section">
+    <img src="/images/biobrawl-2.webp" alt="BioBrawl competition hero" />
 </section>
 
 {#if $currentEvent}
-    <section id="announcement">
+    <section class="announcement-banner">
         <h2>Registration {$currentEvent.registration?.isOpen ? 'Open' : 'Closed'}</h2>
     </section>
 
-    <section class="body">
-        <div class="main-content">
-            <h2 style="margin-top: 0">Rules</h2>
-            <a href="/biobrawl-rules.pdf">View our rules</a>
-            <h2>Important Dates</h2>
-            <!-- <h3>Middle School</h3> -->
-            <ul>
+    <div class="main-content">
+        <div class="content-primary">
+            <h2 class="section-title">Rules</h2>
+            <a href="/biobrawl-rules.pdf" class="rules-link">
+                📋 View our rules
+            </a>
+            
+            <h2 class="section-title">Important Dates</h2>
+            <ul class="dates-list">
                 {#if !$currentEvent.registration?.isOpen}
-                    <li><b>Registration opens:</b> {$currentEvent.registration?.opens}</li>
+                    <li><strong>Registration opens:</strong> {$currentEvent.registration?.opens}</li>
                 {/if}
                 {#if $currentEvent.rulesWorkshop?.date}
-                    <li><b>Rules Workshop:</b> {$currentEvent.rulesWorkshop.date}</li>
+                    <li><strong>Rules Workshop:</strong> {$currentEvent.rulesWorkshop.date}</li>
                 {/if}
-                <li><b>Registration deadline:</b> {$currentEvent.registration?.closes}</li>
-                <li><b>Mock competition:</b> {$currentEvent.mock?.date}</li>
-                <li><b>Competition:</b> {$currentEvent.date}, {$currentEvent.time} PST</li>
+                <li><strong>Registration deadline:</strong> {$currentEvent.registration?.closes}</li>
+                <li><strong>Mock competition:</strong> {$currentEvent.mock?.date}</li>
+                <li><strong>Competition:</strong> {$currentEvent.date}, {$currentEvent.time} PST</li>
             </ul>
-            <!-- <h3>High School</h3>
-            <ul>
-                <li>Registration opens: {registrationOpens}, 2024, 12:00 am PST</li>
-                <li>Registration deadline: January 12th, 2025, 11:59 pm PST</li>
-                <li>Competition: January 18th, 2025, 8 am - 5 pm PST</li>
-            </ul> -->
 
-            <h2>About Us</h2>
-            <p>
+            <h2 class="section-title">About Us</h2>
+            <p class="about-text">
                 The BioBrawl Biology Bowl is a dynamic, student-led competition debuting in 2024, designed to ignite curiosity and passion for the life sciences. Through a quiz bowl-like format, BioBrawl
                 covers a wide range of topics, including human anatomy, physiology, pathology, botany, zoology, evolution, cell biology, genetics, ecology, and ethology. Our mission is to inspire students
                 to explore the frontiers of science and discover the endless possibilities within the life sciences.
             </p>
         </div>
 
-        <div class="cards-container">
-            <div class="side-by-side">
-                <div class="card half-width">
-                    <h2>Who can register</h2>
-                    <p>Grades {$currentEvent.grades}</p>
+        <div class="content-sidebar">
+            <div class="info-cards-row">
+                <div class="info-card">
+                    <h3 class="card-title">Who can register</h3>
+                    <p class="card-text">Grades {$currentEvent.grades}</p>
                 </div>
-                <div class="card half-width">
-                    <h2>Team size</h2>
-                    <p>Teams of {$currentEvent.teamSize}</p>
+                <div class="info-card">
+                    <h3 class="card-title">Team size</h3>
+                    <p class="card-text">Teams of {$currentEvent.teamSize}</p>
                 </div>
             </div>
 
-            <div class="card full-width">
-                <h2>Where</h2>
-                <p>{$currentEvent.location}, {$currentEvent.time}</p>
+            <div class="info-card">
+                <h3 class="card-title">Where</h3>
+                <p class="card-text">{$currentEvent.location}, {$currentEvent.time}</p>
             </div>
 
-            <div class="card full-width">
-                <h2>Registration fee</h2>
-                <p>${$currentEvent.registrationFee} / team</p>
+            <div class="info-card">
+                <h3 class="card-title">Registration fee</h3>
+                <p class="card-text">${$currentEvent.registrationFee} / team</p>
             </div>
-            <div class="card full-width prizes">
-                <h1>Prizes per division</h1>
-                <h2>1st Place</h2>
-                <p>${$currentEvent.prizes?.first} / team</p>
-                <h2>2nd Place</h2>
-                <p>${$currentEvent.prizes?.second} / team</p>
-                <h2>3rd Place</h2>
-                <p>${$currentEvent.prizes?.third} / team</p>
-                {#if $currentEvent.prizes?.fourth}
-                    <h2>4th Place</h2>
-                    <p>${$currentEvent.prizes.fourth} / team</p>
-                {/if}
-                {#if $currentEvent.prizes?.fifth}
-                    <h2>5th Place</h2>
-                    <p>${$currentEvent.prizes.fifth} / team</p>
-                {/if}
+            
+            <div class="info-card prizes-card">
+                <h3 class="card-title">Prizes per division</h3>
+                <div class="prizes-list">
+                    <div class="prize-item">
+                        <span class="prize-place">1st Place:</span>
+                        <span class="prize-amount">${$currentEvent.prizes?.first} / team</span>
+                    </div>
+                    <div class="prize-item">
+                        <span class="prize-place">2nd Place:</span>
+                        <span class="prize-amount">${$currentEvent.prizes?.second} / team</span>
+                    </div>
+                    <div class="prize-item">
+                        <span class="prize-place">3rd Place:</span>
+                        <span class="prize-amount">${$currentEvent.prizes?.third} / team</span>
+                    </div>
+                    {#if $currentEvent.prizes?.fourth}
+                        <div class="prize-item">
+                            <span class="prize-place">4th Place:</span>
+                            <span class="prize-amount">${$currentEvent.prizes.fourth} / team</span>
+                        </div>
+                    {/if}
+                    {#if $currentEvent.prizes?.fifth}
+                        <div class="prize-item">
+                            <span class="prize-place">5th Place:</span>
+                            <span class="prize-amount">${$currentEvent.prizes.fifth} / team</span>
+                        </div>
+                    {/if}
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 {/if}
 
 <style lang="scss">
-    .prizes {
+    .hero-section {
         text-align: center;
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.2em;
-        }
-        h2 {
-            font-size: 1.5rem;
-        }
-
-        p {
-            color: #016107;
-            font-weight: bold;
-            font-size: 2rem;
-            margin-bottom: 1rem;
+        background-color: $background-color;
+        
+        img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
         }
     }
 
-    // .button-primary {
-    //     @include button-primary;
-    // }
-
-    .body {
-        display: grid;
-        grid-template-columns: 1fr 0.5fr;
+    .announcement-banner {
+        padding: $spacing-2xl;
+        text-align: center;
+        background: linear-gradient(135deg, $primary, $primary-dark);
+        color: white;
+        
+        h2 {
+            font-size: $font-size-3xl;
+            font-weight: 700;
+            margin: 0;
+        }
     }
 
     .main-content {
-        border-right-style: solid;
-        padding: 2rem;
-
-        h2 {
-            margin-top: 1.5em;
-            margin-bottom: 0.2em;
-        }
-        // h3 {
-        //     margin-bottom: 0.2em;
-        //     margin-top: 0.75em;
-        // }
-
-        li,
-        p {
-            line-height: 1.75;
-            letter-spacing: 1.75;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: $spacing-3xl;
+        max-width: $desktop-width;
+        margin: $spacing-3xl auto;
+        padding: 0 $spacing-lg;
+        
+        @media (max-width: $mobile-width) {
+            grid-template-columns: 1fr;
+            gap: $spacing-2xl;
+            margin: $spacing-2xl auto;
+            padding: 0 $spacing-md;
         }
     }
 
-    #announcement {
-        padding: 2rem;
-        text-align: center;
-        background-color: #016107;
-        color: white;
-    }
-
-    #header {
-        text-align: center;
-        background-color: white;
-        img {
-            height: 80vh;
-            width: auto;
+    .content-primary {
+        .section-title {
+            font-size: $font-size-3xl;
+            font-weight: 700;
+            margin-bottom: $spacing-lg;
+            color: $text-color;
+            
+            &:not(:first-child) {
+                margin-top: $spacing-3xl;
+            }
         }
-
-        // h1 {
-        //     margin-bottom: 24px;
-        // }
-
-        // h2 {
-        //     margin-bottom: 12px;
-        // }
+        
+        .rules-link {
+            display: inline-flex;
+            align-items: center;
+            gap: $spacing-sm;
+            padding: $spacing-md $spacing-lg;
+            background: $primary-light;
+            color: white;
+            border-radius: $radius-lg;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: $spacing-xl;
+            transition: all 0.2s ease;
+            
+            &:hover {
+                background: $primary;
+                transform: translateY(-2px);
+                box-shadow: $shadow-md;
+                text-decoration: none;
+            }
+        }
+        
+        .dates-list {
+            list-style: none;
+            padding: 0;
+            margin: $spacing-lg 0;
+            
+            li {
+                padding: $spacing-md 0;
+                border-bottom: 1px solid $border-light;
+                font-size: $font-size-lg;
+                
+                &:last-child {
+                    border-bottom: none;
+                }
+                
+                strong {
+                    color: $primary;
+                    font-weight: 600;
+                }
+            }
+        }
+        
+        .about-text {
+            font-size: $font-size-lg;
+            line-height: $line-height-relaxed;
+            color: $text-secondary;
+            margin-top: $spacing-lg;
+        }
     }
 
-    h1 {
-        font-size: 52px;
-    }
-
-    .cards-container {
+    .content-sidebar {
         display: flex;
         flex-direction: column;
-        flex-wrap: wrap;
-        gap: 16px;
-        padding: 1.5rem;
+        gap: $spacing-lg;
+    }
 
-        .side-by-side {
-            display: flex;
-            gap: 16px;
-            flex-direction: row;
+    .info-cards-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: $spacing-lg;
+        
+        @media (max-width: $mobile-width) {
+            grid-template-columns: 1fr;
         }
     }
 
-    .card {
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        border-radius: 20px;
-        padding: 24px 8px;
-        display: inline-block;
-        flex: 1;
+    .info-card {
+        background: white;
+        border-radius: $radius-xl;
+        padding: $spacing-xl;
+        box-shadow: $shadow-md;
         text-align: center;
-
-        h2 {
-            margin-bottom: 0.25em;
-            text-align: center;
+        border: 1px solid $border-light;
+        transition: all 0.3s ease;
+        
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: $shadow-xl;
         }
-
-        p {
-            line-height: 1.75;
-            letter-spacing: 1.75;
+        
+        .card-title {
+            font-size: $font-size-xl;
+            font-weight: 700;
+            margin-bottom: $spacing-md;
+            color: $primary;
         }
-    }
-
-    .half-width {
-        flex: auto;
-    }
-
-    .full-width {
-        flex: 0 0 0;
+        
+        .card-text {
+            font-size: $font-size-lg;
+            color: $text-secondary;
+            margin: 0;
+        }
+        
+        &.prizes-card {
+            .prizes-list {
+                display: flex;
+                flex-direction: column;
+                gap: $spacing-md;
+                
+                .prize-item {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: $spacing-sm 0;
+                    border-bottom: 1px solid $border-light;
+                    
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                    
+                    .prize-place {
+                        font-weight: 600;
+                        color: $text-color;
+                    }
+                    
+                    .prize-amount {
+                        font-weight: 700;
+                        color: $primary;
+                        font-size: $font-size-lg;
+                    }
+                }
+            }
+        }
     }
 
     @media (max-width: $mobile-width) {
-        .body {
-            display: flex;
-            flex-direction: column-reverse;
+        .announcement-banner {
+            padding: $spacing-xl $spacing-md;
+            
+            h2 {
+                font-size: $font-size-2xl;
+            }
         }
-
-        .main-content {
-            border-right-style: none;
-        }
-        #header {
-            img {
-                height: auto;
-                width: 100%;
+        
+        .content-primary {
+            .section-title {
+                font-size: $font-size-2xl;
+                
+                &:not(:first-child) {
+                    margin-top: $spacing-2xl;
+                }
+            }
+            
+            .about-text {
+                font-size: $font-size-base;
             }
         }
     }

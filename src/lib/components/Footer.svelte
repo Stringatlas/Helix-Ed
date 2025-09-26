@@ -30,10 +30,10 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-
-        gap: 16px;
+        gap: $spacing-md; // Changed from 16px to $spacing-md (1rem/16px)
+        margin-top: $spacing-lg; // Added extra space above social icons
+        
         img {
-            // background-color: rgb(90, 97, 97);
             filter: invert(75%);
             height: 40px;
         }
@@ -49,7 +49,7 @@
 
     section {
         background-color: rgb(55, 62, 65);
-        padding: 16px;
+        padding: $spacing-md; // Changed from 16px to $spacing-md (1rem/16px)
 
         .credit {
             text-align: center;
