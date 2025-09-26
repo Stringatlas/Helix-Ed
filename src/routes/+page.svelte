@@ -172,12 +172,12 @@
     }
 
     #why {
-        padding: 0 15%;
+        padding: 0 10%;
         display: flex;
         flex-direction: row;
-        gap: 64px;
+        gap: clamp(2rem, 5vw, 4rem);
         margin-bottom: 120px;
-        margin-top: 0; // Remove top margin since it's now in the section wrapper
+        margin-top: 0;
         position: relative;
         z-index: 1;
 
@@ -186,17 +186,17 @@
             flex-direction: column;
             align-items: flex-start;
             flex: 1;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0;
+            background: transparent;
+            border-radius: 0;
+            backdrop-filter: none;
+            border: none;
             transition: all 0.3s ease;
             
             &:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-                background: rgba(255, 255, 255, 0.85);
+                transform: none;
+                box-shadow: none;
+                background: transparent;
             }
             
             img {
@@ -219,7 +219,7 @@
                 color: darken($text-color, 10%);
                 font-size: 1rem;
             }
-            }
+        }
     }
 
     #landing-section {
@@ -311,11 +311,11 @@
         #why {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
-            padding: 0 1rem;
+            gap: 2.5rem;
+            padding: 0 2rem;
             
             div {
-                padding: 1.5rem;
+                padding: 0;
                 text-align: center;
                 align-items: center;
                 
@@ -331,8 +331,29 @@
                 }
                 
                 p {
-                    font-size: 0.9rem;
+                    font-size: 0.95rem;
                     letter-spacing: 0.3px;
+                    max-width: none;
+                }
+            }
+        }
+        
+        @media (max-width: 900px) and (min-width: #{$mobile-width + 1px}) {
+            #why {
+                padding: 0 5%;
+                gap: clamp(1.5rem, 3vw, 2.5rem);
+                
+                div {
+                    text-align: center;
+                    align-items: center;
+                    
+                    h2 {
+                        font-size: 1.4rem;
+                    }
+                    
+                    p {
+                        font-size: 0.95rem;
+                    }
                 }
             }
         }

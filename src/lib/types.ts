@@ -11,6 +11,7 @@ export type Instructor = {
     bio: string;
     imageUrl: string;
     image?: { alt: string };
+    sortOrder?: number;
 };
 
 export type Course = {

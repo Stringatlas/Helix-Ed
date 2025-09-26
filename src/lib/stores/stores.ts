@@ -16,9 +16,9 @@ export async function fetchInstructors() {
     const query = `*[_type == "instructor"]{..., "imageUrl": image.asset->url}`;
     const data: Instructor[] = await client.fetch(query);
     instructors.set(data);
-    teachers.set(data.filter((i) => i.role === "Teacher"));
-    tas.set(data.filter((i) => i.role === "TA"));
-    officers.set(data.filter((i) => i.officer));
+    teachers.set(data.filter((i) => i.role === "Teacher" && !i.officer).sort((a, b) => (a.sortOrder || 999) - (b.sortOrder || 999)));
+    tas.set(data.filter((i) => i.role === "TA").sort((a, b) => (a.sortOrder || 999) - (b.sortOrder || 999)));
+    officers.set(data.filter((i) => i.officer).sort((a, b) => (a.sortOrder || 999) - (b.sortOrder || 999)));
 }
 
 export async function fetchCourses() {

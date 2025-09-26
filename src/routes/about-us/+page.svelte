@@ -95,8 +95,8 @@
     .middle-section {
         display: flex;
         flex-direction: row;
-        margin: 4rem 8rem;
-        gap: 3rem;
+        margin: 4rem clamp(2rem, 8vw, 8rem);
+        gap: clamp(1.5rem, 4vw, 3rem);
         align-items: center;
         
         div {
@@ -110,8 +110,8 @@
         img {
             width: auto;
             height: auto;
-            min-width: 320px;
-            max-width: 440px;
+            min-width: clamp(250px, 30vw, 320px);
+            max-width: clamp(350px, 40vw, 440px);
             object-fit: contain;
             border-radius: 12px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
@@ -119,14 +119,14 @@
 
         h1 {
             margin-bottom: 0.75rem;
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 3vw, 2.2rem);
             font-weight: 700;
             color: $accent;
         }
         
         h2 {
             margin-bottom: 1.5rem;
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
             font-weight: 500;
             color: $accent;
             line-height: 1.3;
@@ -134,7 +134,7 @@
         
         p {
             line-height: 1.7;
-            font-size: 1rem;
+            font-size: clamp(0.95rem, 1.5vw, 1rem);
             color: darken($text-color, 10%);
             text-align: justify;
             margin: 0;
@@ -201,6 +201,61 @@
 
     section {
         padding: 1rem;
+    }
+
+    @media (max-width: 1024px) and (min-width: #{$mobile-width + 1px}) {
+        .middle-section {
+            margin: 3rem 2rem;
+            gap: 2rem;
+            
+            img {
+                min-width: 280px;
+                max-width: 350px;
+            }
+            
+            h1 {
+                font-size: 1.9rem;
+            }
+            
+            h2 {
+                font-size: 1.2rem;
+                margin-bottom: 1.2rem;
+            }
+            
+            p {
+                font-size: 0.98rem;
+                line-height: 1.6;
+            }
+        }
+    }
+
+    @media (max-width: 900px) and (min-width: #{$mobile-width + 1px}) {
+        .middle-section {
+            flex-direction: column;
+            text-align: center;
+            gap: 2rem;
+            margin: 3rem 1.5rem;
+            
+            div {
+                align-items: center;
+                text-align: center;
+            }
+            
+            img {
+                max-width: 100%;
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            p {
+                text-align: justify;
+                max-width: 600px;
+            }
+        }
+        
+        .reverse {
+            flex-direction: column;
+        }
     }
 
     @media (max-width: $mobile-width) {
