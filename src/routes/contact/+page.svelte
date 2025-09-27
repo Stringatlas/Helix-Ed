@@ -1,8 +1,3 @@
-<script lang="ts">
-    import InstructorCard from "$lib/components/InstructorCard.svelte";
-    import { capitalizeFirstLetter } from "$lib/util";
-</script>
-
 <main>
     <section class="contact-section">
         <h1>Contact Us</h1>

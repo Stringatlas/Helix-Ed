@@ -3,10 +3,7 @@
     import berkeley from "$lib/images/ucberkeley.jpg";
 
     import InstructorCard from "$lib/components/InstructorCard.svelte";
-    import { capitalizeFirstLetter } from "$lib/util";
-    import { instructors, courses, tas, teachers, openCourses, closedCourses, officers } from "$lib/stores/stores";
-
-    import { onMount } from "svelte";
+    import { tas, teachers, officers } from "$lib/stores/stores";
 </script>
 
 <main>
