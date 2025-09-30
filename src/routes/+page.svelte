@@ -17,7 +17,7 @@
     <div class="main-content">
         <div class="content-primary">
             <h2 class="section-title">Rules</h2>
-            <a href="/biobrawl-rules.pdf" class="rules-link">
+            <a href={$currentEvent.rules} class="rules-link">
                 📋 View our rules
             </a>
             
@@ -31,7 +31,7 @@
                 {/if}
                 <li><strong>Registration deadline:</strong> {$currentEvent.registration?.closes}</li>
                 <li><strong>Mock competition:</strong> {$currentEvent.mock?.date}</li>
-                <li><strong>Competition:</strong> {$currentEvent.date}, {$currentEvent.time} PST</li>
+                <li><strong>Competition:</strong> {$currentEvent.date}, {$currentEvent.time}</li>
             </ul>
 
             <h2 class="section-title">About Us</h2>
