@@ -53,7 +53,9 @@
     <h2>Our Instructors</h2>
     <div>
         {#each $teachers as instructor}
-            <InstructorCard instructorData={instructor} />
+            {#if !instructor.officer}
+                <InstructorCard instructorData={instructor} />
+            {/if}
         {/each}
     </div>
 
