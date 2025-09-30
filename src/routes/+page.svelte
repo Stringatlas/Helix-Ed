@@ -17,7 +17,9 @@
     let backgroundCanvas: HTMLCanvasElement;
     let backgroundCanvasDiv: HTMLDivElement;
 
-    let careers = ["engineers", "doctors", "chemists", "teachers", "physicists", "scientists", "astronomers", "biologists", "roboticists", "economists"];
+    let careers = ["engineers", "doctors", "chemists", "teachers", 
+                    "physicists", "scientists", "astronomers", "biologists", 
+                    "roboticists", "economists", "mathematicians"];
     
     onMount(() => {
         // createScene(backgroundCanvas);
@@ -87,13 +89,17 @@
 
 <style lang="scss">
     button {
-        @include button-primary;
         font-size: 1.2rem;
         padding: 1rem 2.5rem;
         border-radius: 50px;
         position: relative;
         overflow: hidden;
         z-index: 1;
+        
+        // Optional: Add a subtle pulse animation
+        animation: subtle-pulse 3s ease-in-out infinite;
+        
+        @include button-primary;
         
         // Enhanced interactive effect
         &::before {
@@ -122,9 +128,6 @@
         &:active {
             transform: translateY(-2px) scale(1.02);
         }
-        
-        // Optional: Add a subtle pulse animation
-        animation: subtle-pulse 3s ease-in-out infinite;
     }
     
     @keyframes subtle-pulse {

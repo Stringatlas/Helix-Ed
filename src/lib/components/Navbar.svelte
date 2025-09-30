@@ -68,9 +68,10 @@
 
 <style lang="scss">
     .hamburger-menu {
-        @include invisible-button;
         display: none;
         pointer-events: none;
+        
+        @include invisible-button;
     }
 
     .enroll-button {

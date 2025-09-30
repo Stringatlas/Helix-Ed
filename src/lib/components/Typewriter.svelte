@@ -56,7 +56,7 @@
     <span>{currentWord}</span><span class="caret">|</span>
 </div>
 
-<style>
+<style lang="scss">
     .typewriter {
         /* font-size: 24px; */
         /* border-right: 2px solid; */
