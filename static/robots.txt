@@ -1,0 +1,38 @@
+# robots.txt for Helix Ed
+# https://helix-ed.com/robots.txt
+
+# Allow all search engines to crawl the entire site
+User-agent: *
+Allow: /
+
+# Prevent indexing of specific file types
+Disallow: /*.json$
+Disallow: /*.xml$
+
+# Block access to SvelteKit build artifacts and internal files
+Disallow: /_app/
+Disallow: /build/
+Disallow: /.svelte-kit/
+
+# Allow crawling of static assets (images, CSS, JS)
+Allow: /static/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.webp$
+Allow: /*.svg$
+
+# Sitemap location (update with your actual domain)
+Sitemap: https://helix-ed.com/sitemap.xml
+
+# Additional rules for specific bots (optional)
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /

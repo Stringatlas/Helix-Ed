@@ -5,7 +5,6 @@
     import MoneyIcon from "$lib/images/icons/money.png";
     import SchoolIcon from "$lib/images/icons/school.png";
 
-    import testimonials from "$lib/testimonialData.json";
     import TestimonialCard from "$lib/components/TestimonialCard.svelte";
     import FlippingText from "$lib/components/FadingText.svelte";
     import Typewriter from "$lib/components/Typewriter.svelte";
