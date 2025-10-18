@@ -1,8 +1,20 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
+import { imagetools } from 'vite-imagetools';
 
 export default defineConfig({
-	plugins: [sveltekit()],
+	plugins: [
+		sveltekit(),
+		imagetools({
+			defaultDirectives: (url) => {
+				// Convert to WebP by default
+				return new URLSearchParams({
+					format: 'webp',
+					quality: '80'
+				});
+			}
+		})
+	],
 	optimizeDeps: {
 		exclude: [
 			// Exclude problematic dependencies that cause chunk errors

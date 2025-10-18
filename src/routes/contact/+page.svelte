@@ -1,8 +1,19 @@
+<script lang="ts">
+    // Obfuscated email addresses to prevent spam bots
+    const contactEmailUser = 'helix-ed.org';
+    const zelleEmailUser = 'helixed.org';
+    const emailDomain = 'gmail.com';
+    
+    function openContactEmail() {
+        window.location.href = `mailto:${contactEmailUser}@${emailDomain}`;
+    }
+</script>
+
 <main>
     <section class="contact-section">
         <h1>Contact Us</h1>
         <p class="contact-email">
-            Email: <a href="mailto:helix-ed.org@gmail.com">helix-ed.org@gmail.com</a>
+            Email: <button class="email-link" on:click={openContactEmail} type="button">{contactEmailUser}@{emailDomain}</button>
         </p>
     </section>
 
@@ -12,7 +23,7 @@
         <h3>How to Donate</h3>
         <ul>
             <li><b>Benevity Cause Portal:</b> <a href="https://causes.benevity.org/causes/840-993230895">https://causes.benevity.org/causes/840-993230895</a></li>
-            <li><b>Zelle:</b> helixed.org@gmail.com</li>
+            <li><b>Zelle:</b> {zelleEmailUser}@{emailDomain}</li>
         </ul>
     </section>
 </main>
@@ -40,15 +51,15 @@
             font-size: 1.15rem;
             color: #23272f;
             margin-bottom: 0;
-            a {
-                color: #1a1a1a;
-                text-decoration: underline;
-                font-weight: 500;
-                word-break: break-all;
-                &:hover {
-                    color: #444;
-                }
-            }
+            // a {
+            //     color: #1a1a1a;
+            //     text-decoration: underline;
+            //     font-weight: 500;
+            //     word-break: break-all;
+            //     &:hover {
+            //         color: #444;
+            //     }
+            // }
         }
     }
 
@@ -90,6 +101,26 @@
                     }
                 }
             }
+        }
+    }
+
+    .email-link {
+        background: none;
+        border: none;
+        color: #1a1a1a;
+        text-decoration: underline;
+        cursor: pointer;
+        padding: 0;
+        font: inherit;
+        transition: color 0.2s ease;
+        
+        &:hover {
+            color: #444;
+        }
+        
+        &:focus {
+            outline: 2px solid rgba(26, 26, 26, 0.3);
+            outline-offset: 2px;
         }
     }
 

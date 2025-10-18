@@ -6,7 +6,7 @@
 </script>
 
 <div id="card-container">
-    <img src={imagePath} alt="review" />
+    <img src={imagePath} alt="{name} testimonial photo" loading="lazy" width="120" height="120" />
     <div id="text-container">
         <p id="quote">{quote}</p>
         <p id="info">- {name}, {role}</p>

@@ -9,20 +9,11 @@
     import FlippingText from "$lib/components/FadingText.svelte";
     import Typewriter from "$lib/components/Typewriter.svelte";
     import type { TestimonialData } from "$lib/types";
-    import { onMount } from "svelte";
     import { goto } from "$app/navigation";
-    import { createScene } from "$lib/landingScene";
-
-    let backgroundCanvas: HTMLCanvasElement;
-    let backgroundCanvasDiv: HTMLDivElement;
 
     let careers = ["engineers", "doctors", "chemists", "teachers", 
                     "physicists", "scientists", "astronomers", "biologists", 
                     "roboticists", "economists", "mathematicians"];
-    
-    onMount(() => {
-        // createScene(backgroundCanvas);
-    });
 
     let mouseX: number;
     let mouseY: number;
@@ -39,7 +30,6 @@
 
 <body>
     <section id="landing-section">
-        <canvas id="background" bind:this={backgroundCanvas}></canvas>
         <h1>Empowering future <span class="typewriter-wrapper"><Typewriter words={careers} /></span><br />through personalized education</h1>
         <h2>Igniting passion and mastery in the sciences</h2>
         <button on:click={() => goto("/enroll")} on:mousemove={handleMouseMove} style="--x: {mouseX}%; --y: {mouseY}%; ">View our courses →</button>
@@ -50,7 +40,7 @@
 
         <section id="why">
             <div>
-                <img src={BookIcon} alt="book icon" loading="lazy" width="64" height="64" />
+                <img src={BookIcon} alt="book icon" loading="eager" fetchpriority="high" width="64" height="64" />
                 <h2>Outstanding Curriculum</h2>
                 <p>Dive into a well-structured learning path that has been proven effective, setting you up for success in every lesson.</p>
             </div>
@@ -239,14 +229,14 @@
         background: transparent; // Let body gradient show through
         padding: 0 2rem;
 
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
+        // canvas {
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        //     width: 100%;
+        //     height: 100%;
+        //     z-index: -1;
+        // }
 
         h1 {
             font-size: 52px;

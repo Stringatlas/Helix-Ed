@@ -1,4 +1,54 @@
 {
-    
-
+    "redirects": [
+        {
+            "source": "/home",
+            "destination": "/",
+            "permanent": true
+        }
+    ],
+    "headers": [
+        {
+            "source": "/(.*)",
+            "headers": [
+                {
+                    "key": "X-Content-Type-Options",
+                    "value": "nosniff"
+                },
+                {
+                    "key": "X-Frame-Options",
+                    "value": "SAMEORIGIN"
+                },
+                {
+                    "key": "Referrer-Policy",
+                    "value": "strict-origin-when-cross-origin"
+                },
+                {
+                    "key": "Strict-Transport-Security",
+                    "value": "max-age=63072000; includeSubDomains; preload"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "br, gzip, deflate"
+                }
+            ]
+        },
+        {
+            "source": "/",
+            "headers": [
+                {
+                    "key": "Link",
+                    "value": "</Montserrat.ttf>; rel=preload; as=font; crossorigin, </Inter.ttf>; rel=preload; as=font; crossorigin, </logo.png>; rel=preload; as=image; fetchpriority=high"
+                }
+            ]
+        },
+        {
+            "source": "/static/(.*)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=31536000, immutable"
+                }
+            ]
+        }
+    ]
 }

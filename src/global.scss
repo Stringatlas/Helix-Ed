@@ -86,17 +86,20 @@ $mobile-width: 750px;
 
 @font-face {
     font-family: "Inter";
-    src: url("/Inter.ttf")
+    src: url("/Inter.ttf");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Montserrat";
-    src: url("/Montserrat.ttf")
+    src: url("/Montserrat.ttf");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Istok Web";
     src: url("/IstokWeb.ttf");
+    font-display: swap;
 }
 
 * {
