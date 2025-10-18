@@ -3,6 +3,9 @@
     import MoneyIcon from "$lib/images/icons/money.png";
     import SchoolIcon from "$lib/images/icons/school.png";
 
+    import TutorImage from "$lib/images/tutor.jpg";
+    import SuccessImage from "$lib/images/goals.jpg";
+
     import Typewriter from "$lib/components/Typewriter.svelte";
     import { goto } from "$app/navigation";
 
@@ -68,7 +71,7 @@
                 </p>
             </div>
             <div class="image-content">
-                <img src="/src/lib/images/tutor.jpg" alt="Tutor teaching two students" loading="lazy" />
+                <img src={TutorImage} alt="Tutor teaching two students" loading="lazy" />
             </div>
         </div>
     </section>
@@ -76,7 +79,7 @@
     <section id="student-success">
         <div class="content-wrapper reverse">
             <div class="image-content">
-                <img src="/src/lib/images/goals.jpg" alt="Vector art of person achieving academic success" loading="lazy" />
+                <img src={SuccessImage} alt="Vector art of person achieving academic success" loading="lazy" />
             </div>
             <div class="text-content">
                 <h2>Proven Results for Academic Success</h2>
