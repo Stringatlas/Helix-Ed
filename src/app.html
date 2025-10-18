@@ -5,6 +5,15 @@
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        
+        <!-- Preconnect to external domains for faster loading -->
+        <link rel="preconnect" href="https://cdn.sanity.io" crossorigin>
+        <link rel="dns-prefetch" href="https://cdn.sanity.io">
+        
+        <!-- Preload critical fonts -->
+        <link rel="preload" href="%sveltekit.assets%/Inter.ttf" as="font" type="font/ttf" crossorigin>
+        <link rel="preload" href="%sveltekit.assets%/Montserrat.ttf" as="font" type="font/ttf" crossorigin>
+        
         <title>HelixEd BioBrawl</title>
         <meta name="description"
             content="Join the Annual Helix-Ed Biology Bowl! Compete with peers, showcase your biology expertise, and win over $400 in prizes. Sign up now!">

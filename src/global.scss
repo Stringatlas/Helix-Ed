@@ -1,22 +1,25 @@
 @import './variables.scss';
 
-// Font Loading
+// Font Loading - optimized with font-display: swap for better FCP/LCP
 @font-face {
     font-family: "Inter";
-    src: url("/Inter.ttf");
+    src: url("/Inter.ttf") format("truetype");
     font-display: swap;
+    font-weight: 400;
 }
 
 @font-face {
     font-family: "Montserrat";
-    src: url("/Montserrat.ttf");
+    src: url("/Montserrat.ttf") format("truetype");
     font-display: swap;
+    font-weight: 400 700;
 }
 
 @font-face {
     font-family: "Istok Web";
-    src: url("/IstokWeb.ttf");
+    src: url("/IstokWeb.ttf") format("truetype");
     font-display: swap;
+    font-weight: 400;
 }
 
 // CSS Custom Properties

@@ -1,12 +1,16 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { currentEvent } from "$lib/stores/stores";
-
-    console.log("Current Event:", $currentEvent);
 </script>
 
 <section class="hero-section">
-    <img src="/images/biobrawl-2.webp" alt="BioBrawl competition hero" />
+    <img 
+        src="/images/biobrawl-2.webp" 
+        alt="BioBrawl competition hero"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+    />
 </section>
 
 {#if $currentEvent}

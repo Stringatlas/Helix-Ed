@@ -99,13 +99,14 @@
     }
 
     .register-btn {
-        @include button-base;
         font-size: $font-size-2xl;
         font-weight: 700;
         padding: $spacing-xl $spacing-3xl;
         border-radius: $radius-xl;
         min-width: 280px;
         box-shadow: $shadow-lg;
+        
+        @include button-base;
         
         &--primary {
             background: linear-gradient(135deg, $primary, $primary-light);

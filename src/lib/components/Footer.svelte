@@ -14,16 +14,22 @@
 <section>
     <div id="social">
         <hr />
-        <a href={linkedin}><img src={linkedIcon} alt="linkedin" /></a>
-        <a href={instagram}><img src={instaIcon} alt="instagram" /></a>
-        <a href={facebook}><img src={fbIcon} alt="facebook" /></a>
+        <a href={linkedin} rel="noopener noreferrer" target="_blank">
+            <img src={linkedIcon} alt="linkedin" loading="lazy" width="40" height="40" />
+        </a>
+        <a href={instagram} rel="noopener noreferrer" target="_blank">
+            <img src={instaIcon} alt="instagram" loading="lazy" width="40" height="40" />
+        </a>
+        <a href={facebook} rel="noopener noreferrer" target="_blank">
+            <img src={fbIcon} alt="facebook" loading="lazy" width="40" height="40" />
+        </a>
         <hr />
     </div>
 
     <div class="credit">
         <div>
             <p>Contact: <a href="mailto:helix-ed.org@gmail.com">helix-ed.org@gmail.com</a></p>
-            <p>&copy; {currentYear} HelixEd. All rights reserved. Website by Kevin Zhang</p>
+            <p>&copy; {currentYear} HelixEd. All rights reserved. Website by <a href="https://github.com/Stringatlas">Kevin Zhang</a></p>
         </div>
     </div>
 </section>

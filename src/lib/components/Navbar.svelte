@@ -1,35 +1,46 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-
     import { browser } from "$app/environment";
-    import {events, currentEvent} from "$lib/stores/stores";
+    import { events, currentEvent } from "$lib/stores/stores";
+    import { onMount, onDestroy } from "svelte";
 
     let bioBrawlLink: string = "";
+    let homePage: string = "";
+    let isDropdownOpen = false;
+    let isMobile = false;
+    let mobileMenuOpen = false;
+    let mediaQuery: MediaQueryList | null = null;
+    let mediaQueryHandler: ((e: MediaQueryListEvent) => void) | null = null;
 
     if (browser) {
         bioBrawlLink = window.location.hostname.includes("localhost") ? "/bio-brawl" : "https://biobrawl.helix-ed.org";
-    }
-
-    let isDropdownOpen = false;
-    let isMobile = false;
-
-    let homePage: string = "";
-
-    if (browser) {
         homePage = window.location.hostname.replace(/^biobrawl\./, "");
-        // Check if device is mobile/touch device
-        isMobile = window.matchMedia("(max-width: 768px)").matches;
-        
-        // Update mobile detection on resize
-        const mediaQuery = window.matchMedia("(max-width: 768px)");
-        mediaQuery.addEventListener('change', (e) => {
-            isMobile = e.matches;
-            if (!isMobile && isDropdownOpen) {
-                // Close dropdown when switching to desktop
-                isDropdownOpen = false;
-            }
-        });
     }
+
+    onMount(() => {
+        if (browser) {
+            // Check if device is mobile/touch device
+            mediaQuery = window.matchMedia("(max-width: 768px)");
+            isMobile = mediaQuery.matches;
+            
+            // Update mobile detection on resize
+            mediaQueryHandler = (e: MediaQueryListEvent) => {
+                isMobile = e.matches;
+                if (!isMobile && isDropdownOpen) {
+                    // Close dropdown when switching to desktop
+                    isDropdownOpen = false;
+                }
+            };
+            mediaQuery.addEventListener('change', mediaQueryHandler);
+        }
+    });
+
+    onDestroy(() => {
+        // Clean up event listener to prevent memory leaks
+        if (mediaQuery && mediaQueryHandler) {
+            mediaQuery.removeEventListener('change', mediaQueryHandler);
+        }
+    });
 
     function toggleDropdown() {
         isDropdownOpen = !isDropdownOpen;
@@ -48,8 +59,6 @@
             isDropdownOpen = false;
         }
     }
-
-    let mobileMenuOpen = false;
 
     function toggleMobileMenu() {
         mobileMenuOpen = !mobileMenuOpen;
@@ -247,9 +256,11 @@
 
     .btn-primary {
         @include button-sm;
-        background: $primary;
-        color: white;
-        white-space: nowrap;
+        & {
+            background: $primary;
+            color: white;
+            white-space: nowrap;
+        }
         
         &:hover:not(:disabled) {
             background: $primary-dark;

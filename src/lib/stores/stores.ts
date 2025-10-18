@@ -20,15 +20,12 @@ async function getEvents() {
     }
 }
 
-events.subscribe((value) => {
-    console.log('Updated events:', value);
-});
-
-currentEvent.subscribe((value) => {
-    console.log('Updated current event:', value);
-});
-
-getEvents()
+// Only fetch events once on initialization
+let eventsInitialized = false;
+if (!eventsInitialized) {
+    getEvents();
+    eventsInitialized = true;
+}
 
 export interface FAQData {
     question: string;
@@ -43,4 +40,9 @@ export async function getFAQs() {
     faqs.set(data);
 }
 
-getFAQs();
+// Only fetch FAQs once on initialization
+let faqsInitialized = false;
+if (!faqsInitialized) {
+    getFAQs();
+    faqsInitialized = true;
+}

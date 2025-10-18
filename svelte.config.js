@@ -8,7 +8,18 @@ const config = {
         },
     }),
     kit: {
-        adapter: adapter()
+        adapter: adapter(),
+        prerender: {
+            handleHttpError: 'warn',
+            handleMissingId: 'warn'
+        },
+        alias: {
+            $lib: './src/lib',
+            $components: './src/lib/components',
+            $stores: './src/lib/stores'
+        },
+        // Enable inlining of small modules for better performance
+        inlineStyleThreshold: 1024
     }
 };
 
