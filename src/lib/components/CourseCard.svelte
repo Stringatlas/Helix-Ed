@@ -192,12 +192,12 @@
         border-radius: 12px;
         transition: all 0.3s ease;
         
+        @include button-primary;
+
         .button-icon {
             font-size: 1.2rem;
             transition: transform 0.3s ease;
         }
-        
-        @include button-primary;
         
         &:hover {
             transform: none; // Override the mixin transform

@@ -7,6 +7,8 @@
     <a href="https://www.flaticon.com/free-icons/economy" title="economy icons">Economy icons created by ultimatearm - Flaticon</a>
     <a href="https://www.flaticon.com/free-icons/biology" title="biology icons">Biology icons created by Eucalyp - Flaticon</a>
     <a href="https://www.flaticon.com/free-icons/maths" title="maths icons">Maths icons created by srip - Flaticon</a>
+    <a href="https://www.freepik.com/free-vector/staff-is-presenting-plan-via-video-call_14245130.htm">Image by jcomp on Freepik</a>
+    <a href="https://www.freepik.com/free-vector/clever-man-student-standing-books-stack-with-flag-self-learning-personal-improvement-knowledge-obtaining-educational-achievement_12145586.htm">Image by vectorjuice on Freepik</a>
 </div>
 
 <style lang="scss">
