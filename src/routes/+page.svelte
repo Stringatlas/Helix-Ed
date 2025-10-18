@@ -50,17 +50,17 @@
 
         <section id="why">
             <div>
-                <img src={BookIcon} alt="book icon" />
+                <img src={BookIcon} alt="book icon" loading="lazy" width="64" height="64" />
                 <h2>Outstanding Curriculum</h2>
                 <p>Dive into a well-structured learning path that has been proven effective, setting you up for success in every lesson.</p>
             </div>
             <div>
-                <img src={SchoolIcon} alt="school icon" />
+                <img src={SchoolIcon} alt="school icon" loading="lazy" width="64" height="64" />
                 <h2>Top-Tier Instructors</h2>
                 <p>Our instructors come from top universities, ensuring a learning experience that's both high-quality and personalized.</p>
             </div>
             <div>
-                <img src={MoneyIcon} alt="money icon" />
+                <img src={MoneyIcon} alt="money icon" loading="lazy" width="64" height="64" />
                 <h2>Quality at a Low Cost</h2>
                 <p>Experience premium courses at affordable rates, making education both accessible and effective.</p>
             </div>

@@ -35,8 +35,17 @@
         
         <!-- Additional SEO -->
         <meta name="theme-color" content="#1a1a2e" />
+        <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        
+        <!-- Preload critical fonts -->
+        <link rel="preload" href="%sveltekit.assets%/Montserrat.ttf" as="font" type="font/ttf" crossorigin />
+        <link rel="preload" href="%sveltekit.assets%/Inter.ttf" as="font" type="font/ttf" crossorigin />
+        
+        <!-- DNS Prefetch for external resources -->
+        <link rel="dns-prefetch" href="//j0eueaqb.apicdn.sanity.io" />
+        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
         
 		%sveltekit.head%
         <style>

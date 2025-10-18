@@ -15,5 +15,13 @@ export default defineConfig({
 			// Allow serving files from one level up to the project root
 			allow: ['..']
 		}
+	},
+	build: {
+		// Performance optimizations
+		target: 'es2015',
+		cssCodeSplit: true,
+		minify: 'esbuild',
+		// Reduce chunk size warnings threshold
+		chunkSizeWarningLimit: 1000
 	}
 });
