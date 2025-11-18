@@ -121,71 +121,86 @@ $z-tooltip: 1070;
 
 @mixin button-sm {
     @include button-base;
-    padding: $spacing-sm $spacing-md;
-    font-size: $font-size-sm;
+    & {
+        padding: $spacing-sm $spacing-md;
+        font-size: $font-size-sm;
+    }
 }
 
 @mixin button-md {
     @include button-base;
-    padding: $spacing-md $spacing-lg;
+    & {
+        padding: $spacing-md $spacing-lg;
+    }
+
 }
 
 @mixin button-lg {
     @include button-base;
-    padding: $spacing-lg $spacing-xl;
-    font-size: $font-size-lg;
+    & {
+        padding: $spacing-lg $spacing-xl;
+        font-size: $font-size-lg;
+    }
 }
 
 @mixin button-primary {
     @include button-base;
-    background: $primary;
-    color: white;
+    & {
+        background: $primary;
+        color: white;
     
-    &:hover:not(:disabled) {
-        background: $primary-dark;
-        transform: translateY(-2px);
-        box-shadow: $shadow-lg;
-        text-decoration: none;
-    }
+        &:hover:not(:disabled) {
+            background: $primary-dark;
+            transform: translateY(-2px);
+            box-shadow: $shadow-lg;
+            text-decoration: none;
+        }
     
-    &:active {
-        transform: translateY(0);
+        &:active {
+            transform: translateY(0);
+        }
     }
+
 }
 
 @mixin button-secondary {
     @include button-base;
-    background: $secondary;
-    color: white;
+    & {
+        background: $secondary;
+        color: white;
     
-    &:hover:not(:disabled) {
-        background: $secondary-dark;
-        transform: translateY(-2px);
-        box-shadow: $shadow-lg;
-        text-decoration: none;
-    }
+        &:hover:not(:disabled) {
+            background: $secondary-dark;
+            transform: translateY(-2px);
+            box-shadow: $shadow-lg;
+            text-decoration: none;
+        }
     
-    &:active {
-        transform: translateY(0);
+        &:active {
+            transform: translateY(0);
+        }
     }
+
 }
 
 @mixin button-outline {
     @include button-base;
-    background: transparent;
-    color: $primary;
-    border: 2px solid $primary;
+    & {
+        background: transparent;
+        color: $primary;
+        border: 2px solid $primary;
     
-    &:hover:not(:disabled) {
-        background: $primary;
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: $shadow-lg;
-        text-decoration: none;
-    }
+        &:hover:not(:disabled) {
+            background: $primary;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: $shadow-lg;
+            text-decoration: none;
+        }
     
-    &:active {
-        transform: translateY(0);
+        &:active {
+            transform: translateY(0);
+        }
     }
 }
 

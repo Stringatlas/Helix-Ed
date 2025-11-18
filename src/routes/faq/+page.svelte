@@ -40,6 +40,6 @@
     .faq-list {
         display: flex;
         flex-direction: column;
-        gap: $spacing-lg;
+        gap: $spacing-sm;
     }
 </style>

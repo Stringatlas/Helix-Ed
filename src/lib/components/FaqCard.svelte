@@ -31,12 +31,11 @@
     </div>
 </div>
 
-<style>
+<style lang="scss">
 .faq-card {
     background: #fff;
     border-radius: 14px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    margin-bottom: 1.5rem;
     padding: 1.5rem 1.75rem;
     cursor: pointer;
     transition: box-shadow 0.2s, border 0.2s;

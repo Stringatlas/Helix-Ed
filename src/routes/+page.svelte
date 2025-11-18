@@ -1,6 +1,7 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { currentEvent } from "$lib/stores/stores";
+    import { FileTextFill } from "svelte-bootstrap-icons";
 </script>
 
 <section class="hero-section">
@@ -22,7 +23,8 @@
         <div class="content-primary">
             <h2 class="section-title">Rules</h2>
             <a href={$currentEvent.rules} class="rules-link">
-                📋 View our rules
+                <FileTextFill /> 
+                View our rules
             </a>
             
             <h2 class="section-title">Important Dates</h2>

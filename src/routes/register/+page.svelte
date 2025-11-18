@@ -1,6 +1,8 @@
 <script>
     import { goto } from "$app/navigation";
     import { currentEvent } from "$lib/stores/stores";
+    import { PersonPlusFill} from "svelte-bootstrap-icons";
+
 </script>
 
 <div class="register-page">
@@ -16,7 +18,8 @@
                 on:click={() => (window.location.href = $currentEvent.registration?.link ?? "/")}
                 aria-label="Register for BioBrawl {$currentEvent?.eventID}"
             >
-                🎯 Register Now
+                <PersonPlusFill />
+                Register Now
             </button>
         {:else}
             <button 
@@ -24,7 +27,8 @@
                 on:click={() => (window.location.href = $currentEvent.registration?.alternativeLink ?? "/")}
                 aria-label="Register for BioBrawl {$currentEvent?.eventID} via alternative link"
             >
-                📝 Register Here
+                <PersonPlusFill />
+                Register Here
             </button>
         {/if}
         
