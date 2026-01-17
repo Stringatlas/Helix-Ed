@@ -1,7 +1,12 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { currentEvent } from "$lib/stores/stores";
+    import { onMount } from "svelte";
     import { FileTextFill } from "svelte-bootstrap-icons";
+
+    onMount(() => {
+        console.log('Current Event:', $currentEvent);
+    });
 </script>
 
 <section class="hero-section">
@@ -16,8 +21,21 @@
 
 {#if $currentEvent}
     <section class="announcement-banner">
-        <h2>Registration {$currentEvent.registration?.isOpen ? 'Open' : 'Closed'}</h2>
+        <h2>Registration for {$currentEvent.name} is {$currentEvent.registration?.isOpen ? 'Open' : 'Closed'}</h2>
     </section>
+
+    {#if $currentEvent.live}
+        <section class="bracket-section">
+            <h2 class="section-title">{$currentEvent.name} is Live!</h2>
+            <h3 class="section-subtitle">View The Competition Bracket</h3>
+            <iframe 
+                title="Elimination bracket"
+                src={$currentEvent.results?.eliminationBracket} 
+                class="bracket-iframe"
+                loading="lazy"
+            ></iframe>
+        </section>
+    {/if}
 
     <div class="main-content">
         <div class="content-primary">
@@ -126,6 +144,44 @@
             font-size: $font-size-3xl;
             font-weight: 700;
             margin: 0;
+        }
+    }
+
+    .bracket-section {
+        max-width: $desktop-width;
+        margin: $spacing-3xl auto;
+        padding: 0 $spacing-lg;
+        
+        @media (max-width: $mobile-width) {
+            margin: $spacing-2xl auto;
+            padding: 0 $spacing-md;
+        }
+        
+        .section-title {
+            font-size: $font-size-3xl;
+            font-weight: 700;
+            margin-bottom: $spacing-md;
+            color: $text-color;
+        }
+        
+        .section-subtitle {
+            font-size: $font-size-lg;
+            color: $text-muted;
+            margin-bottom: $spacing-xl;
+        }
+        
+        .bracket-iframe {
+            width: 100%;
+            height: 80vh;
+            min-height: 600px;
+            border: 1px solid $border-color;
+            border-radius: $radius-lg;
+            box-shadow: $shadow-md;
+            
+            @media (max-width: $mobile-width) {
+                height: 60vh;
+                min-height: 400px;
+            }
         }
     }
 

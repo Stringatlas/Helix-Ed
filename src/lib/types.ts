@@ -1,6 +1,7 @@
 export interface EventData {
     eventID: string;
     active?: boolean;
+    live?: boolean;
     year: number;
     name: string;
     date: string;
