@@ -3,7 +3,7 @@
     import { client } from "$lib/stores/sanityClient";
     import { page } from "$app/stores";
 
-    let subject: string;
+    let subject: string | undefined;
     let notFound = false;
 
     $: subject = $page.params.slug;
@@ -11,7 +11,7 @@
     $: (async () => {
         if (!subject) return;
         // GROQ: find a featured course for this subject
-        const query = `*[_type == 'course' && featured == true && subject == $subject][0]{ slug }`;
+        const query = `*[_type == 'course' && featured == true && lower(subject) == lower($subject)][0]{ slug }`;
         const course = await client.fetch(query, { subject });
         
         console.log("slug", subject);

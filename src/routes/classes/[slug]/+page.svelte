@@ -2,11 +2,11 @@
 //   import { page } from "$app/stores";
   import { page } from "$app/stores";
   import { capitalizeFirstLetter } from "$lib/util";
-  import { instructors, teachers, tas, officers, courses } from "$lib/stores/stores";
+  import { teachers, tas, courses } from "$lib/stores/stores";
   import type { Instructor, Course } from "$lib/types";
   import InstructorCard from "$lib/components/InstructorCard.svelte";
 
-  let slug: string;
+  let slug: string | undefined;
   let subjectTeachers: Instructor[] = [];
   let subjectTAs: Instructor[] = [];
   let course: Course | undefined;
@@ -50,7 +50,7 @@
         
         {#if course.posterUrl}
           <div class="course-poster">
-            <img src={course.posterUrl} alt="{course.title} poster" />
+            <img src={course.posterUrl} alt={`${course.title} course poster`} />
           </div>
         {/if}
       </div>

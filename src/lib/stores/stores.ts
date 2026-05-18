@@ -11,6 +11,8 @@ export const courses = writable<Course[]>([]);
 export const openCourses = writable<Course[]>([]);
 export const closedCourses = writable<Course[]>([]);
 
+export const featuredSubjects = writable<string[]>([]);
+
 
 export async function fetchInstructors() {
     const query = `*[_type == "instructor"]{..., "imageUrl": image.asset->url}`;
@@ -29,6 +31,12 @@ export async function fetchCourses() {
     closedCourses.set(data.filter((c) => !c.registrationOpen));
 }
 
+export async function fetchFeaturedSubjects() {
+    const query = `*[_type == "uiCopy"][0].featuredSubjects`;
+    const data: string[] = await client.fetch(query);
+    featuredSubjects.set(data || []);
+}
+
 instructors.subscribe((value) => {
   console.log('Updated instructors:', value);
 });
@@ -39,3 +47,4 @@ courses.subscribe((value) => {
 
 fetchInstructors();
 fetchCourses();
+fetchFeaturedSubjects();

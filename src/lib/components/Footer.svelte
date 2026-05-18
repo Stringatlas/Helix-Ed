@@ -24,9 +24,9 @@
 <section>
     <div id="social">
         <hr />
-        <a href={linkedin}><img src={linkedIcon} alt="" /></a>
-        <a href={instagram}><img src={instaIcon} alt="" /></a>
-        <a href={facebook}><img src={fbIcon} alt="" /></a>
+        <a href={linkedin}><img src={linkedIcon} alt="HelixEd LinkedIn" /></a>
+        <a href={instagram}><img src={instaIcon} alt="HelixEd Instagram" /></a>
+        <a href={facebook}><img src={fbIcon} alt="HelixEd Facebook" /></a>
         <hr />
     </div>
 

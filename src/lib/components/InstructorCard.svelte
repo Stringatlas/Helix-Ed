@@ -46,7 +46,7 @@
         </div>
         <img 
             src={instructorData.imageUrl} 
-            alt="{instructorData.name} - instructor photo" 
+            alt={`${instructorData.name} instructor portrait`} 
             loading="lazy" 
             width="150" 
             height="150"

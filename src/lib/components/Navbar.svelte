@@ -1,7 +1,8 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-
     import { browser } from "$app/environment";
+    import { featuredSubjects } from "$lib/stores/stores";
+    import { capitalizeFirstLetter } from "$lib/util";
 
     let bioBrawlLink: string = "";
     if (browser) {
@@ -32,18 +33,16 @@
 <nav>
     <ul>
         <li class="logo">
-            <a href="/"><img src="/logo.png" alt="logo" /></a>
+            <a href="/"><img src="/logo.png" alt="HelixEd logo" /></a>
         </li>
         <div class={"nav-links" + (mobileMenuOpen ? " active" : "")}>
             <li><a href={bioBrawlLink}>Bio Brawl</a></li>
             <li class="dropdown" on:mouseleave={closeDropdown}>
                 <a id="our-classes" href="/" on:mouseenter={() => {}} on:click|preventDefault={toggleDropdown}>Our classes<span style="font-size: 16px">▼</span></a>
                 <ul class={`dropdown-menu ${isDropdownOpen ? "active" : ""}`}>
-                    <li><a href="/subjects/physics">Physics</a></li>
-                    <li><a href="/subjects/chemistry">Chemistry</a></li>
-                    <li><a href="/subjects/biology">Biology</a></li>
-                    <li><a href="/subjects/economics">Economics</a></li>
-                    <li><a href="/subjects/math">Math</a></li>
+                    {#each $featuredSubjects as subject}
+                        <li><a href={`/subjects/${subject.toLowerCase()}`}>{capitalizeFirstLetter(subject)}</a></li>
+                    {/each}
                 </ul>
             </li>
 

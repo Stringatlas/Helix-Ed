@@ -13,7 +13,7 @@
     </section>
 
     <section class="middle-section">
-        <img src={classroom} alt="classroom" />
+        <img src={classroom} alt="Students learning together in a classroom" />
         <div>
             <h1>Our Mission</h1>
             <h2>Bringing academic excellence to every student</h2>
@@ -37,7 +37,7 @@
                 providing valuable educational experiences to an increasing number of students.
             </p>
         </div>
-        <img src={berkeley} alt="uc berkeley" />
+        <img src={berkeley} alt="UC Berkeley campus" />
     </section>
 </main>
 
