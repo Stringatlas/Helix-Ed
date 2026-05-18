@@ -16,18 +16,28 @@
   
   $: {
     let subject = course?.subject ?? "";
-    subjectTeachers = $teachers.filter(
-      (instructor) =>
-        instructor.subjects &&
-        instructor.subjects.some((s) => s.toLowerCase() === subject.toLowerCase()) &&
-        course?.instructors?.includes(instructor.name)
-    );
-    subjectTAs = $tas.filter(
-      (instructor) =>
-        instructor.subjects &&
-        instructor.subjects.some((s) => s.toLowerCase() === subject.toLowerCase()) &&
-        course?.instructors?.includes(instructor.name)
-    );
+    subjectTeachers = [];
+    subjectTAs = [];
+    
+    if (course?.instructors) {
+      course.instructors.forEach((name) => {
+        const teacher = $teachers.find(
+          (instructor) =>
+            instructor.name === name &&
+            instructor.subjects &&
+            instructor.subjects.some((s) => s.toLowerCase() === subject.toLowerCase())
+        );
+        if (teacher) subjectTeachers.push(teacher);
+        
+        const ta = $tas.find(
+          (instructor) =>
+            instructor.name === name &&
+            instructor.subjects &&
+            instructor.subjects.some((s) => s.toLowerCase() === subject.toLowerCase())
+        );
+        if (ta) subjectTAs.push(ta);
+      });
+    }
   }
 </script>
 
