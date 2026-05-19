@@ -19,6 +19,7 @@
     subjectTeachers = [];
     subjectTAs = [];
     
+    // Find instructors and TAs for this course in the same order as listed in Sanity
     if (course?.instructors) {
       course.instructors.forEach((name) => {
         const teacher = $teachers.find(
@@ -93,7 +94,7 @@
             
             <div class="detail-card">
               <h3>Refund Policy</h3>
-              <p>Full refund for two classes, no refund for further classes</p>
+              <p>{course.refundPolicy}</p>
             </div>
           </div>
 
