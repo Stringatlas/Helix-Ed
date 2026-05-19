@@ -30,6 +30,7 @@ export type Course = {
     registrationOpen: boolean;
     instructors: Array<String>;
     refundPolicy: string;
+    classFormat: string;
 };
 
 // Deprecated types

@@ -89,7 +89,7 @@
           <div class="course-details">
             <div class="detail-card">
               <h3>Class Format</h3>
-              <p>Small sized Zoom classes with recordings available for two months</p>
+              <p>{course.classFormat ?? "Small sized Zoom classes with recordings available for two months"}</p>
             </div>
             
             <div class="detail-card">
