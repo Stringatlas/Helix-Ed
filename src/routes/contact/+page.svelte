@@ -1,6 +1,6 @@
 <script lang="ts">
     // Obfuscated email addresses to prevent spam bots
-    const contactEmailUser = 'helix-ed.org';
+    const contactEmailUser = 'helixed.org';
     const zelleEmailUser = 'helixed.org';
     const emailDomain = 'gmail.com';
     
