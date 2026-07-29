@@ -7,6 +7,7 @@
     import SuccessImage from "$lib/images/goals.jpg";
 
     import Typewriter from "$lib/components/Typewriter.svelte";
+    import Seo from "$lib/components/Seo.svelte";
     import { goto } from "$app/navigation";
 
     let careers = ["engineers", "doctors", "chemists", "inventors", "educators", 
@@ -26,6 +27,11 @@
         mouseY = posY;
     }
 </script>
+
+<Seo
+    title="Helix-Ed | University-Led STEM Tutoring for Middle & High School"
+    description="Affordable small-group courses in biology, chemistry, physics, math, and economics, taught by students from top universities."
+/>
 
 <body>
     <section id="landing-section">

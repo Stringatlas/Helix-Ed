@@ -36,15 +36,3 @@ export async function fetchFeaturedSubjects() {
     const data: string[] = await client.fetch(query);
     featuredSubjects.set(data || []);
 }
-
-instructors.subscribe((value) => {
-  console.log('Updated instructors:', value);
-});
-
-courses.subscribe((value) => {
-  console.log('Updated courses:', value);
-});
-
-fetchInstructors();
-fetchCourses();
-fetchFeaturedSubjects();

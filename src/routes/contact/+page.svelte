@@ -1,13 +1,20 @@
 <script lang="ts">
+    import Seo from "$lib/components/Seo.svelte";
+
     // Obfuscated email addresses to prevent spam bots
     const contactEmailUser = 'helixed.org';
     const zelleEmailUser = 'helixed.org';
     const emailDomain = 'gmail.com';
-    
+
     function openContactEmail() {
         window.location.href = `mailto:${contactEmailUser}@${emailDomain}`;
     }
 </script>
+
+<Seo
+    title="Contact Helix-Ed"
+    description="Questions about courses, enrollment, or tuition? Get in touch with the Helix-Ed team."
+/>
 
 <main>
     <section class="contact-section">

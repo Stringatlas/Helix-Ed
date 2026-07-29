@@ -4,24 +4,36 @@
 
     import { page } from "$app/stores";
     import { derived } from "svelte/store";
-    import { onMount } from "svelte";
 
     const isBioBrawl = derived(page, ($page) => {
         return $page.url.pathname.startsWith("/bio-brawl");
     });
 
-    onMount(() => {
-        document.title = "Helix-Ed";
-    });
+    const organizationJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'Helix-Ed',
+        url: 'https://helix-ed.org',
+        logo: 'https://helix-ed.org/logo.png',
+        sameAs: [
+            'https://www.instagram.com/realhelixed',
+            'https://www.linkedin.com/company/102697298/',
+            'https://www.facebook.com/profile.php?id=61563365050376'
+        ]
+    };
 </script>
+
+<svelte:head>
+    {@html `<script type="application/ld+json">${JSON.stringify(organizationJsonLd)}</script>`}
+</svelte:head>
 
 <section id="nav">
     <Navbar />
 </section>
 
-<main>
+<div class="page-content">
     <slot></slot>
-</main>
+</div>
 
 <section id="footer">
     <Footer />
@@ -35,7 +47,7 @@
         width: 100%;
     }
 
-    main {
+    .page-content {
         min-height: calc(100vh - $nav-height);
     }
 
@@ -44,7 +56,7 @@
         padding: 0;
     }
 
-    main {
+    .page-content {
         // background: radial-gradient(circle at center, darken($background-color, 100%) 0%, $background-color 100%) !important;
         margin: 0;
         margin-top: $nav-height;

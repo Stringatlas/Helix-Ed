@@ -1,0 +1,13 @@
+node_modules/
+.svelte-kit/
+build/
+.vercel/
+.output/
+
+.env
+.env.*
+!.env.example
+
+.DS_Store
+*.log
+npm-debug.log*

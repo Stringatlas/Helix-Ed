@@ -13,10 +13,7 @@ const config = {
             // Prerender static pages for better performance
             entries: [
                 '/',
-                '/about-us',
-                '/enroll',
                 '/contact',
-                '/bio-brawl',
                 '/recruiting',
                 '/privacy-policy',
                 '/attributions'

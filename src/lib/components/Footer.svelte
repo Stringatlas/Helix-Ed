@@ -10,7 +10,7 @@
     const currentYear = new Date().getFullYear();
     
     // Obfuscated email to prevent spam bots
-    const emailUser = 'helix-ed.org';
+    const emailUser = 'helixed.org';
     const emailDomain = 'gmail.com';
     let emailAddress = '';
     
@@ -34,7 +34,7 @@
         <div>
             <a href="/privacy-policy" style="margin-right: 1rem">Privacy Policy</a>
             <a href="/attributions">Attributions</a>
-            <p>Contact: <button class="email-link" on:click={revealEmail} type="button">helix-ed.org@gmail.com</button></p>
+            <p>Contact: <button class="email-link" on:click={revealEmail} type="button">{emailUser}@{emailDomain}</button></p>
             <p>&copy; {currentYear} HelixEd. All rights reserved. Website by <a href="https://github.com/Stringatlas">Kevin Zhang</a></p>
         </div>
     </div>

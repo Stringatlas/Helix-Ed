@@ -4,6 +4,16 @@
             "source": "/home",
             "destination": "/",
             "permanent": true
+        },
+        {
+            "source": "/bio-brawl",
+            "destination": "https://biobrawl.helix-ed.org",
+            "permanent": true
+        },
+        {
+            "source": "/classes/computer%20science-summer-2026",
+            "destination": "/classes/computer-science-summer-2026",
+            "permanent": true
         }
     ],
     "headers": [

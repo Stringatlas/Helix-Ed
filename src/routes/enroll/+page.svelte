@@ -1,7 +1,18 @@
 <script lang="ts">
     import CourseCard from "$lib/components/CourseCard.svelte";
-    import { openCourses, closedCourses } from "$lib/stores/stores";
+    import Seo from "$lib/components/Seo.svelte";
+    import type { PageData } from "./$types";
+
+    export let data: PageData;
+
+    $: openCourses = data.openCourses;
+    $: closedCourses = data.closedCourses;
 </script>
+
+<Seo
+    title="Courses & Enrollment | Helix-Ed"
+    description="Browse open Helix-Ed courses in biology, chemistry, physics, computer science, and economics, and register online."
+/>
 
 <main>
     <section id="hero-section">
@@ -14,28 +25,28 @@
 
     <section id="courses-section">
         <div class="courses-container">
-            {#if $openCourses.length > 0}
+            {#if openCourses.length > 0}
                 <div class="courses-group">
                     <h3 class="group-title">
                         <span class="status-indicator open"></span>
                         Registration Open
                     </h3>
                     <div class="courses-grid">
-                        {#each $openCourses as course}
+                        {#each openCourses as course}
                             <CourseCard courseData={course} />
                         {/each}
                     </div>
                 </div>
             {/if}
 
-            {#if $closedCourses.length > 0}
+            {#if closedCourses.length > 0}
                 <div class="courses-group">
                     <h3 class="group-title">
                         <span class="status-indicator closed"></span>
                         Registration Closed
                     </h3>
                     <div class="courses-grid">
-                        {#each $closedCourses as course}
+                        {#each closedCourses as course}
                             <CourseCard courseData={course} />
                         {/each}
                     </div>

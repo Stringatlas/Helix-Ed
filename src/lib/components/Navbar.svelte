@@ -1,13 +1,12 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-    import { browser } from "$app/environment";
-    import { featuredSubjects } from "$lib/stores/stores";
+    import { page } from "$app/stores";
     import { capitalizeFirstLetter } from "$lib/util";
 
-    let bioBrawlLink: string = "";
-    if (browser) {
-        bioBrawlLink = window.location.hostname.includes("localhost") ? "/bio-brawl" : "https://biobrawl.helix-ed.org";
-    }
+    // Bio Brawl is a separate application deployed on its own subdomain, so this
+    // is always an absolute link. Previously it was computed inside `if (browser)`,
+    // which made it server-render as href="" and hid it from crawlers.
+    const bioBrawlLink = "https://biobrawl.helix-ed.org";
 
     let isDropdownOpen = false;
 
@@ -40,7 +39,7 @@
             <li class="dropdown" on:mouseleave={closeDropdown}>
                 <a id="our-classes" href="/" on:mouseenter={() => {}} on:click|preventDefault={toggleDropdown}>Our classes<span style="font-size: 16px">▼</span></a>
                 <ul class={`dropdown-menu ${isDropdownOpen ? "active" : ""}`}>
-                    {#each $featuredSubjects as subject}
+                    {#each $page.data.featuredSubjects ?? [] as subject}
                         <li><a href={`/subjects/${subject.toLowerCase()}`}>{capitalizeFirstLetter(subject)}</a></li>
                     {/each}
                 </ul>

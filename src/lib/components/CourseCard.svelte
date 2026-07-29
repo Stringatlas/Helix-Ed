@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { goto } from "$app/navigation";
     import type { Course } from "$lib/types";
 
     export let courseData: Course;
@@ -7,15 +6,12 @@
     let isHovered = false;
 </script>
 
-<div 
-    class="card" 
+<a
+    class="card"
     class:hovered={isHovered}
     on:mouseenter={() => isHovered = true}
     on:mouseleave={() => isHovered = false}
-    role="button" 
-    tabindex="0"
-    on:click={() => courseData.registrationOpen && goto("/classes/" + courseData.slug.current)}
-    on:keydown={(e) => e.key === 'Enter' && courseData.registrationOpen && goto("/classes/" + courseData.slug.current)}
+    href={"/classes/" + courseData.slug.current}
 >
     <!-- Status Badge -->
     <div class="status-badge" class:open={courseData.registrationOpen} class:closed={!courseData.registrationOpen}>
@@ -28,8 +24,8 @@
     <!-- Card Content -->
     <div class="card-content">
         <div class="course-header">
-            <h1 class="course-title">{courseData.season} {courseData.title}</h1>
-            <h2 class="course-dates">{courseData.dates}</h2>
+            <h4 class="course-title">{courseData.season} {courseData.title}</h4>
+            <p class="course-dates">{courseData.dates}</p>
         </div>
 
         <div class="course-description">
@@ -38,13 +34,10 @@
 
         <div class="card-footer">
             {#if courseData.registrationOpen}
-                <button 
-                    class="enroll-button"
-                    on:click|stopPropagation={() => goto("/classes/" + courseData.slug.current)}
-                >
+                <span class="enroll-button">
                     View Course Details
                     <span class="button-icon">→</span>
-                </button>
+                </span>
             {:else}
                 <div class="closed-notice">
                     <span class="closed-text">Registration Closed</span>
@@ -57,7 +50,7 @@
     <!-- Decorative Elements -->
     <div class="card-glow" class:visible={isHovered}></div>
     <div class="corner-accent"></div>
-</div>
+</a>
 
 <style lang="scss">
     .card {
@@ -70,7 +63,10 @@
         overflow: hidden;
         cursor: pointer;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        box-shadow:
             0 4px 20px rgba(0, 0, 0, 0.08),
             0 1px 3px rgba(0, 0, 0, 0.1);
         

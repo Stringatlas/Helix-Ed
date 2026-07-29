@@ -3,8 +3,20 @@
     import berkeley from "$lib/images/ucberkeley.jpg";
 
     import InstructorCard from "$lib/components/InstructorCard.svelte";
-    import { tas, teachers, officers } from "$lib/stores/stores";
+    import Seo from "$lib/components/Seo.svelte";
+    import type { PageData } from "./$types";
+
+    export let data: PageData;
+
+    $: teachers = data.teachers;
+    $: tas = data.tas;
+    $: officers = data.officers;
 </script>
+
+<Seo
+    title="About Helix-Ed | Our Instructors & Mission"
+    description="Meet the university students behind Helix-Ed and learn how we teach deep conceptual understanding in STEM and economics."
+/>
 
 <main>
     <section id="title">
@@ -15,8 +27,8 @@
     <section class="middle-section">
         <img src={classroom} alt="Students learning together in a classroom" />
         <div>
-            <h1>Our Mission</h1>
-            <h2>Bringing academic excellence to every student</h2>
+            <h2>Our Mission</h2>
+            <h3>Bringing academic excellence to every student</h3>
             <p>
                 Our mission is to bridge the gap in school resources by providing exceptional academic support and instruction. We strive to ensure students transition smoothly to high school while
                 encouraging them to delve deeply into their areas of interest. Our team of instructors, hailing from prestigious universities from around the United States, is dedicated to helping
@@ -27,8 +39,8 @@
 
     <section class="middle-section reverse">
         <div>
-            <h1>Our Story</h1>
-            <h2>From competition to community</h2>
+            <h2>Our Story</h2>
+            <h3>From competition to community</h3>
             <p>
                 With the goal of expanding academic opportunities for more students, the club leaders of the Basis Independent Silicon Valley USABO Club launched the BioBrawl biology competition in
                 May 2024, featuring eight teams and over 40 participants. Building on this success, we soon founded HelixEd to broaden our educational offerings beyond biology by introducing online
@@ -42,26 +54,26 @@
 </main>
 
 <section id="team">
-    <h1>Our Team</h1>
-    <h2>Founders</h2>
+    <h2>Our Team</h2>
+    <h3>Founders</h3>
     <div>
-        {#each $officers as instructor}
+        {#each officers as instructor}
             <InstructorCard instructorData={instructor} />
         {/each}
     </div>
 
-    <h2>Our Instructors</h2>
+    <h3>Our Instructors</h3>
     <div>
-        {#each $teachers as instructor}
+        {#each teachers as instructor}
             {#if !instructor.officer}
                 <InstructorCard instructorData={instructor} />
             {/if}
         {/each}
     </div>
 
-    <h2>Our TAs</h2>
+    <h3>Our TAs</h3>
     <div>
-        {#each $tas as instructor}
+        {#each tas as instructor}
             <InstructorCard instructorData={instructor} />
         {/each}
     </div>
@@ -116,21 +128,25 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
+        h2 {
+            margin: 0;
             margin-bottom: 0.75rem;
             font-size: clamp(1.8rem, 3vw, 2.2rem);
             font-weight: 700;
             color: $accent;
+            font-family: "Montserrat", "Istok Web", sans-serif;
         }
-        
-        h2 {
+
+        h3 {
+            margin: 0;
             margin-bottom: 1.5rem;
             font-size: clamp(1.1rem, 2vw, 1.3rem);
             font-weight: 500;
             color: $accent;
             line-height: 1.3;
+            font-family: "Istok Web";
         }
-        
+
         p {
             line-height: 1.7;
             font-size: clamp(0.95rem, 1.5vw, 1rem);
@@ -163,12 +179,15 @@
         padding: 4rem 2rem;
         margin-top: 2rem;
 
-        h1 {
+        h2 {
             text-align: center;
+            margin: 0;
             margin-bottom: 3rem;
             font-size: 2.5rem;
+            font-weight: 700;
             color: $accent;
-            
+            font-family: "Montserrat", "Istok Web", sans-serif;
+
             &::after {
                 content: '';
                 display: block;
@@ -180,11 +199,13 @@
             }
         }
 
-        h2 {
+        h3 {
+            margin: 0;
             margin-bottom: 2rem;
             font-size: 1.8rem;
             font-weight: 600;
             color: $accent;
+            font-family: "Istok Web";
         }
 
         div {
@@ -212,15 +233,15 @@
                 max-width: 350px;
             }
             
-            h1 {
+            h2 {
                 font-size: 1.9rem;
             }
-            
-            h2 {
+
+            h3 {
                 font-size: 1.2rem;
                 margin-bottom: 1.2rem;
             }
-            
+
             p {
                 font-size: 0.98rem;
                 line-height: 1.6;
@@ -279,15 +300,15 @@
                     max-width: 350px;
                 }
 
-                h1 {
+                h2 {
                     margin-bottom: 0.75rem;
                     font-size: 1.8rem;
                 }
-                h2 {
+                h3 {
                     margin-bottom: 1.25rem;
                     font-size: 1.1rem;
                 }
-                
+
                 p {
                     text-align: justify;
                     font-size: 0.95rem;
@@ -298,28 +319,28 @@
                 flex-direction: column-reverse;
             }
         }
-        
+
         #title {
             padding: 3rem 1rem;
-            
+
             h1 {
                 font-size: 2.2rem;
             }
-            
+
             h2 {
                 font-size: 1.3rem;
             }
         }
-        
+
         #team {
             padding: 3rem 1rem;
-            
-            h1 {
+
+            h2 {
                 font-size: 2rem;
                 margin-bottom: 2rem;
             }
-            
-            h2 {
+
+            h3 {
                 font-size: 1.5rem;
                 margin-bottom: 1.5rem;
             }

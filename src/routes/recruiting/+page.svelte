@@ -1,3 +1,12 @@
+<script lang="ts">
+    import Seo from "$lib/components/Seo.svelte";
+</script>
+
+<Seo
+    title="Teach with Helix-Ed | Instructor Recruiting"
+    description="Join Helix-Ed as an instructor or TA and teach STEM and economics to motivated middle and high school students."
+/>
+
 <div class="container">
     <div class="hero-section">
         <h1>Recruiting</h1>
