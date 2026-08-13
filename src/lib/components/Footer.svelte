@@ -10,7 +10,7 @@
     const currentYear = new Date().getFullYear();
     
     // Obfuscated email to prevent spam bots
-    const emailUser = 'helix-ed.org';
+    const emailUser = 'helixed.org';
     const emailDomain = 'gmail.com';
     let emailAddress = '';
     
