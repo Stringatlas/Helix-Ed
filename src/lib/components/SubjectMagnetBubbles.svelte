@@ -30,30 +30,50 @@
     let bubbles: Bubble[] = [];
     let resizeObserver: ResizeObserver;
 
-    // Two-phase hover behavior:
+    // Three-phase hover behavior:
     // 1. isAttracting flips true -> bubbles reveal INSTANTLY at full opacity, at rest.
     // 2. After a short beat (REVEAL_HOLD_MS), isPulled flips true -> bubbles fly
     //    towards the button and fade out as they arrive.
-    // Both flags reset the moment hover ends, so the whole cycle restarts cleanly
-    // next time the button is hovered.
+    // 3. On unhover, isPulled drops and isReturning flips true -> bubbles smoothly
+    //    SLIDE back to their home position (via the .returning CSS class) from
+    //    wherever they currently are — home, mid-flight, or at the button. Once
+    //    that slide-back transition has had time to finish, .attracting itself
+    //    is removed so bubbles hand off cleanly into the idle float/fade loop.
     const REVEAL_HOLD_MS = 160;
+    const RETURN_DURATION_MS = 780; // matches .returning transition + stagger, with margin
     let isPulled = false;
+    let isReturning = false;
+    let isAttractingClass = false; // drives the .attracting CSS class specifically
     let pullTimer: ReturnType<typeof setTimeout> | null = null;
+    let returnTimer: ReturnType<typeof setTimeout> | null = null;
 
     $: if (isAttracting) {
-        // Entering hover: cancel any pending timer, show bubbles at rest immediately,
-        // then schedule the pull-toward-button phase.
+        // Entering hover: cancel any pending return, show bubbles at rest
+        // immediately, then schedule the pull-toward-button phase.
+        if (returnTimer) clearTimeout(returnTimer);
+        returnTimer = null;
+        isAttractingClass = true;
+        isReturning = false;
         isPulled = false;
         if (pullTimer) clearTimeout(pullTimer);
         pullTimer = setTimeout(() => {
             isPulled = true;
         }, REVEAL_HOLD_MS);
     } else {
-        // Leaving hover: reset both phases immediately so bubbles idle-fade back in
-        // fresh on the next hover, rather than resuming mid-flight.
+        // Leaving hover: cancel the pull timer, un-pull, and mark as returning so
+        // the bubble transitions smoothly from wherever it was (home OR
+        // mid-flight) back to its at-rest position instead of snapping. Once
+        // that transition has had time to finish, drop .attracting entirely so
+        // the idle animations take back over.
         if (pullTimer) clearTimeout(pullTimer);
         pullTimer = null;
         isPulled = false;
+        isReturning = true;
+        if (returnTimer) clearTimeout(returnTimer);
+        returnTimer = setTimeout(() => {
+            isAttractingClass = false;
+            isReturning = false;
+        }, RETURN_DURATION_MS);
     }
 
     // Distributes items randomly across right side with collision avoidance
@@ -81,7 +101,7 @@
             for (let c = 0; c < cols; c++) {
                 slots.push({
                     x: minX + c * cellW + cellW * 0.5,
-                    y: minY + r * cellH + cellH * 0.5,
+                    y: minY + r * cellH + cellH * 0.5
                 });
             }
         }
@@ -95,7 +115,7 @@
         list.forEach((subject, i) => {
             const slot = slots[i % slots.length] || {
                 x: minX + Math.random() * (maxX - minX),
-                y: minY + Math.random() * (maxY - minY),
+                y: minY + Math.random() * (maxY - minY)
             };
 
             // Jitter within cell boundaries
@@ -105,11 +125,7 @@
             const x = Math.max(minX, Math.min(maxX, slot.x + jitterX));
             const y = Math.max(minY, Math.min(maxY, slot.y + jitterY));
 
-            const sizes: Array<"small" | "medium" | "large"> = [
-                "small",
-                "medium",
-                "large",
-            ];
+            const sizes: Array<"small" | "medium" | "large"> = ["small", "medium", "large"];
             const sizeVariant = sizes[i % sizes.length];
 
             generated.push({
@@ -123,7 +139,7 @@
                 duration: 4.5 + Math.random() * 3, // 4.5s - 7.5s float cycle
                 fadeDuration: 4 + Math.random() * 3, // 4s - 7s periodic fade cycle
                 fadeDelay: -(Math.random() * 5), // Stagger fade in/out phase
-                sizeVariant,
+                sizeVariant
             });
         });
 
@@ -137,19 +153,17 @@
         const targetRect = targetEl.getBoundingClientRect();
 
         // Calculate center of the target button relative to the container
-        const targetCenterX =
-            targetRect.left + targetRect.width / 2 - containerRect.left;
-        const targetCenterY =
-            targetRect.top + targetRect.height / 2 - containerRect.top;
+        const targetCenterX = targetRect.left + targetRect.width / 2 - containerRect.left;
+        const targetCenterY = targetRect.top + targetRect.height / 2 - containerRect.top;
 
-        bubbles = bubbles.map((b) => {
+        bubbles = bubbles.map(b => {
             const homePxX = (b.x / 100) * containerRect.width;
             const homePxY = (b.y / 100) * containerRect.height;
 
             return {
                 ...b,
                 targetDx: targetCenterX - homePxX,
-                targetDy: targetCenterY - homePxY,
+                targetDy: targetCenterY - homePxY
             };
         });
     }
@@ -189,6 +203,7 @@
     onDestroy(() => {
         if (resizeObserver) resizeObserver.disconnect();
         if (pullTimer) clearTimeout(pullTimer);
+        if (returnTimer) clearTimeout(returnTimer);
     });
 </script>
 
@@ -215,8 +230,9 @@
         >
             <div
                 class="bubble-card {bubble.sizeVariant}"
-                class:attracting={isAttracting}
-                class:pulled={isAttracting && isPulled}
+                class:attracting={isAttractingClass}
+                class:pulled={isAttractingClass && isPulled}
+                class:returning={isAttractingClass && isReturning}
             >
                 <!-- <span class="bubble-dot"></span> -->
                 <span class="bubble-text">{bubble.subject}</span>
@@ -291,10 +307,8 @@
         // Idle state: Subtle organic floating drift + periodic ambient fade in and out
         &:not(.attracting) {
             animation:
-                bubbleFloat var(--duration) ease-in-out infinite alternate
-                    var(--delay),
-                ambientFadeCycle var(--fade-duration) ease-in-out infinite
-                    alternate var(--fade-delay);
+                bubbleFloat var(--duration) ease-in-out infinite alternate var(--delay),
+                ambientFadeCycle var(--fade-duration) ease-in-out infinite alternate var(--fade-delay);
             transition:
                 transform 0.4s ease,
                 opacity 0.3s ease,
@@ -318,16 +332,28 @@
         // Attracting — Phase 2 (after a short hold, added via JS):
         // Fly towards the button center, scaling down and fading out as it nears.
         &.attracting.pulled {
-            transform: translate3d(var(--target-x), var(--target-y), 0)
-                scale(0.3);
+            transform: translate3d(var(--target-x), var(--target-y), 0) scale(0.3);
             opacity: 0;
             filter: blur(2px);
             transition:
-                transform 0.62s cubic-bezier(0.34, 0.01, 0.68, 1)
-                    calc(var(--stagger-index) * 0.02s),
-                opacity 0.42s cubic-bezier(0.55, 0, 0.85, 0.2)
-                    calc(0.22s + var(--stagger-index) * 0.02s),
+                transform 0.62s cubic-bezier(0.34, 0.01, 0.68, 1) calc(var(--stagger-index) * 0.02s),
+                opacity 0.42s cubic-bezier(0.55, 0, 0.85, 0.2) calc(0.22s + var(--stagger-index) * 0.02s),
                 filter 0.42s ease calc(0.22s + var(--stagger-index) * 0.02s);
+        }
+
+        // Attracting — Phase 3 (unhover, added via JS in place of .pulled):
+        // Slide smoothly back to the home position (rather than snapping),
+        // from wherever the bubble currently is — home, mid-flight, or at the
+        // button. Uses a slower, eased transition than the reveal so the
+        // motion reads as a gentle "returning home" drift.
+        &.attracting.returning {
+            transform: translate3d(0, 0, 0) scale(1);
+            opacity: 1;
+            filter: blur(0px);
+            transition:
+                transform 0.58s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--stagger-index) * 0.015s),
+                opacity 0.5s ease calc(var(--stagger-index) * 0.015s),
+                filter 0.5s ease calc(var(--stagger-index) * 0.015s);
         }
     }
 
@@ -347,7 +373,7 @@
     // Periodic ambient fading in and out when idle
     @keyframes ambientFadeCycle {
         0% {
-            opacity: 0;
+            opacity: 0.0;
             filter: blur(1.5px);
         }
         35% {
@@ -359,7 +385,7 @@
             filter: blur(0px);
         }
         100% {
-            opacity: 0;
+            opacity: 0.0;
             filter: blur(1px);
         }
     }
