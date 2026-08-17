@@ -15,43 +15,115 @@
     interface Bubble {
         id: number;
         subject: string;
-        x: number; // percentage (0-100)
-        y: number; // percentage (0-100)
-        targetDx: number; // pixel delta to target
-        targetDy: number; // pixel delta to target
-        delay: number; // seconds offset for idle animation
+        x: number; // percentage (0-100), home position
+        y: number; // percentage (0-100), home position
+        targetDx: number; // pixel delta from home to target (button)
+        targetDy: number; // pixel delta from home to target (button)
+        delay: number; // seconds offset for idle float animation
         duration: number; // seconds for idle float cycle
-        fadeDuration: number; // seconds for idle periodic fade
-        fadeDelay: number; // seconds delay for idle periodic fade
+        fadeDuration: number; // seconds for idle periodic fade cycle
+        fadeDelay: number; // seconds offset for idle periodic fade
         sizeVariant: "small" | "medium" | "large";
+        // Captured live state, used as the "from" point when entering/leaving attract mode
+        capturedX: number;
+        capturedY: number;
+        capturedScale: number;
+        capturedOpacity: number;
     }
 
     let container: HTMLDivElement;
     let bubbles: Bubble[] = [];
+    let bubbleEls: Record<number, HTMLDivElement> = {};
     let resizeObserver: ResizeObserver;
 
     // Three-phase hover behavior:
-    // 1. isAttracting flips true -> bubbles reveal INSTANTLY at full opacity, at rest.
+    // 1. isAttracting flips true -> bubbles reveal INSTANTLY at full opacity, from
+    //    wherever they currently are (their live idle position), not their home slot.
     // 2. After a short beat (REVEAL_HOLD_MS), isPulled flips true -> bubbles fly
     //    towards the button and fade out as they arrive.
     // 3. On unhover, isPulled drops and isReturning flips true -> bubbles smoothly
-    //    SLIDE back to their home position (via the .returning CSS class) from
-    //    wherever they currently are — home, mid-flight, or at the button. Once
-    //    that slide-back transition has had time to finish, .attracting itself
-    //    is removed so bubbles hand off cleanly into the idle float/fade loop.
+    //    SLIDE (via the .returning CSS class) from wherever they currently are —
+    //    home, mid-flight, or at the button — to the exact state the idle
+    //    animations start at (home position, opacity 0, slight blur). Once that
+    //    transition has had time to fully finish, .attracting is removed and the
+    //    idle float/fade loop reattaches at animation-delay 0, so it begins at
+    //    that same state with no visible jump.
     const REVEAL_HOLD_MS = 160;
-    const RETURN_DURATION_MS = 780; // matches .returning transition + stagger, with margin
+    const RETURN_TRANSITION_MS = 580; // .returning's longest CSS transition duration (transform)
+    const RETURN_STAGGER_STEP_MS = 15; // matches --stagger-index * 0.015s in CSS
+    const RETURN_MARGIN_MS = 100; // safety buffer so we never cut a transition off early
     let isPulled = false;
     let isReturning = false;
     let isAttractingClass = false; // drives the .attracting CSS class specifically
     let pullTimer: ReturnType<typeof setTimeout> | null = null;
     let returnTimer: ReturnType<typeof setTimeout> | null = null;
 
+    // Reads a bubble's live on-screen transform/opacity directly from the DOM,
+    // whatever CSS (idle keyframes, a mid-transition attract/return) currently has
+    // it at. This is what lets phase transitions continue from the real visual
+    // state instead of snapping to a hardcoded (0,0,0)/opacity home value.
+    function captureLiveState(el: HTMLElement): { x: number; y: number; scale: number; opacity: number } {
+        const cs = getComputedStyle(el);
+        let x = 0;
+        let y = 0;
+        let scale = 1;
+
+        const transform = cs.transform;
+        if (transform && transform !== "none") {
+            try {
+                const matrix = new DOMMatrixReadOnly(transform);
+                x = matrix.m41;
+                y = matrix.m42;
+                // Approximate uniform scale from the matrix's x-basis vector length.
+                scale = Math.sqrt(matrix.a * matrix.a + matrix.b * matrix.b) || 1;
+            } catch {
+                // Fall back to defaults if the matrix can't be parsed.
+            }
+        }
+
+        const opacity = parseFloat(cs.opacity);
+        return { x, y, scale, opacity: Number.isFinite(opacity) ? opacity : 1 };
+    }
+
+    function captureAllBubbles() {
+        bubbles = bubbles.map(b => {
+            const el = bubbleEls[b.id];
+            if (!el) return b;
+            const live = captureLiveState(el);
+            return {
+                ...b,
+                capturedX: live.x,
+                capturedY: live.y,
+                capturedScale: live.scale,
+                capturedOpacity: live.opacity
+            };
+        });
+    }
+
+    // Resets each bubble's animation-delay to 0 so that when the idle CSS
+    // keyframe animations reattach, they begin exactly at their 0% keyframe.
+    // This only works because .returning's end state (below, in CSS) is
+    // deliberately set to match bubbleFloat's and ambientFadeCycle's 0%
+    // values exactly — so "transition ends" and "animation begins" are the
+    // literal same point, with nothing to snap between. Re-rolling to a
+    // random negative delay (the previous approach) doesn't work here: a
+    // random mid-cycle point almost never equals wherever .returning left
+    // off, so it just moves the snap instead of removing it.
+    function resumeIdleFromStart() {
+        bubbles = bubbles.map(b => ({
+            ...b,
+            delay: 0,
+            fadeDelay: 0
+        }));
+    }
+
     $: if (isAttracting) {
-        // Entering hover: cancel any pending return, show bubbles at rest
-        // immediately, then schedule the pull-toward-button phase.
+        // Entering hover: cancel any pending return, capture wherever bubbles
+        // currently are, reveal at that position instantly, then schedule the
+        // pull-toward-button phase.
         if (returnTimer) clearTimeout(returnTimer);
         returnTimer = null;
+        captureAllBubbles();
         isAttractingClass = true;
         isReturning = false;
         isPulled = false;
@@ -60,20 +132,32 @@
             isPulled = true;
         }, REVEAL_HOLD_MS);
     } else {
-        // Leaving hover: cancel the pull timer, un-pull, and mark as returning so
-        // the bubble transitions smoothly from wherever it was (home OR
-        // mid-flight) back to its at-rest position instead of snapping. Once
-        // that transition has had time to finish, drop .attracting entirely so
-        // the idle animations take back over.
+        // Leaving hover: cancel the pull timer, capture wherever bubbles
+        // currently are (home, mid-flight, or at the button), and mark as
+        // returning so the transition slides from that live position to the
+        // idle animation's 0% state instead of snapping. Once that
+        // transition has had time to fully finish, drop .attracting and
+        // resume the idle animation at delay 0 — landing exactly where
+        // .returning left off, so the hand-off is invisible.
         if (pullTimer) clearTimeout(pullTimer);
         pullTimer = null;
         isPulled = false;
+        captureAllBubbles();
         isReturning = true;
         if (returnTimer) clearTimeout(returnTimer);
+        // Wait for the slowest bubble's .returning transition to fully finish
+        // (its stagger delay + the transition's own duration) before handing
+        // off to the idle animation, plus a small safety margin. Computed
+        // from the live bubble count rather than a fixed constant so this
+        // stays correct even if more subjects are passed in than the stagger
+        // budget originally assumed.
+        const lastStaggerMs = Math.max(0, bubbles.length - 1) * RETURN_STAGGER_STEP_MS;
+        const returnDurationMs = lastStaggerMs + RETURN_TRANSITION_MS + RETURN_MARGIN_MS;
         returnTimer = setTimeout(() => {
+            resumeIdleFromStart();
             isAttractingClass = false;
             isReturning = false;
-        }, RETURN_DURATION_MS);
+        }, returnDurationMs);
     }
 
     // Distributes items randomly across right side with collision avoidance
@@ -139,7 +223,11 @@
                 duration: 4.5 + Math.random() * 3, // 4.5s - 7.5s float cycle
                 fadeDuration: 4 + Math.random() * 3, // 4s - 7s periodic fade cycle
                 fadeDelay: -(Math.random() * 5), // Stagger fade in/out phase
-                sizeVariant
+                sizeVariant,
+                capturedX: 0,
+                capturedY: 0,
+                capturedScale: 1,
+                capturedOpacity: 0
             });
         });
 
@@ -225,6 +313,10 @@
                 --fade-duration: {bubble.fadeDuration}s;
                 --target-x: {bubble.targetDx}px;
                 --target-y: {bubble.targetDy}px;
+                --captured-x: {bubble.capturedX}px;
+                --captured-y: {bubble.capturedY}px;
+                --captured-scale: {bubble.capturedScale};
+                --captured-opacity: {bubble.capturedOpacity};
                 --stagger-index: {index};
             "
         >
@@ -233,6 +325,7 @@
                 class:attracting={isAttractingClass}
                 class:pulled={isAttractingClass && isPulled}
                 class:returning={isAttractingClass && isReturning}
+                bind:this={bubbleEls[bubble.id]}
             >
                 <!-- <span class="bubble-dot"></span> -->
                 <span class="bubble-text">{bubble.subject}</span>
@@ -316,11 +409,13 @@
         }
 
         // Attracting — Phase 1 (button hover starts):
-        // Reveal INSTANTLY at full opacity, at rest in its home position.
-        // No animation, no delay — this must be immediate or bubbles never appear.
+        // Reveal INSTANTLY at full opacity, but from wherever the bubble
+        // actually is right now (captured live position/scale from the idle
+        // animation) rather than snapping to its home slot. Position keeps
+        // continuity; opacity is intentionally forced to max here.
         &.attracting {
             animation: none;
-            transform: translate3d(0, 0, 0) scale(1);
+            transform: translate3d(var(--captured-x), var(--captured-y), 0) scale(var(--captured-scale));
             opacity: 1;
             filter: blur(0px);
             transition:
@@ -331,6 +426,8 @@
 
         // Attracting — Phase 2 (after a short hold, added via JS):
         // Fly towards the button center, scaling down and fading out as it nears.
+        // Since this starts from whatever phase 1 rendered (captured position),
+        // this transition is continuous by construction.
         &.attracting.pulled {
             transform: translate3d(var(--target-x), var(--target-y), 0) scale(0.3);
             opacity: 0;
@@ -344,15 +441,26 @@
         // Attracting — Phase 3 (unhover, added via JS in place of .pulled):
         // Slide smoothly back to the home position (rather than snapping),
         // from wherever the bubble currently is — home, mid-flight, or at the
-        // button. Uses a slower, eased transition than the reveal so the
-        // motion reads as a gentle "returning home" drift.
+        // button (captured live position feeds the FROM state via the browser's
+        // own transition interpolation, since this class swap changes the
+        // computed style target while a transition is defined).
+        //
+        // The end values here are deliberately identical to the idle
+        // keyframes' 0% state (translate3d(0,0,0) from bubbleFloat's 0%,
+        // opacity:0 / blur(1.5px) from ambientFadeCycle's 0%) rather than a
+        // "full opacity, at rest" home look. That match is what makes the
+        // idle-loop hand-off in resumeIdleFromStart() snap-free: the
+        // transition's destination and the animation's starting keyframe
+        // are the exact same rendered state, so there's nothing to jump
+        // between when .attracting is removed and the CSS animation
+        // reattaches at delay 0.
         &.attracting.returning {
             transform: translate3d(0, 0, 0) scale(1);
-            opacity: 1;
-            filter: blur(0px);
+            opacity: 0;
+            filter: blur(1.5px);
             transition:
                 transform 0.58s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--stagger-index) * 0.015s),
-                opacity 0.5s ease calc(var(--stagger-index) * 0.015s),
+                opacity 0.58s ease calc(var(--stagger-index) * 0.015s),
                 filter 0.5s ease calc(var(--stagger-index) * 0.015s);
         }
     }

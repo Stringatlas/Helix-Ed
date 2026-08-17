@@ -52,13 +52,7 @@
                     <br />through personalized education
                 </h1>
                 <h2>Igniting passion and mastery in the sciences</h2>
-                <!-- <p class="hero-description">
-                    At Helix-Ed, we provide university-led education designed
-                    for academic success. Our tutors are current students from
-                    top-tier universities who bring real-world expertise to help
-                    middle and high school students excel in their academic
-                    subjects.
-                </p> -->
+
                 <div class="hero-actions">
                     <button
                         bind:this={magnetButtonEl}
@@ -81,6 +75,14 @@
 
     <div class="why-helix-section">
         <h2 class="section-title">Why Helix Ed?</h2>
+        
+        <p class="why-helix-blurb">
+            At Helix-Ed, we provide university-led education designed
+            for academic success. Our tutors are current students from
+            top-tier universities who bring real-world expertise to help
+            middle and high school students excel in their academic
+            subjects.
+        </p>
 
         <section id="why">
             <div>
@@ -200,7 +202,6 @@
 <!-- // TODO - use schema.org to improve SEO, structured data // TODO - finish courses section in home page-->
 
 <!-- TODO - biobrawl and mathforreal subsections-->
-<!-- TODO - tutor matching app -->
 <style lang="scss">
     button {
         font-size: 1.2rem;
@@ -281,9 +282,9 @@
     }
 
     .why-helix-section {
-        background: transparent; // Let the body gradient show through seamlessly
+        background: transparent;
         padding: 4rem 0;
-        margin-top: 0; // No overlap needed with transparent background
+        margin-top: 0;
         position: relative;
     }
 
@@ -304,9 +305,19 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: linear-gradient(90deg, $primary 0%, $secondary 100%);
+            background: $primary;
             border-radius: 2px;
         }
+    }
+
+    .why-helix-blurb {
+        text-align: center;
+        max-width: 640px;
+        margin: -1.5rem auto 3rem;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        letter-spacing: 0.3px;
+        color: darken($text-color, 10%);
     }
 
     h1 {
