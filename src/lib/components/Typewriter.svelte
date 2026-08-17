@@ -43,8 +43,8 @@
             // deleting
             currentWord = fullWord.substring(0, currentWord.length - 1);
         } else if (isDeleting && currentWord.length === 0) {
-            // move to the next word
-            isDeleting = false;
+            // pick a random word, avoiding the current one
+            isDeleting = false
             currentIndex = (currentIndex + 1) % words.length;
         }
 

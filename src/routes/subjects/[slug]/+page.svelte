@@ -13,10 +13,7 @@
         // GROQ: find a featured course for this subject
         const query = `*[_type == 'course' && featured == true && lower(subject) == lower($subject)][0]{ slug }`;
         const course = await client.fetch(query, { subject });
-        
-        console.log("slug", subject);
-        console.log("Course found:", course);
-        
+
         if (course && course.slug && course.slug.current) {
             goto(`/classes/${course.slug.current}`);
         } else {

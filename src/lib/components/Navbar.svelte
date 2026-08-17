@@ -74,19 +74,7 @@
     }
 
     .enroll-button {
-        font-size: 0.9rem;
-        padding: 0.6rem 1.2rem;
-        font-weight: 600;
-        color: white;
-        border-radius: 25px;
-        transition: all 0.3s ease;
-        
         @include button-primary;
-        
-        &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba($primary, 0.4);
-        }
     }
 
     img {

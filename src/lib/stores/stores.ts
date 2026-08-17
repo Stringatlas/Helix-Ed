@@ -1,4 +1,5 @@
 import { writable } from 'svelte/store';
+import { dev } from '$app/environment';
 import { client } from './sanityClient';
 import type { Instructor, Course } from '$lib/types';
 
@@ -38,11 +39,15 @@ export async function fetchFeaturedSubjects() {
 }
 
 instructors.subscribe((value) => {
-  console.log('Updated instructors:', value);
+  if (dev) {
+    console.log('Updated instructors:', value);
+  }
 });
 
 courses.subscribe((value) => {
-  console.log('Updated courses:', value);
+  if (dev) {
+    console.log('Updated courses:', value);
+  }
 });
 
 fetchInstructors();
