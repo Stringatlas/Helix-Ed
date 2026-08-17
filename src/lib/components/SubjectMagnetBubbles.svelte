@@ -270,35 +270,16 @@
         &.small {
             font-size: 0.78rem;
             padding: 0.38rem 0.82rem;
-            .bubble-dot {
-                width: 5px;
-                height: 5px;
-            }
         }
 
         &.medium {
             font-size: 0.86rem;
             padding: 0.46rem 0.95rem;
-            .bubble-dot {
-                width: 6px;
-                height: 6px;
-            }
         }
 
         &.large {
             font-size: 0.94rem;
             padding: 0.54rem 1.1rem;
-            .bubble-dot {
-                width: 7px;
-                height: 7px;
-            }
-        }
-
-        .bubble-dot {
-            border-radius: 50%;
-            background: linear-gradient(135deg, $primary 0%, $neon-green 100%);
-            box-shadow: 0 0 6px rgba($primary, 0.8);
-            flex-shrink: 0;
         }
 
         .bubble-text {

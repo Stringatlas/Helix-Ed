@@ -390,6 +390,20 @@
             pointer-events: none;
             z-index: 0;
             overflow: visible;
+            // Fade the bottom edge so the glow blends into the page background
+            // instead of hard-clipping at the hero section boundary.
+            -webkit-mask-image: linear-gradient(
+                to bottom,
+                black 0%,
+                black 75%,
+                transparent 100%
+            );
+            mask-image: linear-gradient(
+                to bottom,
+                black 0%,
+                black 75%,
+                transparent 100%
+            );
         }
 
         .hero-container {
@@ -434,48 +448,12 @@
             text-align: left;
         }
 
-        .hero-description {
-            max-width: 620px;
-            margin-bottom: 36px;
-            color: darken($text-color, 6%);
-            font-size: 1.05rem;
-            line-height: 1.68;
-            letter-spacing: 0.2px;
-            text-align: left;
-        }
-
         .hero-actions {
             display: flex;
             align-items: center;
             gap: 1.25rem;
             flex-wrap: wrap;
             margin-top: 4px;
-        }
-
-        .secondary-btn {
-            background: rgba(255, 255, 255, 0.75);
-            color: $text-color;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(8px);
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
-
-            &:hover {
-                background: #ffffff;
-                transform: translateY(-3px);
-                box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
-                border-color: rgba($primary, 0.4);
-                color: darken($primary, 25%);
-            }
-
-            &:active {
-                transform: translateY(-1px);
-            }
         }
     }
 
@@ -568,6 +546,8 @@
                 width: 100%;
                 opacity: 0.55;
                 justify-content: center;
+                // -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+                // mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
             }
 
             .hero-container {
@@ -602,13 +582,6 @@
                 max-width: 34ch;
                 margin-left: auto;
                 margin-right: auto;
-            }
-
-            .hero-description {
-                font-size: 0.95rem;
-                margin-bottom: 32px;
-                padding: 0 0.5rem;
-                text-align: center;
             }
 
             .hero-actions {

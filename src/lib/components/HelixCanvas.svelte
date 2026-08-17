@@ -272,6 +272,9 @@
         pointer-events: none;
         z-index: 0;
         opacity: 0.9;
+
+        -webkit-mask-image: radial-gradient(circle at 50% 50%, black 0%, black 55%, transparent 78%);
+        mask-image: radial-gradient(circle at 50% 50%, black 0%, black 55%, transparent 78%);
     }
 
     .helix-canvas {
