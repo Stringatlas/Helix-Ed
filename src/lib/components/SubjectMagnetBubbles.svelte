@@ -55,6 +55,7 @@
     let isPulled = false;
     let isReturning = false;
     let isAttractingClass = false; // drives the .attracting CSS class specifically
+    let hasHovered = false; // Prevents unhover return sequence from executing on initial page load
     let pullTimer: ReturnType<typeof setTimeout> | null = null;
     let returnTimer: ReturnType<typeof setTimeout> | null = null;
 
@@ -62,7 +63,12 @@
     // whatever CSS (idle keyframes, a mid-transition attract/return) currently has
     // it at. This is what lets phase transitions continue from the real visual
     // state instead of snapping to a hardcoded (0,0,0)/opacity home value.
-    function captureLiveState(el: HTMLElement): { x: number; y: number; scale: number; opacity: number } {
+    function captureLiveState(el: HTMLElement): {
+        x: number;
+        y: number;
+        scale: number;
+        opacity: number;
+    } {
         const cs = getComputedStyle(el);
         let x = 0;
         let y = 0;
@@ -75,7 +81,8 @@
                 x = matrix.m41;
                 y = matrix.m42;
                 // Approximate uniform scale from the matrix's x-basis vector length.
-                scale = Math.sqrt(matrix.a * matrix.a + matrix.b * matrix.b) || 1;
+                scale =
+                    Math.sqrt(matrix.a * matrix.a + matrix.b * matrix.b) || 1;
             } catch {
                 // Fall back to defaults if the matrix can't be parsed.
             }
@@ -86,7 +93,7 @@
     }
 
     function captureAllBubbles() {
-        bubbles = bubbles.map(b => {
+        bubbles = bubbles.map((b) => {
             const el = bubbleEls[b.id];
             if (!el) return b;
             const live = captureLiveState(el);
@@ -95,7 +102,7 @@
                 capturedX: live.x,
                 capturedY: live.y,
                 capturedScale: live.scale,
-                capturedOpacity: live.opacity
+                capturedOpacity: live.opacity,
             };
         });
     }
@@ -110,10 +117,10 @@
     // random mid-cycle point almost never equals wherever .returning left
     // off, so it just moves the snap instead of removing it.
     function resumeIdleFromStart() {
-        bubbles = bubbles.map(b => ({
+        bubbles = bubbles.map((b) => ({
             ...b,
             delay: 0,
-            fadeDelay: 0
+            fadeDelay: 0,
         }));
     }
 
@@ -121,6 +128,7 @@
         // Entering hover: cancel any pending return, capture wherever bubbles
         // currently are, reveal at that position instantly, then schedule the
         // pull-toward-button phase.
+        hasHovered = true;
         if (returnTimer) clearTimeout(returnTimer);
         returnTimer = null;
         captureAllBubbles();
@@ -131,14 +139,8 @@
         pullTimer = setTimeout(() => {
             isPulled = true;
         }, REVEAL_HOLD_MS);
-    } else {
-        // Leaving hover: cancel the pull timer, capture wherever bubbles
-        // currently are (home, mid-flight, or at the button), and mark as
-        // returning so the transition slides from that live position to the
-        // idle animation's 0% state instead of snapping. Once that
-        // transition has had time to fully finish, drop .attracting and
-        // resume the idle animation at delay 0 — landing exactly where
-        // .returning left off, so the hand-off is invisible.
+    } else if (hasHovered) {
+        // Leaving hover: only run when actually returning from an attract state
         if (pullTimer) clearTimeout(pullTimer);
         pullTimer = null;
         isPulled = false;
@@ -151,8 +153,10 @@
         // from the live bubble count rather than a fixed constant so this
         // stays correct even if more subjects are passed in than the stagger
         // budget originally assumed.
-        const lastStaggerMs = Math.max(0, bubbles.length - 1) * RETURN_STAGGER_STEP_MS;
-        const returnDurationMs = lastStaggerMs + RETURN_TRANSITION_MS + RETURN_MARGIN_MS;
+        const lastStaggerMs =
+            Math.max(0, bubbles.length - 1) * RETURN_STAGGER_STEP_MS;
+        const returnDurationMs =
+            lastStaggerMs + RETURN_TRANSITION_MS + RETURN_MARGIN_MS;
         returnTimer = setTimeout(() => {
             resumeIdleFromStart();
             isAttractingClass = false;
@@ -185,7 +189,7 @@
             for (let c = 0; c < cols; c++) {
                 slots.push({
                     x: minX + c * cellW + cellW * 0.5,
-                    y: minY + r * cellH + cellH * 0.5
+                    y: minY + r * cellH + cellH * 0.5,
                 });
             }
         }
@@ -199,7 +203,7 @@
         list.forEach((subject, i) => {
             const slot = slots[i % slots.length] || {
                 x: minX + Math.random() * (maxX - minX),
-                y: minY + Math.random() * (maxY - minY)
+                y: minY + Math.random() * (maxY - minY),
             };
 
             // Jitter within cell boundaries
@@ -209,7 +213,11 @@
             const x = Math.max(minX, Math.min(maxX, slot.x + jitterX));
             const y = Math.max(minY, Math.min(maxY, slot.y + jitterY));
 
-            const sizes: Array<"small" | "medium" | "large"> = ["small", "medium", "large"];
+            const sizes: Array<"small" | "medium" | "large"> = [
+                "small",
+                "medium",
+                "large",
+            ];
             const sizeVariant = sizes[i % sizes.length];
 
             generated.push({
@@ -227,7 +235,7 @@
                 capturedX: 0,
                 capturedY: 0,
                 capturedScale: 1,
-                capturedOpacity: 0
+                capturedOpacity: 0,
             });
         });
 
@@ -241,17 +249,19 @@
         const targetRect = targetEl.getBoundingClientRect();
 
         // Calculate center of the target button relative to the container
-        const targetCenterX = targetRect.left + targetRect.width / 2 - containerRect.left;
-        const targetCenterY = targetRect.top + targetRect.height / 2 - containerRect.top;
+        const targetCenterX =
+            targetRect.left + targetRect.width / 2 - containerRect.left;
+        const targetCenterY =
+            targetRect.top + targetRect.height / 2 - containerRect.top;
 
-        bubbles = bubbles.map(b => {
+        bubbles = bubbles.map((b) => {
             const homePxX = (b.x / 100) * containerRect.width;
             const homePxY = (b.y / 100) * containerRect.height;
 
             return {
                 ...b,
                 targetDx: targetCenterX - homePxX,
-                targetDy: targetCenterY - homePxY
+                targetDy: targetCenterY - homePxY,
             };
         });
     }
@@ -266,7 +276,6 @@
     }
 
     onMount(() => {
-        bubbles = generateBubbles(subjects);
         calculateAttractionVectors();
 
         const handleResize = () => {
@@ -400,8 +409,10 @@
         // Idle state: Subtle organic floating drift + periodic ambient fade in and out
         &:not(.attracting) {
             animation:
-                bubbleFloat var(--duration) ease-in-out infinite alternate var(--delay),
-                ambientFadeCycle var(--fade-duration) ease-in-out infinite alternate var(--fade-delay);
+                bubbleFloat var(--duration) ease-in-out infinite alternate
+                    var(--delay),
+                ambientFadeCycle var(--fade-duration) ease-in-out infinite
+                    alternate var(--fade-delay);
             transition:
                 transform 0.4s ease,
                 opacity 0.3s ease,
@@ -415,7 +426,8 @@
         // continuity; opacity is intentionally forced to max here.
         &.attracting {
             animation: none;
-            transform: translate3d(var(--captured-x), var(--captured-y), 0) scale(var(--captured-scale));
+            transform: translate3d(var(--captured-x), var(--captured-y), 0)
+                scale(var(--captured-scale));
             opacity: 1;
             filter: blur(0px);
             transition:
@@ -429,12 +441,15 @@
         // Since this starts from whatever phase 1 rendered (captured position),
         // this transition is continuous by construction.
         &.attracting.pulled {
-            transform: translate3d(var(--target-x), var(--target-y), 0) scale(0.3);
+            transform: translate3d(var(--target-x), var(--target-y), 0)
+                scale(0.3);
             opacity: 0;
             filter: blur(2px);
             transition:
-                transform 0.62s cubic-bezier(0.34, 0.01, 0.68, 1) calc(var(--stagger-index) * 0.02s),
-                opacity 0.42s cubic-bezier(0.55, 0, 0.85, 0.2) calc(0.22s + var(--stagger-index) * 0.02s),
+                transform 0.62s cubic-bezier(0.34, 0.01, 0.68, 1)
+                    calc(var(--stagger-index) * 0.02s),
+                opacity 0.42s cubic-bezier(0.55, 0, 0.85, 0.2)
+                    calc(0.22s + var(--stagger-index) * 0.02s),
                 filter 0.42s ease calc(0.22s + var(--stagger-index) * 0.02s);
         }
 
@@ -459,7 +474,8 @@
             opacity: 0;
             filter: blur(1.5px);
             transition:
-                transform 0.58s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--stagger-index) * 0.015s),
+                transform 0.58s cubic-bezier(0.22, 1, 0.36, 1)
+                    calc(var(--stagger-index) * 0.015s),
                 opacity 0.58s ease calc(var(--stagger-index) * 0.015s),
                 filter 0.5s ease calc(var(--stagger-index) * 0.015s);
         }
@@ -481,7 +497,7 @@
     // Periodic ambient fading in and out when idle
     @keyframes ambientFadeCycle {
         0% {
-            opacity: 0.0;
+            opacity: 0;
             filter: blur(1.5px);
         }
         35% {
@@ -493,7 +509,7 @@
             filter: blur(0px);
         }
         100% {
-            opacity: 0.0;
+            opacity: 0;
             filter: blur(1px);
         }
     }
