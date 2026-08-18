@@ -49,9 +49,8 @@
                     <span class="typewriter-wrapper"
                         ><Typewriter words={careers} /></span
                     >
-                    <br />through personalized education
                 </h1>
-                <h2>Igniting passion and mastery in the sciences</h2>
+                <h2>Igniting passion and mastery in the sciences through personalized education</h2>
 
                 <div class="hero-actions">
                     <button
@@ -352,7 +351,7 @@
             }
 
             h2 {
-                margin-bottom: 12px;
+                margin-bottom: 16px;
                 color: $accent;
                 font-size: 1.5rem;
                 font-weight: 600;
@@ -427,7 +426,7 @@
         }
 
         h1 {
-            font-size: clamp(2.4rem, 3.6vw, 3.6rem);
+            font-size: clamp(2.4rem, 3.6vw, 3.0rem);
             margin-bottom: 28px;
             color: $accent;
             font-weight: 700;
@@ -440,7 +439,7 @@
         }
 
         h2 {
-            margin-bottom: 36px;
+            margin-bottom: 56px;
             color: lighten($accent, 15%);
             font-size: clamp(1.2rem, 1.6vw, 1.45rem);
             font-weight: 500;
@@ -578,7 +577,7 @@
             h2 {
                 font-size: 1.1rem;
                 line-height: 1.5;
-                margin-bottom: 28px;
+                margin-bottom: 36px;
                 text-align: center;
                 max-width: 34ch;
                 margin-left: auto;
