@@ -42,15 +42,6 @@
                 </div>
             {/if}
         </div>
-
-        <div class="enrollment-cta">
-            <h3>Ready to start your learning journey?</h3>
-            <p>Have questions about our courses? Want to learn more about what makes Helix-Ed special?</p>
-            <div class="cta-buttons">
-                <a href="/contact" class="cta-button primary">Contact Us</a>
-                <a href="/about-us" class="cta-button secondary">Learn More</a>
-            </div>
-        </div>
     </section>
 </main>
 
@@ -148,65 +139,7 @@
             gap: 1.5rem;
         }
     }
-
-    .enrollment-cta {
-        margin-top: 5rem;
-        padding: 3rem;
-        background: rgba(255, 255, 255, 0.7);
-        border-radius: 20px;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        text-align: center;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-        
-        h3 {
-            font-size: 2rem;
-            color: $accent;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-        
-        p {
-            font-size: 1.1rem;
-            color: $text-color;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            opacity: 0.9;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .cta-button {
-            text-decoration: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            
-            &.primary {
-                @include button-primary;
-            }
-            
-            &.secondary {
-                @include button-secondary;
-            }
-            
-            &:hover {
-                transform: translateY(-2px);
-            }
-        }
-    }
-
+    
     @media (max-width: $mobile-width) {
         #hero-section {
             padding: 3rem 1.5rem;
@@ -244,28 +177,6 @@
                 gap: 1rem;
             }
         }
-        
-        .enrollment-cta {
-            padding: 2rem 1.5rem;
-            margin-top: 3rem;
-            
-            h3 {
-                font-size: 1.5rem;
-            }
-            
-            p {
-                font-size: 1rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-                
-                .cta-button {
-                    width: 100%;
-                    max-width: 250px;
-                }
-            }
-        }
+    
     }
 </style>
