@@ -178,15 +178,7 @@
                 margin-bottom: 1.5rem;
                 line-height: 1.2;
                 
-                &::after {
-                    content: '';
-                    display: block;
-                    width: 80px;
-                    height: 4px;
-                    background: linear-gradient(90deg, $primary 0%, $secondary 100%);
-                    margin-top: 1rem;
-                    border-radius: 2px;
-                }
+                @include underline-header(left)
             }
             
             .course-meta {
@@ -422,19 +414,8 @@
             color: $accent;
             text-align: center;
             margin-bottom: 3rem;
-            position: relative;
-            
-            &::after {
-                content: '';
-                position: absolute;
-                bottom: -15px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 100px;
-                height: 4px;
-                background: linear-gradient(90deg, $primary 0%, $secondary 100%);
-                border-radius: 2px;
-            }
+
+            @include underline-header;
         }
         
         .instructors-grid {

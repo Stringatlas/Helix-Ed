@@ -297,17 +297,7 @@
         position: relative;
         z-index: 1;
 
-        &::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: $primary;
-            border-radius: 2px;
-        }
+        @include underline-header
     }
 
     .why-helix-blurb {

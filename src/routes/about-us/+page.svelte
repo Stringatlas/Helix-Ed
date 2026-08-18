@@ -169,15 +169,7 @@
             font-size: 2.5rem;
             color: $accent;
             
-            &::after {
-                content: '';
-                display: block;
-                width: 80px;
-                height: 4px;
-                background: linear-gradient(90deg, $primary 0%, $secondary 100%);
-                margin: 1rem auto 0;
-                border-radius: 2px;
-            }
+            @include underline-header
         }
 
         h2 {

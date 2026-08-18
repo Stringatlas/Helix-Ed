@@ -81,17 +81,7 @@
                 font-weight: 700;
                 position: relative;
                 
-                &::after {
-                    content: '';
-                    position: absolute;
-                    bottom: -15px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: 100px;
-                    height: 4px;
-                    background: linear-gradient(90deg, $primary 0%, $secondary 100%);
-                    border-radius: 2px;
-                }
+                @include underline-header
             }
             
             h2 {

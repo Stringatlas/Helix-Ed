@@ -75,6 +75,26 @@ $mobile-width: 750px;
     }
 }
 
+@mixin underline-header($align: center) {
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 80px;
+        height: 4px;
+        background: $primary;
+        border-radius: 2px;
+
+        @if $align == center {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+}
+
 :root {
     --background-color: #{$background-color};
 }
