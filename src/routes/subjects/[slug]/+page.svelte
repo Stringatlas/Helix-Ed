@@ -22,6 +22,11 @@
     })();
 </script>
 
+<svelte:head>
+    <title>{subject ? `${subject.charAt(0).toUpperCase()}${subject.slice(1)} Classes | Helix-Ed` : 'Subjects | Helix-Ed'}</title>
+    <meta name="description" content="Explore {subject} classes at Helix-Ed, taught by instructors from top universities." />
+</svelte:head>
+
 {#if notFound}
     <main>
         <h2>We currently do not offer classes for {subject}</h2>

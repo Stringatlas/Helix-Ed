@@ -36,6 +36,11 @@
     let magnetButtonEl: HTMLButtonElement;
 </script>
 
+<svelte:head>
+    <title>Helix-Ed | University-Led Education for Academic Success</title>
+    <meta name="description" content="Affordable, high-level education from university students for middle and high school students in science, math, and more!" />
+</svelte:head>
+
 <body>
     <section id="landing-section">
         <div class="hero-backdrop" aria-hidden="true">

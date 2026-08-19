@@ -12,13 +12,9 @@
     // Obfuscated email to prevent spam bots
     const emailUser = 'helixed.org';
     const emailDomain = 'gmail.com';
-    let emailAddress = '';
-    
-    // Construct email on client-side to avoid plain text in HTML
-    function revealEmail() {
-        emailAddress = `${emailUser}@${emailDomain}`;
-        window.location.href = `mailto:${emailAddress}`;
-    }
+    let emailAddress = `${emailUser}@${emailDomain}`;
+    let emailHref = `mailto:${emailAddress}`;
+
 </script>
 
 <section>
@@ -34,7 +30,7 @@
         <div>
             <a href="/privacy-policy" style="margin-right: 1rem">Privacy Policy</a>
             <a href="/attributions">Attributions</a>
-            <p>Contact: <button class="email-link" on:click={revealEmail} type="button">helix-ed.org@gmail.com</button></p>
+            <p>Contact: <a href={emailHref}>{emailAddress}</a> </p>
             <p>&copy; {currentYear} HelixEd. All rights reserved. Website by <a href="https://github.com/Stringatlas">Kevin Zhang</a></p>
         </div>
     </div>
@@ -69,26 +65,6 @@
         .credit {
             text-align: center;
             line-height: 2;
-        }
-    }
-    
-    .email-link {
-        background: none;
-        border: none;
-        color: rgb(222, 222, 222);
-        text-decoration: underline;
-        cursor: pointer;
-        padding: 0;
-        font: inherit;
-        transition: opacity 0.2s ease;
-        
-        &:hover {
-            opacity: 0.8;
-        }
-        
-        &:focus {
-            outline: 2px solid rgba(222, 222, 222, 0.5);
-            outline-offset: 2px;
         }
     }
 </style>

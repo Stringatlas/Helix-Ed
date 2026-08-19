@@ -4,14 +4,9 @@
 
     import { page } from "$app/stores";
     import { derived } from "svelte/store";
-    import { onMount } from "svelte";
 
     const isBioBrawl = derived(page, ($page) => {
         return $page.url.pathname.startsWith("/bio-brawl");
-    });
-
-    onMount(() => {
-        document.title = "Helix-Ed";
     });
 </script>
 

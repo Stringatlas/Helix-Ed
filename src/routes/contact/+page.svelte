@@ -9,6 +9,11 @@
     }
 </script>
 
+<svelte:head>
+    <title>Contact Us | Helix-Ed</title>
+    <meta name="description" content="Contact Helix-Ed to learn more about our courses or support our vision as a 501(c)(3) non-profit organization." />
+</svelte:head>
+
 <main>
     <section class="contact-section">
         <h1>Contact Us</h1>

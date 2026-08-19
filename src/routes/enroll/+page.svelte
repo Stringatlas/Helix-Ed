@@ -3,6 +3,11 @@
     import { openCourses, closedCourses } from "$lib/stores/stores";
 </script>
 
+<svelte:head>
+    <title>Our Courses | Helix-Ed</title>
+    <meta name="description" content="Explore Helix-Ed's expertly crafted curriculum — interactive courses taught by instructors from top universities." />
+</svelte:head>
+
 <main>
     <section id="hero-section">
         <div class="hero-content">

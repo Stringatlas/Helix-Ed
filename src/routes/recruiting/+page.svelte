@@ -1,3 +1,8 @@
+<svelte:head>
+    <title>Recruiting | Helix-Ed</title>
+    <meta name="description" content="Join Helix-Ed's team — we're seeking passionate instructors, TAs, social media managers, and moderators." />
+</svelte:head>
+
 <div class="container">
     <div class="hero-section">
         <h1>Recruiting</h1>

@@ -1,3 +1,8 @@
+<svelte:head>
+    <title>Attributions | Helix-Ed</title>
+    <meta name="description" content="Attributions for icons and images used on the Helix-Ed website." />
+</svelte:head>
+
 <div>
     <a href="https://www.flaticon.com/free-icons/school" title="school icons">School icons created by nawicon - Flaticon</a>
     <a href="https://www.flaticon.com/free-icons/money" title="money icons">Money icons created by Freepik - Flaticon</a>

@@ -42,6 +42,16 @@
   }
 </script>
 
+<svelte:head>
+  {#if course}
+    <title>{course.title} | Helix-Ed</title>
+    <meta name="description" content="{course.title} at Helix-Ed — {course.description}" />
+  {:else}
+    <title>Course Not Found | Helix-Ed</title>
+    <meta name="description" content="Sorry, we couldn't find that course at Helix-Ed." />
+  {/if}
+</svelte:head>
+
 <main>
   {#if course}
     <!-- Hero Section -->

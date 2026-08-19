@@ -6,6 +6,11 @@
     import { tas, teachers, officers } from "$lib/stores/stores";
 </script>
 
+<svelte:head>
+    <title>About Us | Helix-Ed</title>
+    <meta name="description" content="Learn about Helix-Ed's mission to bring academic excellence to every student through university-led education." />
+</svelte:head>
+
 <main>
     <section id="title">
         <h1>About Us</h1>
