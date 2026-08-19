@@ -67,6 +67,13 @@
     </div>
 </section>
 
+<section id="partnerships">
+        <h1>Partnerships</h1>
+        <a href="https://math-for-real.org/" target="_blank" rel="noopener noreferrer">
+            <img src="/math_for_real_logo.webp" alt="Math for Real logo" />
+        </a>
+</section>
+
 <style lang="scss">
     #title {
         padding: 4rem 2rem;
@@ -187,6 +194,38 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 3rem;
+        }
+    }
+
+    #partnerships {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 4rem 2rem;
+        text-align: center;
+
+        h1 {
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            color: $accent;
+            font-weight: 700;
+
+            @include underline-header
+        }
+
+        a {
+            display: inline-block;
+            transition: transform 0.2s ease;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+
+        img {
+            max-width: clamp(100px, 10vw, 150px);
+            height: auto;
+            background: transparent;
         }
     }
 
