@@ -1,10 +1,10 @@
-node_modules
+node_modules/
 
 # Output
-.output
-.vercel
-/.svelte-kit
-/build
+.output/
+.vercel/
+.svelte-kit/
+build/
 
 # OS
 .DS_Store
@@ -20,4 +20,6 @@ Thumbs.db
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
+# Local files
 .notes
+*.log

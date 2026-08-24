@@ -1,22 +1,58 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    
-    export let first: string | undefined;
-    export let second: string | undefined;
-    export let third: string | undefined;
-    
+    import type { Place } from '$lib/types';
+
+    /**
+     * Preferred API: an arbitrary number of places, so a division with only a
+     * first and second can render without an empty third plinth.
+     */
+    export let places: Place[] = [];
+
+    /** Legacy three-slot API, kept for events stored before divisions existed. */
+    export let first: string | undefined = undefined;
+    export let second: string | undefined = undefined;
+    export let third: string | undefined = undefined;
+
+    const MEDAL_CLASSES = ['gold', 'silver', 'bronze'];
+
+    // Falling back to the three fixed slots preserves the old behaviour of
+    // showing three 'TBD' plinths for an event whose results aren't in yet.
+    $: resolved =
+        places.length > 0
+            ? [...places].sort((a, b) => a.rank - b.rank)
+            : [
+                  { rank: 1, team: first || 'TBD' },
+                  { rank: 2, team: second || 'TBD' },
+                  { rank: 3, team: third || 'TBD' }
+              ];
+
+    // Tallest in the middle: second on the left, first centre, third on the
+    // right. With only two places that naturally becomes [second, first].
+    $: ordered = (() => {
+        const byRank = new Map(resolved.map((p) => [p.rank, p]));
+        const podiumOrder = [2, 1, 3].map((r) => byRank.get(r)).filter(Boolean) as Place[];
+        const remaining = resolved.filter((p) => p.rank > 3);
+        return [...podiumOrder, ...remaining];
+    })();
+
     let podiumContainer: HTMLElement;
     let uniformWidth = 160; // Default width
-    
+
     onMount(() => {
         if (podiumContainer) {
             calculateUniformWidth();
         }
     });
-    
+
+    // Re-measure when the teams change, otherwise a division rendered after the
+    // first paint keeps the previous division's tile width.
+    $: if (podiumContainer && ordered) {
+        calculateUniformWidth();
+    }
+
     function calculateUniformWidth() {
         if (!podiumContainer) return;
-        
+
         // Create a temporary element to measure text width
         const measurer = document.createElement('div');
         measurer.style.position = 'absolute';
@@ -26,10 +62,10 @@
         measurer.style.fontWeight = '600';
         measurer.style.fontFamily = getComputedStyle(document.body).fontFamily;
         document.body.appendChild(measurer);
-        
-        const names = [first, second, third].filter(Boolean) as string[];
+
+        const names = ordered.map((p) => p.team).filter(Boolean) as string[];
         let maxWidth = 120; // Minimum width
-        
+
         names.forEach(name => {
             measurer.textContent = name;
             const textWidth = measurer.offsetWidth;
@@ -37,10 +73,10 @@
             const neededWidth = Math.min(textWidth + 48, 200);
             maxWidth = Math.max(maxWidth, neededWidth);
         });
-        
+
         document.body.removeChild(measurer);
         uniformWidth = maxWidth;
-        
+
         // Apply the uniform width to all podiums
         const podiums = podiumContainer.querySelectorAll('.podium') as NodeListOf<HTMLElement>;
         podiums.forEach(podium => {
@@ -50,20 +86,15 @@
 </script>
 
 <div class="podium-container" bind:this={podiumContainer}>
-    <div class="podium" data-place="2">
-        <div class="medal silver">2</div>
-        <div class="team-name">{second || 'TBD'}</div>
-    </div>
-
-    <div class="podium" data-place="1">
-        <div class="medal gold">1</div>
-        <div class="team-name">{first || 'TBD'}</div>
-    </div>
-
-    <div class="podium" data-place="3">
-        <div class="medal bronze">3</div>
-        <div class="team-name">{third || 'TBD'}</div>
-    </div>
+    {#each ordered as place (place.rank)}
+        <div class="podium" data-place={Math.min(place.rank, 3)}>
+            <div class="medal {MEDAL_CLASSES[place.rank - 1] ?? 'bronze'}">{place.rank}</div>
+            <div class="team-name">{place.team || 'TBD'}</div>
+            {#if place.award}
+                <div class="award">${place.award}</div>
+            {/if}
+        </div>
+    {/each}
 </div>
 
 <style lang="scss">
@@ -192,6 +223,21 @@
         @media (max-width: $mobile-width) {
             font-size: $font-size-sm;
             margin-top: $spacing-md;
+        }
+    }
+
+    .award {
+        margin-top: $spacing-xs;
+        font-size: $font-size-sm;
+        font-weight: 700;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.9);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        animation: fade-in-up 0.8s ease-out 2.4s forwards;
+
+        @media (max-width: $mobile-width) {
+            font-size: $font-size-xs;
         }
     }
 

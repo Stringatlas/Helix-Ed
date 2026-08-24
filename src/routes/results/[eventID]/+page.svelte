@@ -17,11 +17,21 @@
         <div class="results-content">
             <section class="winners-section">
                 <h2 class="section-title">🏆 Congratulations to our winners</h2>
-                <Podium 
-                    first={eventData.results?.winners?.first} 
-                    second={eventData.results?.winners?.second} 
-                    third={eventData.results?.winners?.third} 
-                />
+
+                {#if eventData.results?.divisions?.length}
+                    {#each eventData.results.divisions as division (division.name)}
+                        <div class="division">
+                            <h3 class="division-title">{division.name}</h3>
+                            <Podium places={division.places} />
+                        </div>
+                    {/each}
+                {:else}
+                    <Podium
+                        first={eventData.results?.winners?.first}
+                        second={eventData.results?.winners?.second}
+                        third={eventData.results?.winners?.third}
+                    />
+                {/if}
 
                 <div class="thank-you-message">
                     <h2>Thank you to everyone for participating</h2>
@@ -122,6 +132,24 @@
     }
 
     .winners-section {
+        .division {
+            & + .division {
+                margin-top: $spacing-2xl;
+            }
+
+            .division-title {
+                font-size: $font-size-2xl;
+                font-weight: 600;
+                text-align: center;
+                color: $text-secondary;
+                margin-bottom: 0;
+
+                @media (max-width: $mobile-width) {
+                    font-size: $font-size-xl;
+                }
+            }
+        }
+
         .thank-you-message {
             text-align: center;
             margin-top: $spacing-3xl;
