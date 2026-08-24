@@ -9,7 +9,11 @@
     import Typewriter from "$lib/components/Typewriter.svelte";
     import HelixCanvas from "$lib/components/HelixCanvas.svelte";
     import SubjectMagnetBubbles from "$lib/components/SubjectMagnetBubbles.svelte";
+    import UniversityMarquee from "$lib/components/UniversityMarquee.svelte";
     import { goto } from "$app/navigation";
+    import type { PageData } from "./$types";
+
+    export let data: PageData;
 
     let careers = [
         "engineers",
@@ -76,6 +80,8 @@
             </div>
         </div>
     </section>
+
+    <UniversityMarquee universities={data.universities} />
 
     <div class="why-helix-section">
         <h2 class="section-title">Why Helix Ed?</h2>
