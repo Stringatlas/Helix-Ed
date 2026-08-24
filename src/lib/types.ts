@@ -61,11 +61,9 @@ export interface EventData {
 }
 
 export interface Place {
-    /** 1 = first, 2 = second, and so on. */
     rank: number;
     team: string;
-    /** Prize in whole US dollars. */
-    award?: number;
+    award?: string;
 }
 
 export interface Division {

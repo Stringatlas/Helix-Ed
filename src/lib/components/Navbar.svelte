@@ -101,7 +101,7 @@
                     role="menu"
                     aria-labelledby="past-competitions"
                 > 
-                    {#each $events.filter(e => !e.active) as event}
+                    {#each $events.filter(e => !e.active).sort((a, b) => b.year - a.year) as event}
                         <li role="none">
                             <a href={`/results/${event.eventID}`} role="menuitem">BioBrawl {event.year}</a>
                         </li>

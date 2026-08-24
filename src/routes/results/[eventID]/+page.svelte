@@ -1,10 +1,31 @@
 <script lang="ts">
-    import type { EventData } from "$lib/types";
-    import { events } from "$lib/stores/stores";
-    import Podium from "$lib/components/Podium.svelte";
+    import { tick } from 'svelte';
+    import type { EventData } from '$lib/types';
+    import { events } from '$lib/stores/stores';
+    import Podium from '$lib/components/Podium.svelte';
 
     export let data: { eventID: string };
-    $: eventData = $events.find(event => event.eventID == data.eventID);
+
+    let activeDivision = 0;
+
+    $: eventData = $events.find((event) => event.eventID === data.eventID);
+    $: divisions = eventData?.results?.divisions ?? [];
+    $: if (activeDivision >= divisions.length) activeDivision = 0;
+
+    async function handleTabKey(event: KeyboardEvent, index: number) {
+        let next = index;
+
+        if (event.key === 'ArrowRight') next = (index + 1) % divisions.length;
+        else if (event.key === 'ArrowLeft') next = (index - 1 + divisions.length) % divisions.length;
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = divisions.length - 1;
+        else return;
+
+        event.preventDefault();
+        activeDivision = next;
+        await tick();
+        document.getElementById(`division-tab-${next}`)?.focus();
+    }
 </script>
 
 <main class="results-page">
@@ -16,15 +37,46 @@
 
         <div class="results-content">
             <section class="winners-section">
-                <h2 class="section-title">🏆 Congratulations to our winners</h2>
+                <h2 class="section-title">Congratulations to our winners</h2>
 
-                {#if eventData.results?.divisions?.length}
-                    {#each eventData.results.divisions as division (division.name)}
-                        <div class="division">
-                            <h3 class="division-title">{division.name}</h3>
-                            <Podium places={division.places} />
+                {#if divisions.length}
+                    {#if divisions.length > 1}
+                        <div class="division-tabs" role="tablist" aria-label="Competition divisions">
+                            {#each divisions as division, index (division.name)}
+                                <button
+                                    id={`division-tab-${index}`}
+                                    type="button"
+                                    role="tab"
+                                    aria-selected={activeDivision === index}
+                                    aria-controls={`division-panel-${index}`}
+                                    tabindex={activeDivision === index ? 0 : -1}
+                                    class:active={activeDivision === index}
+                                    on:click={() => (activeDivision = index)}
+                                    on:keydown={(event) => handleTabKey(event, index)}
+                                >
+                                    {division.name}
+                                </button>
+                            {/each}
                         </div>
-                    {/each}
+                    {/if}
+
+                    {@const division = divisions[activeDivision]}
+                    <div
+                        id={`division-panel-${activeDivision}`}
+                        class="division-panel"
+                        role="tabpanel"
+                        aria-labelledby={divisions.length > 1
+                            ? `division-tab-${activeDivision}`
+                            : undefined}
+                        tabindex="0"
+                    >
+                        {#if divisions.length === 1}
+                            <h3 class="division-title">{division.name}</h3>
+                        {/if}
+                        {#key activeDivision}
+                            <Podium places={division.places} />
+                        {/key}
+                    </div>
                 {:else}
                     <Podium
                         first={eventData.results?.winners?.first}
@@ -43,7 +95,7 @@
 
             {#if eventData.results?.eliminationBracket}
                 <section class="bracket-section">
-                    <h2 class="section-title">📊 Elimination Bracket</h2>
+                    <h2 class="section-title">Elimination Bracket</h2>
                     <div class="bracket-content">
                         <a 
                             href={eventData.results.eliminationBracket} 
@@ -132,21 +184,58 @@
     }
 
     .winners-section {
-        .division {
-            & + .division {
-                margin-top: $spacing-2xl;
-            }
+        .division-tabs {
+            display: flex;
+            justify-content: center;
+            gap: $spacing-sm;
+            max-width: 760px;
+            margin: 0 auto $spacing-lg;
+            padding: $spacing-xs;
+            border-radius: $radius-xl;
+            background: $background-darker;
 
-            .division-title {
-                font-size: $font-size-2xl;
-                font-weight: 600;
-                text-align: center;
+            button {
+                flex: 1 1 0;
+                padding: $spacing-sm $spacing-lg;
+                border: 0;
+                border-radius: $radius-lg;
+                background: transparent;
                 color: $text-secondary;
-                margin-bottom: 0;
+                font: inherit;
+                font-weight: 600;
+                cursor: pointer;
+                transition: background $transition-normal, color $transition-normal, box-shadow $transition-normal;
 
-                @media (max-width: $mobile-width) {
-                    font-size: $font-size-xl;
+                &:hover {
+                    color: $primary;
                 }
+
+                &:focus-visible {
+                    outline: 2px solid $primary;
+                    outline-offset: 2px;
+                }
+
+                &.active {
+                    background: white;
+                    color: $primary;
+                    box-shadow: $shadow-md;
+                }
+            }
+        }
+
+        .division-panel:focus {
+            outline: none;
+        }
+
+        .division-title {
+            margin-bottom: 0;
+            color: $text-secondary;
+            font-size: $font-size-2xl;
+            font-weight: 600;
+            text-align: center;
+
+            @media (max-width: $mobile-width) {
+                font-size: $font-size-xl;
             }
         }
 
@@ -265,6 +354,16 @@
     }
 
     @media (max-width: $mobile-width) {
+        .winners-section .division-tabs {
+            justify-content: flex-start;
+            overflow-x: auto;
+
+            button {
+                flex: 0 0 auto;
+                white-space: nowrap;
+            }
+        }
+
         .bracket-section {
             .bracket-content {
                 .bracket-link {
