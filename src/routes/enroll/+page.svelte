@@ -1,13 +1,29 @@
 <script lang="ts">
     import { CheckCircle, LockKey, Sparkle } from "phosphor-svelte";
     import CourseCard from "$lib/components/CourseCard.svelte";
-    import { openCourses, closedCourses } from "$lib/stores/stores";
+    import Seo from "$lib/components/Seo.svelte";
+    import JsonLd from "$lib/components/JsonLd.svelte";
+    import type { PageData } from "./$types";
+
+    export let data: PageData;
 </script>
 
-<svelte:head>
-    <title>Our Courses | Helix-Ed</title>
-    <meta name="description" content="Explore Helix-Ed's expertly crafted curriculum — interactive courses taught by instructors from top universities." />
-</svelte:head>
+<Seo title="Our Courses | Helix-Ed" description="Explore Helix-Ed's expertly crafted curriculum — interactive courses taught by instructors from top universities." />
+<JsonLd data={{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: [...data.openCourses, ...data.closedCourses].map((course, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `https://helix-ed.org/classes/${encodeURIComponent(course.slug.current)}`,
+        item: {
+            "@type": "Course",
+            name: course.title,
+            description: course.description,
+            provider: { "@type": "Organization", name: "Helix-Ed", url: "https://helix-ed.org/" },
+        },
+    })),
+}} />
 
 <main>
     <section class="hero" aria-labelledby="page-title">
@@ -23,40 +39,40 @@
 
     <section class="courses-section" aria-label="Course catalog">
         <div class="courses-container">
-            {#if $openCourses.length > 0}
+            {#if data.openCourses.length > 0}
                 <section class="courses-group" aria-labelledby="open-courses-title">
                     <header class="group-header">
                         <div class="group-icon open"><CheckCircle size={24} weight="bold" aria-hidden="true" /></div>
                         <div>
                             <div class="title-row">
                                 <h2 id="open-courses-title">Open for registration</h2>
-                                <span class="count">{$openCourses.length} {$openCourses.length === 1 ? 'course' : 'courses'}</span>
+                                <span class="count">{data.openCourses.length} {data.openCourses.length === 1 ? 'course' : 'courses'}</span>
                             </div>
                             <p>Choose a course and view its full schedule, syllabus, and enrollment details.</p>
                         </div>
                     </header>
                     <div class="courses-list">
-                        {#each $openCourses as course}
+                        {#each data.openCourses as course}
                             <CourseCard courseData={course} />
                         {/each}
                     </div>
                 </section>
             {/if}
 
-            {#if $closedCourses.length > 0}
+            {#if data.closedCourses.length > 0}
                 <section class="courses-group closed-group" aria-labelledby="closed-courses-title">
                     <header class="group-header">
                         <div class="group-icon closed"><LockKey size={23} weight="bold" aria-hidden="true" /></div>
                         <div>
                             <div class="title-row">
                                 <h2 id="closed-courses-title">Past courses</h2>
-                                <span class="count">{$closedCourses.length} {$closedCourses.length === 1 ? 'course' : 'courses'}</span>
+                                <span class="count">{data.closedCourses.length} {data.closedCourses.length === 1 ? 'course' : 'courses'}</span>
                             </div>
                             <p>Registration has ended for these courses. Check back for future offerings.</p>
                         </div>
                     </header>
                     <div class="courses-list">
-                        {#each $closedCourses as course}
+                        {#each data.closedCourses as course}
                             <CourseCard courseData={course} />
                         {/each}
                     </div>

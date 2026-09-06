@@ -1,7 +1,8 @@
-<svelte:head>
-    <title>Recruiting | Helix-Ed</title>
-    <meta name="description" content="Join Helix-Ed's team — we're seeking passionate instructors, TAs, social media managers, and moderators." />
-</svelte:head>
+<script lang="ts">
+    import Seo from "$lib/components/Seo.svelte";
+</script>
+
+<Seo title="Recruiting | Helix-Ed" description="Join Helix-Ed's team — we're seeking passionate instructors, TAs, social media managers, and moderators." />
 
 <div class="container">
     <div class="hero-section">

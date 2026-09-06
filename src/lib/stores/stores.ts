@@ -1,5 +1,4 @@
 import { writable } from 'svelte/store';
-import { dev } from '$app/environment';
 import { client } from './sanityClient';
 import type { Instructor, Course } from '$lib/types';
 
@@ -13,7 +12,6 @@ export const openCourses = writable<Course[]>([]);
 export const closedCourses = writable<Course[]>([]);
 
 export const featuredSubjects = writable<string[]>([]);
-
 
 export async function fetchInstructors() {
     const query = `*[_type == "instructor"]{..., "imageUrl": image.asset->url}`;
@@ -33,23 +31,12 @@ export async function fetchCourses() {
 }
 
 export async function fetchFeaturedSubjects() {
-    const query = `*[_type == "uiCopy"][0].featuredSubjects`;
-    const data: string[] = await client.fetch(query);
-    featuredSubjects.set(data || []);
+    const data = await client.fetch<string[] | null>(
+        `*[_type == "uiCopy"][0].featuredSubjects`,
+    );
+    featuredSubjects.set(data ?? []);
 }
 
-instructors.subscribe((value) => {
-  if (dev) {
-    console.log('Updated instructors:', value);
-  }
-});
-
-courses.subscribe((value) => {
-  if (dev) {
-    console.log('Updated courses:', value);
-  }
-});
-
-fetchInstructors();
-fetchCourses();
-fetchFeaturedSubjects();
+// Navbar data is intentionally loaded in the background so it never blocks a
+// page response or client-side navigation.
+void fetchFeaturedSubjects();

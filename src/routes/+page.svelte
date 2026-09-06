@@ -12,6 +12,7 @@
     import UniversityMarquee from "$lib/components/UniversityMarquee.svelte";
     import { goto } from "$app/navigation";
     import type { PageData } from "./$types";
+    import Seo from "$lib/components/Seo.svelte";
 
     export let data: PageData;
 
@@ -40,10 +41,10 @@
     let magnetButtonEl: HTMLButtonElement;
 </script>
 
-<svelte:head>
-    <title>Helix-Ed | University-Led Education for Academic Success</title>
-    <meta name="description" content="Affordable, high-level education from university students for middle and high school students in science, math, and more!" />
-</svelte:head>
+<Seo
+    title="Helix-Ed | University-Led Education for Academic Success"
+    description="Affordable, high-level education from university students for middle and high school students in science, math, and more!"
+/>
 
 <body>
     <section id="landing-section">

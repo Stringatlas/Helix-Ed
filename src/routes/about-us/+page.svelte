@@ -3,13 +3,13 @@
     import berkeley from "$lib/images/ucberkeley.jpg";
 
     import InstructorCard from "$lib/components/InstructorCard.svelte";
-    import { tas, teachers, officers } from "$lib/stores/stores";
+    import Seo from "$lib/components/Seo.svelte";
+    import type { PageData } from "./$types";
+
+    export let data: PageData;
 </script>
 
-<svelte:head>
-    <title>About Us | Helix-Ed</title>
-    <meta name="description" content="Learn about Helix-Ed's mission to bring academic excellence to every student through university-led education." />
-</svelte:head>
+<Seo title="About Us | Helix-Ed" description="Learn about Helix-Ed's mission to bring academic excellence to every student through university-led education." />
 
 <main>
     <section id="title">
@@ -50,14 +50,14 @@
     <h1>Our Team</h1>
     <h2>Founders</h2>
     <div>
-        {#each $officers as instructor}
+        {#each data.officers as instructor}
             <InstructorCard instructorData={instructor} />
         {/each}
     </div>
 
     <h2>Our Instructors</h2>
     <div>
-        {#each $teachers as instructor}
+        {#each data.teachers as instructor}
             {#if !instructor.officer}
                 <InstructorCard instructorData={instructor} />
             {/if}
@@ -66,7 +66,7 @@
 
     <h2>Our TAs</h2>
     <div>
-        {#each $tas as instructor}
+        {#each data.tas as instructor}
             <InstructorCard instructorData={instructor} />
         {/each}
     </div>

@@ -1,7 +1,8 @@
-<svelte:head>
-    <title>Privacy Policy | Helix-Ed</title>
-    <meta name="description" content="Helix-Ed's privacy policy — how we use Google Analytics and what data is collected." />
-</svelte:head>
+<script lang="ts">
+    import Seo from "$lib/components/Seo.svelte";
+</script>
+
+<Seo title="Privacy Policy | Helix-Ed" description="Helix-Ed's privacy policy — how we use Google Analytics and what data is collected." />
 
 <div>
     <h1>Privacy Policy</h1>

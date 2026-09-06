@@ -1,19 +1,16 @@
 <script lang="ts">
-//   import { page } from "$app/stores";
-  import { page } from "$app/stores";
-  import { capitalizeFirstLetter } from "$lib/util";
-  import { teachers, tas, courses } from "$lib/stores/stores";
-  import type { Instructor, Course } from "$lib/types";
+  import type { Instructor } from "$lib/types";
   import InstructorCard from "$lib/components/InstructorCard.svelte";
+  import Seo from "$lib/components/Seo.svelte";
+  import JsonLd from "$lib/components/JsonLd.svelte";
+  import type { PageData } from "./$types";
 
-  let slug: string | undefined;
+  export let data: PageData;
+
   let subjectTeachers: Instructor[] = [];
   let subjectTAs: Instructor[] = [];
-  let course: Course | undefined;
+  $: course = data.course;
 
-  $: slug = $page.params.slug;
-  $: course = $courses.find((c) => c.slug.current == slug);
-  
   $: {
     let subject = course?.subject ?? "";
     subjectTeachers = [];
@@ -22,17 +19,19 @@
     // Find instructors and TAs for this course in the same order as listed in Sanity
     if (course?.instructors) {
       course.instructors.forEach((name) => {
-        const teacher = $teachers.find(
+        const teacher = data.instructors.find(
           (instructor) =>
             instructor.name === name &&
+            instructor.role === "Teacher" &&
             instructor.subjects &&
             instructor.subjects.some((s) => s.toLowerCase() === subject.toLowerCase())
         );
         if (teacher) subjectTeachers.push(teacher);
         
-        const ta = $tas.find(
+        const ta = data.instructors.find(
           (instructor) =>
             instructor.name === name &&
+            instructor.role === "TA" &&
             instructor.subjects &&
             instructor.subjects.some((s) => s.toLowerCase() === subject.toLowerCase())
         );
@@ -42,15 +41,18 @@
   }
 </script>
 
-<svelte:head>
-  {#if course}
-    <title>{course.title} | Helix-Ed</title>
-    <meta name="description" content="{course.title} at Helix-Ed — {course.description}" />
-  {:else}
-    <title>Course Not Found | Helix-Ed</title>
-    <meta name="description" content="Sorry, we couldn't find that course at Helix-Ed." />
-  {/if}
-</svelte:head>
+<Seo
+  title={`${course.title} | Helix-Ed`}
+  description={`${course.title} at Helix-Ed — ${course.description}`}
+  image={course.posterUrl || "https://helix-ed.org/logo.png"}
+/>
+<JsonLd data={{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  name: course.title,
+  description: course.description,
+  provider: { "@type": "Organization", name: "Helix-Ed", url: "https://helix-ed.org/" },
+}} />
 
 <main>
   {#if course}
@@ -145,14 +147,6 @@
             </div>
           {/each}
         </div>
-      </div>
-    </section>
-  {:else}
-    <section id="not-found">
-      <div class="not-found-content">
-        <h1>Course Not Found</h1>
-        <p>Sorry, we couldn't find a course with the identifier: <strong>{slug}</strong></p>
-        <a href="/enroll" class="action-button primary">View All Courses</a>
       </div>
     </section>
   {/if}
@@ -440,41 +434,6 @@
         }
     }
 
-    #not-found {
-        padding: 6rem 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 60vh;
-        
-        .not-found-content {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
-            padding: 4rem;
-            max-width: 500px;
-            
-            h1 {
-                font-size: 2.5rem;
-                color: $accent;
-                margin-bottom: 1rem;
-            }
-            
-            p {
-                color: $text-color;
-                font-size: 1.1rem;
-                line-height: 1.6;
-                margin-bottom: 2rem;
-                
-                strong {
-                    color: $primary;
-                }
-            }
-        }
-    }
-
     @media (max-width: $mobile-width) {
         #hero-section {
             padding: 2rem 1rem;
@@ -566,20 +525,5 @@
             }
         }
         
-        #not-found {
-            padding: 3rem 1rem;
-            
-            .not-found-content {
-                padding: 2.5rem 1.5rem;
-                
-                h1 {
-                    font-size: 2rem;
-                }
-                
-                p {
-                    font-size: 1rem;
-                }
-            }
-        }
     }
 </style>

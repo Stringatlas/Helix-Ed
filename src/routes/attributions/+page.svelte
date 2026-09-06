@@ -1,7 +1,8 @@
-<svelte:head>
-    <title>Attributions | Helix-Ed</title>
-    <meta name="description" content="Attributions for icons and images used on the Helix-Ed website." />
-</svelte:head>
+<script lang="ts">
+    import Seo from "$lib/components/Seo.svelte";
+</script>
+
+<Seo title="Attributions | Helix-Ed" description="Attributions for icons and images used on the Helix-Ed website." />
 
 <div>
     <a href="https://www.flaticon.com/free-icons/school" title="school icons">School icons created by nawicon - Flaticon</a>

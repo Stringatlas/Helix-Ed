@@ -1,4 +1,6 @@
 <script lang="ts">
+    import Seo from "$lib/components/Seo.svelte";
+
     // Obfuscated email addresses to prevent spam bots
     const contactEmailUser = 'helixed.org';
     const zelleEmailUser = 'helixed.org';
@@ -9,10 +11,7 @@
     }
 </script>
 
-<svelte:head>
-    <title>Contact Us | Helix-Ed</title>
-    <meta name="description" content="Contact Helix-Ed to learn more about our courses or support our vision as a 501(c)(3) non-profit organization." />
-</svelte:head>
+<Seo title="Contact Us | Helix-Ed" description="Contact Helix-Ed to learn more about our courses or support our vision as a 501(c)(3) non-profit organization." />
 
 <main>
     <section class="contact-section">
