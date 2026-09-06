@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { CheckCircle, LockKey, Sparkle } from "phosphor-svelte";
     import CourseCard from "$lib/components/CourseCard.svelte";
     import { openCourses, closedCourses } from "$lib/stores/stores";
 </script>
@@ -9,42 +10,57 @@
 </svelte:head>
 
 <main>
-    <section id="hero-section">
+    <section class="hero" aria-labelledby="page-title">
         <div class="hero-content">
-            <h1>Our Courses</h1>
-            <h2>Discover your passion through our expertly crafted curriculum</h2>
-            <p>Join students from around the world in our interactive, engaging courses taught by instructors from top universities.</p>
+            <div class="eyebrow">
+                <Sparkle size={18} weight="fill" aria-hidden="true" />
+                <span>Learn with Helix-Ed</span>
+            </div>
+            <h1 id="page-title">Find your next course</h1>
+            <p>Explore interactive courses designed by instructors from top universities and learn alongside students from around the world.</p>
         </div>
     </section>
 
-    <section id="courses-section">
+    <section class="courses-section" aria-label="Course catalog">
         <div class="courses-container">
             {#if $openCourses.length > 0}
-                <div class="courses-group">
-                    <h3 class="group-title">
-                        <span class="status-indicator open"></span>
-                        Registration Open
-                    </h3>
-                    <div class="courses-grid">
+                <section class="courses-group" aria-labelledby="open-courses-title">
+                    <header class="group-header">
+                        <div class="group-icon open"><CheckCircle size={24} weight="bold" aria-hidden="true" /></div>
+                        <div>
+                            <div class="title-row">
+                                <h2 id="open-courses-title">Open for registration</h2>
+                                <span class="count">{$openCourses.length} {$openCourses.length === 1 ? 'course' : 'courses'}</span>
+                            </div>
+                            <p>Choose a course and view its full schedule, syllabus, and enrollment details.</p>
+                        </div>
+                    </header>
+                    <div class="courses-list">
                         {#each $openCourses as course}
                             <CourseCard courseData={course} />
                         {/each}
                     </div>
-                </div>
+                </section>
             {/if}
 
             {#if $closedCourses.length > 0}
-                <div class="courses-group">
-                    <h3 class="group-title">
-                        <span class="status-indicator closed"></span>
-                        Registration Closed
-                    </h3>
-                    <div class="courses-grid">
+                <section class="courses-group closed-group" aria-labelledby="closed-courses-title">
+                    <header class="group-header">
+                        <div class="group-icon closed"><LockKey size={23} weight="bold" aria-hidden="true" /></div>
+                        <div>
+                            <div class="title-row">
+                                <h2 id="closed-courses-title">Past courses</h2>
+                                <span class="count">{$closedCourses.length} {$closedCourses.length === 1 ? 'course' : 'courses'}</span>
+                            </div>
+                            <p>Registration has ended for these courses. Check back for future offerings.</p>
+                        </div>
+                    </header>
+                    <div class="courses-list">
                         {#each $closedCourses as course}
                             <CourseCard courseData={course} />
                         {/each}
                     </div>
-                </div>
+                </section>
             {/if}
         </div>
     </section>
@@ -52,136 +68,155 @@
 
 <style lang="scss">
     main {
-        background: linear-gradient(135deg, $background-color 0%, rgba($primary, 0.05) 50%, rgba($secondary, 0.1) 100%);
         min-height: calc(100vh - $nav-height);
-        padding: 0;
+        background: $background-color;
     }
 
-    #hero-section {
-        padding: 4rem 2rem;
+    .hero {
+        padding: 5rem 2rem 4.5rem;
+        background: #fff;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .hero-content {
+        max-width: 920px;
+        margin: 0 auto;
+    }
+
+    .eyebrow {
         display: flex;
         align-items: center;
-        justify-content: center;
-        text-align: center;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        
-        .hero-content {
-            max-width: 800px;
-            
-            h1 {
-                font-size: 3.5rem;
-                margin-bottom: 1.5rem;
-                color: $accent;
-                font-weight: 700;
-                position: relative;
-                
-                @include underline-header
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-                color: lighten($accent, 20%);
-                margin-bottom: 1.5rem;
-                font-weight: 400;
-                line-height: 1.4;
-            }
-            
-            p {
-                font-size: 1.1rem;
-                color: $text-color;
-                line-height: 1.6;
-                margin-bottom: 0;
-                opacity: 0.9;
-            }
+        gap: 0.55rem;
+        margin-bottom: 1.1rem;
+        color: #087c16;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+    }
+
+    h1 {
+        max-width: 760px;
+        margin: 0 0 1.2rem;
+        color: $accent;
+        font-size: clamp(2.6rem, 6vw, 4.5rem);
+        font-weight: 750;
+        letter-spacing: -0.045em;
+        line-height: 1.02;
+    }
+
+    .hero-content > p {
+        max-width: 720px;
+        margin: 0;
+        color: #526174;
+        font-size: clamp(1rem, 2vw, 1.18rem);
+        line-height: 1.7;
+    }
+
+    .courses-section {
+        padding: 4rem 2rem 5rem;
+    }
+
+    .courses-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .courses-group + .courses-group {
+        margin-top: 5rem;
+        padding-top: 4rem;
+        border-top: 1px solid #dbe3ec;
+    }
+
+    .group-header {
+        display: grid;
+        grid-template-columns: 48px minmax(0, 1fr);
+        gap: 1rem;
+        align-items: start;
+        margin-bottom: 1.75rem;
+    }
+
+    .group-icon {
+        display: grid;
+        width: 46px;
+        height: 46px;
+        place-items: center;
+        border: 1px solid;
+        border-radius: 12px;
+
+        &.open {
+            color: #087c16;
+            background: #edfaef;
+            border-color: #bee7c3;
+        }
+
+        &.closed {
+            color: #64748b;
+            background: #f1f5f9;
+            border-color: #dbe3ec;
         }
     }
 
-    #courses-section {
-        padding: 4rem 2rem;
-        
-        .courses-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-    }
+    .title-row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin: 0.05rem 0 0.4rem;
 
-    .courses-group {
-        margin-bottom: 4rem;
-        
-        .group-title {
-            display: flex;
-            align-items: center;
-            font-size: 2rem;
-            font-weight: 600;
+        h2 {
+            margin: 0;
             color: $accent;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid rgba($primary, 0.2);
-            
-            .status-indicator {
-                width: 16px;
-                height: 16px;
-                border-radius: 50%;
-                margin-right: 1rem;
-                
-                &.open {
-                    background: linear-gradient(135deg, $primary, lighten($primary, 20%));
-                    box-shadow: 0 0 10px rgba($primary, 0.3);
-                }
-                
-                &.closed {
-                    background: linear-gradient(135deg, #ef4444, #f87171);
-                    box-shadow: 0 0 10px rgba(#ef4444, 0.3);
-                }
-            }
-        }
-        
-        .courses-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            font-size: clamp(1.45rem, 3vw, 1.85rem);
+            line-height: 1.2;
         }
     }
-    
+
+    .count {
+        padding: 0.28rem 0.6rem;
+        color: #526174;
+        background: #e9eef4;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 700;
+    }
+
+    .group-header p {
+        margin: 0;
+        color: #64748b;
+        font-size: 0.94rem;
+        line-height: 1.55;
+    }
+
+    .courses-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
     @media (max-width: $mobile-width) {
-        #hero-section {
-            padding: 3rem 1.5rem;
-            
-            .hero-content {
-                h1 {
-                    font-size: 2.5rem;
-                    margin-bottom: 1rem;
-                }
-                
-                h2 {
-                    font-size: 1.3rem;
-                    margin-bottom: 1rem;
-                }
-                
-                p {
-                    font-size: 1rem;
-                }
-            }
+        .hero {
+            padding: 3.5rem 1.25rem 3rem;
         }
-        
-        #courses-section {
-            padding: 2rem 1rem;
+
+        .courses-section {
+            padding: 2.75rem 1rem 4rem;
         }
-        
-        .courses-group {
-            .group-title {
-                font-size: 1.5rem;
-                margin-bottom: 1.5rem;
-            }
-            
-            .courses-grid {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-            }
+
+        .courses-group + .courses-group {
+            margin-top: 3.5rem;
+            padding-top: 3rem;
         }
-    
+
+        .group-header {
+            grid-template-columns: 40px minmax(0, 1fr);
+            gap: 0.75rem;
+        }
+
+        .group-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+        }
     }
 </style>

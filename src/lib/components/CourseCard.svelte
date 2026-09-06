@@ -1,321 +1,192 @@
 <script lang="ts">
-    import { goto } from "$app/navigation";
+    import { ArrowRight, Books, CalendarBlank, LockKey } from "phosphor-svelte";
     import type { Course } from "$lib/types";
 
     export let courseData: Course;
-
-    let isHovered = false;
 </script>
 
-<div 
-    class="card" 
-    class:hovered={isHovered}
-    on:mouseenter={() => isHovered = true}
-    on:mouseleave={() => isHovered = false}
-    role="button" 
-    tabindex="0"
-    on:click={() => courseData.registrationOpen && goto("/classes/" + courseData.slug.current)}
-    on:keydown={(e) => e.key === 'Enter' && courseData.registrationOpen && goto("/classes/" + courseData.slug.current)}
->
-    <!-- Status Badge -->
-    <div class="status-badge" class:open={courseData.registrationOpen} class:closed={!courseData.registrationOpen}>
-        <div class="status-indicator"></div>
-        <span class="status-text">
-            {courseData.registrationOpen ? 'Open' : 'Closed'}
-        </span>
+<article class:closed={!courseData.registrationOpen} class="card">
+    <div class="card-main">
+        <div class="course-eyebrow">
+            <Books size={17} weight="bold" aria-hidden="true" />
+            <span>{courseData.subject}</span>
+            <span class="separator" aria-hidden="true">•</span>
+            <span>{courseData.season}</span>
+        </div>
+
+        <h3 class="course-title">{courseData.title}</h3>
+
+        <div class="course-date">
+            <CalendarBlank size={19} weight="bold" aria-hidden="true" />
+            <span>{courseData.dates}</span>
+        </div>
+
+        <p class="course-description">{courseData.content}</p>
     </div>
 
-    <!-- Card Content -->
-    <div class="card-content">
-        <div class="course-header">
-            <h1 class="course-title">{courseData.season} {courseData.title}</h1>
-            <h2 class="course-dates">{courseData.dates}</h2>
-        </div>
-
-        <div class="course-description">
-            <p>{courseData.content}</p>
-        </div>
-
-        <div class="card-footer">
-            {#if courseData.registrationOpen}
-                <button 
-                    class="enroll-button"
-                    on:click|stopPropagation={() => goto("/classes/" + courseData.slug.current)}
-                >
-                    View Course Details
-                    <span class="button-icon">→</span>
-                </button>
-            {:else}
-                <div class="closed-notice">
-                    <span class="closed-text">Registration Closed</span>
-                    <p class="closed-subtext">Check back for future offerings</p>
+    <div class="card-action">
+        {#if courseData.registrationOpen}
+            <a class="details-link" href={'/classes/' + courseData.slug.current}>
+                <span>View course</span>
+                <ArrowRight size={19} weight="bold" aria-hidden="true" />
+            </a>
+        {:else}
+            <div class="closed-notice">
+                <LockKey size={20} weight="bold" aria-hidden="true" />
+                <div>
+                    <strong>Registration closed</strong>
+                    <span>Check back for future offerings</span>
                 </div>
-            {/if}
-        </div>
+            </div>
+        {/if}
     </div>
-
-    <!-- Decorative Elements -->
-    <div class="card-glow" class:visible={isHovered}></div>
-    <div class="corner-accent"></div>
-</div>
+</article>
 
 <style lang="scss">
     .card {
-        position: relative;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 20px;
-        padding: 0;
-        overflow: hidden;
-        cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 
-            0 4px 20px rgba(0, 0, 0, 0.08),
-            0 1px 3px rgba(0, 0, 0, 0.1);
-        
-        &:hover, &.hovered {
-            transform: translateY(-4px) scale(1.01);
-            box-shadow: 
-                0 8px 20px rgba(0, 0, 0, 0.08),
-                0 4px 8px rgba($primary, 0.1);
-            background: rgba(255, 255, 255, 0.9);
-            border-color: rgba($primary, 0.2);
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 210px;
+        align-items: center;
+        gap: 2rem;
+        padding: 2rem;
+        background: #fff;
+        border: 1px solid #dbe3ec;
+        border-left: 4px solid $primary;
+        border-radius: 14px;
+        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+
+        &:hover {
+            border-color: #c5d0dc;
+            border-left-color: $primary;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+            transform: translateY(-2px);
         }
-        
-        &:active {
-            transform: translateY(-2px) scale(1.005);
+
+        &.closed {
+            border-left-color: #94a3b8;
+            box-shadow: none;
+
+            &:hover {
+                border-color: #dbe3ec;
+                border-left-color: #94a3b8;
+                transform: none;
+            }
         }
     }
 
-    .status-badge {
-        position: absolute;
-        top: 20px;
-        right: 20px;
+    .course-eyebrow {
         display: flex;
         align-items: center;
-        padding: 8px 14px;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        z-index: 10;
-        transition: all 0.3s ease;
-        
-        .status-indicator {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            margin-right: 8px;
-            transition: all 0.3s ease;
-        }
-        
-        .status-text {
-            font-weight: 600;
-        }
-        
-        &.open {
-            background: linear-gradient(135deg, rgba($primary, 0.9) 0%, rgba($primary, 0.7) 100%);
-            color: white;
-            box-shadow: 0 4px 12px rgba($primary, 0.3);
-            
-            .status-indicator {
-                background: rgba(255, 255, 255, 0.9);
-                box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-            }
-        }
-        
-        &.closed {
-            background: linear-gradient(135deg, rgba(#ef4444, 0.9) 0%, rgba(#ef4444, 0.7) 100%);
-            color: white;
-            box-shadow: 0 4px 12px rgba(#ef4444, 0.3);
-            
-            .status-indicator {
-                background: rgba(255, 255, 255, 0.9);
-            }
+        gap: 0.45rem;
+        margin-bottom: 0.65rem;
+        color: #52705b;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+
+        .separator {
+            color: #aab6c2;
         }
     }
 
-    .card-content {
-        padding: 30px;
-        height: 100%;
+    .course-title {
+        margin: 0 0 0.75rem;
+        color: $accent;
+        font-size: clamp(1.35rem, 2vw, 1.7rem);
+        font-weight: 700;
+        line-height: 1.25;
+    }
+
+    .course-date {
         display: flex;
-        flex-direction: column;
-    }
-
-    .course-header {
-        margin-bottom: 20px;
-        
-        .course-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: $accent;
-            margin-bottom: 8px;
-            line-height: 1.3;
-            transition: color 0.3s ease;
-        }
-        
-        .course-dates {
-            font-size: 1rem;
-            font-weight: 500;
-            color: lighten($accent, 30%);
-            margin: 0;
-            opacity: 0.8;
-        }
+        align-items: center;
+        gap: 0.55rem;
+        margin-bottom: 1rem;
+        color: #475569;
+        font-size: 0.92rem;
+        font-weight: 600;
     }
 
     .course-description {
-        flex-grow: 1;
-        margin-bottom: 24px;
-        
-        p {
-            color: $text-color;
-            line-height: 1.6;
-            font-size: 1rem;
-            margin: 0;
-            opacity: 0.9;
-        }
+        max-width: 760px;
+        margin: 0;
+        color: #526174;
+        font-size: 0.98rem;
+        line-height: 1.65;
     }
 
-    .card-footer {
-        margin-top: auto;
+    .card-action {
+        padding-left: 2rem;
+        border-left: 1px solid #e5eaf0;
     }
 
-    .enroll-button {
-        width: 100%;
-        padding: 14px 24px;
-        font-size: 1rem;
-        font-weight: 600;
+    .details-link {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
-        border-radius: 12px;
-        transition: all 0.3s ease;
-        
-        @include button-primary;
+        gap: 0.55rem;
+        min-height: 46px;
+        padding: 0 1.15rem;
+        color: #052e09;
+        background: $primary;
+        border: 1px solid darken($primary, 5%);
+        border-radius: 9px;
+        font-size: 0.92rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: background 0.2s ease, box-shadow 0.2s ease;
 
-        .button-icon {
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-        
         &:hover {
-            transform: none; // Override the mixin transform
-            box-shadow: 0 4px 12px rgba($primary, 0.3);
-            
-            .button-icon {
-                transform: translateX(2px);
-            }
+            background: darken($primary, 4%);
+            box-shadow: 0 5px 12px rgba($dark-green, 0.18);
+        }
+
+        &:focus-visible {
+            outline: 3px solid rgba($primary, 0.3);
+            outline-offset: 3px;
         }
     }
 
     .closed-notice {
-        text-align: center;
-        padding: 16px;
-        background: rgba(#ef4444, 0.1);
-        border: 1px solid rgba(#ef4444, 0.2);
-        border-radius: 12px;
-        
-        .closed-text {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.65rem;
+        color: #64748b;
+
+        strong,
+        span {
             display: block;
-            color: #dc2626;
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 4px;
         }
-        
-        .closed-subtext {
-            color: lighten(#dc2626, 20%);
-            font-size: 0.85rem;
-            margin: 0;
-            opacity: 0.8;
+
+        strong {
+            margin-bottom: 0.25rem;
+            color: #475569;
+            font-size: 0.9rem;
+        }
+
+        span {
+            font-size: 0.78rem;
+            line-height: 1.45;
         }
     }
 
-    .card-glow {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at center, rgba($primary, 0.1) 0%, transparent 70%);
-        border-radius: 20px;
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        pointer-events: none;
-        
-        &.visible {
-            opacity: 0.6;
-        }
-    }
-
-    .corner-accent {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, rgba($primary, 0.1) 0%, transparent 70%);
-        border-radius: 20px 0 20px 0;
-        pointer-events: none;
-    }
-
-    // Enhanced hover effects for the entire card
-    .card:hover {
-        .course-title {
-            color: $primary;
-        }
-        
-        .status-badge {
-            transform: scale(1.02);
-        }
-        
-        .corner-accent {
-            background: linear-gradient(135deg, rgba($primary, 0.2) 0%, transparent 70%);
-        }
-    }
-
-    @media (max-width: $mobile-width) {
+    @media (max-width: 800px) {
         .card {
-            &:hover, &.hovered {
-                transform: translateY(-2px) scale(1.005);
-            }
+            grid-template-columns: 1fr;
+            gap: 1.35rem;
+            padding: 1.5rem;
         }
-        
-        .status-badge {
-            top: 15px;
-            right: 15px;
-            padding: 6px 10px;
-            font-size: 0.8rem;
+
+        .card-action {
+            padding: 1.25rem 0 0;
+            border-top: 1px solid #e5eaf0;
+            border-left: 0;
         }
-        
-        .card-content {
-            padding: 24px 20px;
-        }
-        
-        .course-header {
-            margin-bottom: 16px;
-            
-            .course-title {
-                font-size: 1.3rem;
-            }
-            
-            .course-dates {
-                font-size: 0.9rem;
-            }
-        }
-        
-        .course-description {
-            margin-bottom: 20px;
-            
-            p {
-                font-size: 0.95rem;
-            }
-        }
-        
-        .enroll-button {
-            padding: 12px 20px;
-            font-size: 0.95rem;
+
+        .closed-notice {
+            align-items: center;
         }
     }
 </style>
