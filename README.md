@@ -4,6 +4,8 @@ Helix-Ed is an online education platform offering personalized STEM and economic
 
 www.helix-ed.org
 
+The `biobrawl` branch contains the BioBrawl website.
+
 ## Tech stack
 
 - **Framework:** SvelteKit with TypeScript
