@@ -1,11 +1,15 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import type { Instructor } from "$lib/types";
   import InstructorCard from "$lib/components/InstructorCard.svelte";
   import Seo from "$lib/components/Seo.svelte";
   import JsonLd from "$lib/components/JsonLd.svelte";
+  import { seedCourse } from "$lib/stores/stores";
   import type { PageData } from "./$types";
 
   export let data: PageData;
+
+  onMount(() => seedCourse(data.course));
 
   let subjectTeachers: Instructor[] = [];
   let subjectTAs: Instructor[] = [];

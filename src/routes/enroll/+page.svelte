@@ -1,11 +1,15 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import { CheckCircle, LockKey, Sparkle } from "phosphor-svelte";
     import CourseCard from "$lib/components/CourseCard.svelte";
     import Seo from "$lib/components/Seo.svelte";
     import JsonLd from "$lib/components/JsonLd.svelte";
+    import { seedCourses } from "$lib/stores/stores";
     import type { PageData } from "./$types";
 
     export let data: PageData;
+
+    onMount(() => seedCourses(data.courses));
 </script>
 
 <Seo title="Our Courses | Helix-Ed" description="Explore Helix-Ed's expertly crafted curriculum — interactive courses taught by instructors from top universities." />

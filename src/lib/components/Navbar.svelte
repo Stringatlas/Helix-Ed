@@ -1,8 +1,9 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { browser } from "$app/environment";
-    import { featuredSubjects } from "$lib/stores/stores";
     import { capitalizeFirstLetter } from "$lib/util";
+
+    export let featuredSubjects: string[] = [];
 
     let bioBrawlLink: string = "";
     if (browser) {
@@ -38,9 +39,9 @@
         <div class={"nav-links" + (mobileMenuOpen ? " active" : "")}>
             <li><a href={bioBrawlLink}>Bio Brawl</a></li>
             <li class="dropdown" on:mouseleave={closeDropdown}>
-                <a id="our-classes" href="/" on:mouseenter={() => {}} on:click|preventDefault={toggleDropdown}>Our classes<span style="font-size: 16px">▼</span></a>
+                <a id="our-classes" href="/" on:mouseenter={openDropdown} on:click|preventDefault={toggleDropdown}>Our classes<span style="font-size: 16px">▼</span></a>
                 <ul class={`dropdown-menu ${isDropdownOpen ? "active" : ""}`}>
-                    {#each $featuredSubjects as subject}
+                    {#each featuredSubjects as subject}
                         <li><a href={`/subjects/${subject.toLowerCase()}`}>{capitalizeFirstLetter(subject)}</a></li>
                     {/each}
                 </ul>

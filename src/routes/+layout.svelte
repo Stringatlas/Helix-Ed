@@ -1,7 +1,14 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import Navbar from "$lib/components/Navbar.svelte";
     import Footer from "$lib/components/Footer.svelte";
     import JsonLd from "$lib/components/JsonLd.svelte";
+    import { seedUICopy } from "$lib/stores/stores";
+    import type { LayoutData } from "./$types";
+
+    export let data: LayoutData;
+
+    onMount(() => seedUICopy(data.uiCopy));
 </script>
 
 <JsonLd data={{
@@ -18,7 +25,7 @@
 }} />
 
 <section id="nav">
-    <Navbar />
+    <Navbar featuredSubjects={data.uiCopy.featuredSubjects} />
 </section>
 
 <div class="page-content">

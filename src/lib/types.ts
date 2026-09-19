@@ -1,5 +1,3 @@
-import type { instructors } from "./stores/stores";
-
 // types from sanityio schemas
 export type Instructor = {
     name: string;
@@ -33,39 +31,6 @@ export type Course = {
     classFormat: string;
 };
 
-// Deprecated types
-/** @deprecated Use Instructor instead */
-export type InstructorData = {
-    name: string;
-    role: string;
-    imagePath: string;
-    bio: string;
-    school: string;
-    additionalRole?: string;
-    officer?: boolean;
-    subject?: string;
-}
-
-/** @deprecated Use Testimonial instead */
-export type TestimonialData = {
-    name: string;
-    quote: string;
-    role: string;
-    imagePath: string;
-}
-
-/** @deprecated Use Course instead */
-export type CourseData = {
-    title: string,
-    season: string, 
-    subject: string,
-    description: string,
-    syllabus: string,
-    registrationForm: string,
-    studentDescription: string,
-    status: string,
-    tuition: number,
-    content: string,
-    poster?: string,
-    dates: string,
-}
+export type UICopy = {
+    featuredSubjects: string[];
+};

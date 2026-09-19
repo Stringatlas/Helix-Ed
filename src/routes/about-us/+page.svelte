@@ -1,12 +1,16 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import classroom from "$lib/images/classroom.jpg";
     import berkeley from "$lib/images/ucberkeley.jpg";
 
     import InstructorCard from "$lib/components/InstructorCard.svelte";
     import Seo from "$lib/components/Seo.svelte";
+    import { seedInstructors } from "$lib/stores/stores";
     import type { PageData } from "./$types";
 
     export let data: PageData;
+
+    onMount(() => seedInstructors(data.instructors));
 </script>
 
 <Seo title="About Us | Helix-Ed" description="Learn about Helix-Ed's mission to bring academic excellence to every student through university-led education." />
