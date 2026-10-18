@@ -9,7 +9,7 @@ BioBrawl is a competitive biology program by Helix-Ed that engages students thro
 - **SvelteKit** — application framework, routing, and server hooks
 - **TypeScript** — typed application code and content models
 - **SCSS** — global styles, shared variables, and component styling
-- **Sanity** — published event, result, and FAQ content
+- **Sanity** — FAQ prose; event metadata and results live in committed JSON
 - **Vite** — local development and production builds
 
 Pages live in `src/routes`, reusable UI in `src/lib/components`, and Sanity queries in `src/lib/stores`.
@@ -24,4 +24,10 @@ source limitations, the canonical snapshot format, validation and remaining work
 
 Run `npm run check`, `npm test`, `npm run build` and `npm run test:offline` before
 opening a PR against **biobrawl**. The offline check proves archive pages build
-without HTTP/TCP access and never publishes its synthetic fixture.
+without HTTP/TCP access and never publishes its synthetic fixture. It also checks
+the prerendered `/live` shell and committed-snapshot fallback.
+
+`/live` polls the scoring app’s public HTTP API from the browser, retains the last
+complete result during outages, and displays update age. A committed current-year
+snapshot replaces live polling on the next page load. See the handoff for polling,
+privacy, timezone and deployment constraints.

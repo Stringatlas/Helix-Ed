@@ -9,7 +9,7 @@
 </script>
 
 <svelte:head>
-    {#if !$page.url.pathname.startsWith('/results/')}
+    {#if !$page.url.pathname.startsWith('/results/') && $page.url.pathname !== '/live'}
         <title>HelixEd BioBrawl</title>
         <meta name="description" content="BioBrawl, the HelixEd biology competition." />
     {/if}

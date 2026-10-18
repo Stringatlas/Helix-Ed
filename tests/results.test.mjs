@@ -50,7 +50,9 @@ test('legacy years preserve published placements without inventing participation
 	assert.equal(archive.kind, 'legacy');
 	assert.deepEqual(archive.legacy.divisions.map(d => d.places[0].team), ['Thiamine', 'Dazzling DNA', 'Wayzata']);
 	for (const year of archiveYears()) {
-		const legacy = readArchive(year).legacy;
+		const archive = readArchive(year);
+		if (archive.kind !== 'legacy') continue;
+		const legacy = archive.legacy;
 		assert.equal(legacy.provenance.unverifiedYear, true);
 		assert.equal('participation' in legacy, false);
 		assert.equal('snapshotVersion' in legacy, false);
@@ -89,7 +91,9 @@ test('a canonical snapshot renders podium, participation, provenance and native 
 });
 test('historical pages clearly retain their limits without publishing placeholder claims', () => {
 	for (const year of archiveYears()) {
-		const html = Page.render({ data: { archive: readArchive(year) } }).html;
+		const archive = readArchive(year);
+		if (archive.kind !== 'legacy') continue;
+		const html = Page.render({ data: { archive } }).html;
 		assert.ok(html.includes('have not been independently verified'));
 		assert.ok(html.includes('Open historical bracket source'));
 		assert.doesNotMatch(html, /<iframe|TKTK|14 teams|56 participants/);
