@@ -2,7 +2,7 @@
 
 This branch targets the existing `Stringatlas/Helix-Ed` **biobrawl** branch at
 `8ca4da0`. It implements the archive slice of BioBrawl scoring's `docs/05` §5–§7
-and `docs/09` §10.4. It does not deploy the site or publish a real 2027 result.
+and `docs/09` §10.4. This is a review branch, not a production release or real 2027 publication.
 
 The new snapshot contract, exact parsers and synthetic test fixture are copied
 unchanged from `Helix-Ed/biobrawl-scoring` commit `57ba9d0` under
@@ -92,6 +92,10 @@ legacy limitations, no iframes/placeholders/CMS preconnect, and hosting header
 configuration. It always removes the disposable directory. No synthetic 2027
 snapshot is committed or deployed under `static/`.
 
+GitHub archive CI and the automatic Vercel preview build both reported success
+on the implementation commit `ff943c4`. Preview status alone does not verify
+production headers, content or publication.
+
 Local Chrome checks on 2026-10-18: 2026 division switching after hydration;
 synthetic snapshot desktop tree; 390 × 844 round accordions, automatic round 6,
 round 7's unneeded reset without scores, and full-tree toggle. The temporary
@@ -99,7 +103,7 @@ preview snapshot was removed and the viewport restored afterward.
 
 ## Still open
 
-Founder/site-maintainer review, CI and an actual Vercel deployment check; real
+Founder/site-maintainer review and an actual production Vercel deployment check; real
 2027 evidence/App setup/results PR; historical bracket/participation
 reconstruction; `/live` HTTP polling and stale/fallback states; complete UTC round
 schedule and visitor-zone display; home/FAQ prerender and registration ISR. Those
