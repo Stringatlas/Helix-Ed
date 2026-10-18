@@ -23,6 +23,13 @@ try {
 	await assert.rejects(access(snapshotPath), 'The proof must not overwrite a committed snapshot');
 	await mkdir(resolve(snapshotPath, '..'), { recursive: true });
 	await writeFile(snapshotPath, JSON.stringify(fixture));
+	// Reserve a different current year for the shell so real current-year
+	// snapshot PRs do not turn this outage assertion into an archive assertion.
+	const initialCatalogPath = join(temp, 'static/data/events.json');
+	const initialCatalog = JSON.parse(await readFile(initialCatalogPath, 'utf8')).map(event => ({ ...event, active: false }));
+	await assert.rejects(access(join(temp, 'static/data/results/2098.json')), 'The proof requires an unarchived test year');
+	initialCatalog.push({ eventID: '2098', year: 2098, name: 'BioBrawl 2098 — synthetic live proof', date: '2098-01-16', active: true });
+	await writeFile(initialCatalogPath, JSON.stringify(initialCatalog));
 	const audit = join(temp, 'network-attempts.log');
 	await writeFile(audit, '');
 	const guard = join(temp, 'scripts/block-network.mjs');
@@ -66,7 +73,29 @@ try {
 	}
 	const config = JSON.parse(await readFile(join(temp, 'vercel.json'), 'utf8'));
 	assert.ok(config.headers.some(route => route.source === '/(.*)' && route.headers.some(header => header.key === 'X-Content-Type-Options' && header.value === 'nosniff')), 'Static security headers must be configured at the hosting layer');
-	console.log('Offline archive proof passed: four prerendered results pages and Vercel static output, zero network attempts.');
+	const shell = await readFile(join(temp, '.svelte-kit/output/prerendered/pages/live.html'), 'utf8');
+	assert.match(shell, /Live results are temporarily unavailable/);
+	assert.match(shell, /Final results will be posted here after the event/);
+	assert.doesNotMatch(shell, /<iframe|cdn\.sanity\.io/);
+	assert.equal((shell.match(/<title>/g) ?? []).length, 1);
+	await access(join(temp, '.vercel/output/static/live.html'));
+	// A second offline build proves that publishing a current-year snapshot
+	// replaces the shell with committed results without contacting the live API.
+	const catalogPath = join(temp, 'static/data/events.json');
+	const catalog = JSON.parse(await readFile(catalogPath, 'utf8')).map(event => ({ ...event, active: false }));
+	catalog.push({ eventID: fixture.eventID, year: fixture.year, name: fixture.name, date: fixture.date, active: true });
+	await writeFile(catalogPath, JSON.stringify(catalog));
+	const archived = spawnSync(process.execPath, [join(root, 'node_modules/vite/bin/vite.js'), 'build'], {
+		cwd: temp, env, encoding: 'utf8', timeout: 120000, maxBuffer: 16 * 1024 * 1024
+	});
+	if (archived.status !== 0) throw new Error(`Offline archive fallback build failed\n${archived.stdout}\n${archived.stderr}`);
+	assert.equal(await readFile(audit, 'utf8'), '', 'Archive fallback build attempted an external request');
+	const fallback = await readFile(join(temp, '.vercel/output/static/live.html'), 'utf8');
+	assert.match(fallback, /Results archive available/);
+	assert.ok(fallback.includes(`/results/${fixture.eventID}`));
+	assert.doesNotMatch(fallback, /Live results are temporarily unavailable/);
+	for (const match of fixture.results.bracketData[0].matches) assert.ok(fallback.includes(`data-slot="${match.id}"`));
+	console.log('Offline proof passed: historical/synthetic archives, live shell and committed-snapshot fallback in Vercel output; zero network attempts.');
 } finally {
 	await rm(temp, { recursive: true, force: true });
 }

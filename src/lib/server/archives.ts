@@ -16,6 +16,7 @@ for (const group of [legacy, snapshots]) {
 		files.set(year, archive);
 	}
 }
+export const activeEvent = () => (catalog as EventData[]).find(event => event.active) ?? null;
 export const archiveYears = () => [...files.keys()].sort();
 export function readArchive(year: string) {
 	return files.get(year) ?? null;

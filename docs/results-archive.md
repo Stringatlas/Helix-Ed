@@ -105,7 +105,70 @@ preview snapshot was removed and the viewport restored afterward.
 
 Founder/site-maintainer review and an actual production Vercel deployment check; real
 2027 evidence/App setup/results PR; historical bracket/participation
-reconstruction; `/live` HTTP polling and stale/fallback states; complete UTC round
+reconstruction; production verification of the live consumer described below; complete UTC round
 schedule and visitor-zone display; home/FAQ prerender and registration ISR. Those
 are the remaining parts of 3.5/3.6/3.10. This branch does not complete their literal
 done-when lines or confirm the actual GitHub App installation/target.
+
+
+## Live consumer (3.5 site phase, stacked after PR #2)
+
+`codex/live-results` starts from the still-open archive branch
+`codex/results-prerender` at `a06ca4e`. Review and merge archive PR #2 first,
+then retarget this phase to `biobrawl`. It does not merge or alter that base PR.
+CI also runs for the temporary stacked base. The established site remains
+Svelte 4; this phase does not attempt a framework upgrade.
+
+`/live` is a prerendered shell. Its server load reads only the active committed
+event and any same-year canonical snapshot. A missing live backend cannot block
+SSR or build. Navigation includes Live results. A same-year snapshot takes
+precedence, renders placements/native brackets and links to the full permanent
+archive; on that page load the browser makes no live request. An already-open
+live tab needs a reload/navigation after the archive deploy to consume it.
+Historical legacy records are not promoted into canonical publication evidence.
+
+Until an archive exists, `live-client.ts` polls only the fixed scoring origin's
+three public v1 HTTP endpoints, without cookies, auth or database libraries.
+Each cycle has a two-second deadline, including response-body parsing, and
+aborts on disposal. Cycles cannot overlap. All three responses must pass the
+copied exact C3 parsers, match the selected event and agree on phase before
+replacing the view. Timestamp materialization may differ across cache refreshes;
+the oldest timestamp labels the view. Mixed phases, backward timestamps,
+far-future timestamps, malformed/failed responses and private-field drift retain
+the last complete view and mark updates unavailable. No upstream body or error
+is rendered. Browser APIs keep their global receiver: copying native timers
+onto the clock object passed Node tests but threw in Chrome; the fixed wrappers
+have a regression test and were checked in the browser.
+
+Poll every ten seconds, or every thirty seconds after competition complete.
+Completion remains reversible, so polling continues and a reopen restores the
+normal interval. It never means results published. The view marks successful
+responses older than sixty seconds stale even if the request itself succeeded.
+During an outage the age continues increasing; a fresh tab has the specified
+static unavailable message. Unmount aborts and excludes late responses/timers.
+
+Standings use the server's ranks/order, pools, ties, ranking points (including
+Pending), provisional states and tiebreak resolutions. The site derives no
+competition outcome. The existing native bracket still renders scores only on
+verified finals. Last-update timestamps display the visitor's zone and Pacific
+event time when different. Published event date/time copy remains explicitly
+Pacific; full UTC round schedule evidence and its visitor-zone schedule block
+are still missing and are not invented here.
+
+Validation on 2026-10-18: 27 tests pass, type checking is clean, Vercel production
+build passes, and the extended offline proof builds both an unarchived live
+shell (temporary test year 2098) and current-year snapshot view (2099), with zero
+HTTP/fetch/TCP attempts. Both test years exist only in disposable build copies.
+Legacy-only assertions now skip canonical archives so a later real snapshot PR
+can pass the suite. Local Chrome checked the real unavailable shell, synthetic
+healthy → outage → recovery, archive precedence, desktop and 390 × 844 layout.
+At 390 px the document stays 390 px wide while the full statistics table scrolls
+inside its own region. Temporary synthetic QA routes were removed and viewport
+restored. Healthy results were injected only in the local QA harness; these
+checks do not establish production API data, DNS, CORS or deployed headers.
+
+Still required: merge/review both site phases, verify real production API/cache/
+CORS and outage recovery on the exact site origin, verify hosting headers,
+provide the full UTC schedule, and finish the other archive/publication gates
+above. Neither this phase nor a successful Vercel preview freezes or publishes
+an event, adds consent, or confirms GitHub App access.

@@ -1,7 +1,7 @@
 name: Site checks
 on:
   pull_request:
-    branches: [biobrawl]
+    branches: [biobrawl, codex/results-prerender]
   push:
     branches: [biobrawl]
 permissions:
