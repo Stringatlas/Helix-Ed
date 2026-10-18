@@ -7,31 +7,34 @@
 
 <div class="register-page">
     <header class="page-header">
-        <h1>Register for BioBrawl {$currentEvent?.eventID}</h1>
+        <h1>{$currentEvent ? `Register for BioBrawl ${$currentEvent.eventID}` : "Registration"}</h1>
         <p class="header-subtitle">Join the ultimate biology competition and showcase your knowledge!</p>
     </header>
     
     <main class="page-content">
-        {#if $currentEvent.registration?.link}
+        {#if $currentEvent?.registration?.link}
             <button 
                 class="register-btn register-btn--primary" 
-                on:click={() => (window.location.href = $currentEvent.registration?.link ?? "/")}
+                on:click={() => (window.location.href = $currentEvent?.registration?.link ?? "/")}
                 aria-label="Register for BioBrawl {$currentEvent?.eventID}"
             >
                 <PersonPlusFill />
                 Register Now
             </button>
-        {:else}
+        {:else if $currentEvent?.registration?.alternativeLink}
             <button 
                 class="register-btn register-btn--secondary" 
-                on:click={() => (window.location.href = $currentEvent.registration?.alternativeLink ?? "/")}
+                on:click={() => (window.location.href = $currentEvent?.registration?.alternativeLink ?? "/")}
                 aria-label="Register for BioBrawl {$currentEvent?.eventID} via alternative link"
             >
                 <PersonPlusFill />
                 Register Here
             </button>
+        {:else}
+            <p>Registration details will be posted here when available.</p>
         {/if}
         
+        {#if $currentEvent}
         <div class="registration-info">
             <div class="info-card">
                 <h3>Registration Details</h3>
@@ -50,6 +53,7 @@
                 </ul>
             </div>
         </div>
+        {/if}
     </main>
 </div>
 

@@ -1,0 +1,39 @@
+{
+  "archiveVersion": 1,
+  "eventID": "2025",
+  "year": 2025,
+  "name": "Bio Brawl 2025",
+  "date": "January 11th, 2025",
+  "location": "Online on Zoom",
+  "divisions": [
+    {
+      "name": "Overall",
+      "places": [
+        {
+          "rank": 1,
+          "team": "Taurine",
+          "award": "200"
+        },
+        {
+          "rank": 2,
+          "team": "Caudates",
+          "award": "120"
+        },
+        {
+          "rank": 3,
+          "team": "Red Queens",
+          "award": "80"
+        }
+      ]
+    }
+  ],
+  "bracketUrl": "https://docs.google.com/spreadsheets/d/1cqFAOtyQB-iQSg53h94A5OLOsTpqoEnCxK1zoP1wZN0/htmlembed",
+  "provenance": {
+    "source": "Published Sanity event j0eueaqb/production/6QBUPMcK7zXHueu6qzhNoo",
+    "revision": "4aFkIy68BZelE6KRG832Go",
+    "sourceUpdatedAt": "2026-08-24T03:33:57Z",
+    "retrievedAt": "2026-10-18T20:21:53Z",
+    "unverifiedYear": true,
+    "notes": "Published placements preserved from the legacy site. Match logs, structured bracket and reconciled participation evidence are unavailable; no verified-event or participation claim is made."
+  }
+}

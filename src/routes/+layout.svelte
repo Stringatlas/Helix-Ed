@@ -2,24 +2,21 @@
     import Footer from "$lib/components/Footer.svelte";
     import BioBrawlNavbar from "$lib/components/Navbar.svelte";
     import "../global.scss";
-    import { onMount } from "svelte";
+    import { page } from "$app/stores";
+    import type { LayoutData } from "./$types";
+    export let data: LayoutData;
     
-    // Prefetch critical routes on mount for better navigation performance
-    onMount(() => {
-        if (typeof window !== 'undefined') {
-            // Prefetch FAQ page after a short delay
-            setTimeout(() => {
-                const link = document.createElement('link');
-                link.rel = 'prefetch';
-                link.href = '/faq';
-                document.head.appendChild(link);
-            }, 2000);
-        }
-    });
 </script>
 
+<svelte:head>
+    {#if !$page.url.pathname.startsWith('/results/')}
+        <title>HelixEd BioBrawl</title>
+        <meta name="description" content="BioBrawl, the HelixEd biology competition." />
+    {/if}
+</svelte:head>
+
 <div class="app-layout">
-    <BioBrawlNavbar />
+    <BioBrawlNavbar events={data.events} />
     
     <main class="main-content">
         <slot></slot>
