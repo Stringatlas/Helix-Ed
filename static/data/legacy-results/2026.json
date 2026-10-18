@@ -1,0 +1,63 @@
+{
+  "archiveVersion": 1,
+  "eventID": "2026",
+  "year": 2026,
+  "name": "Bio Brawl 2026",
+  "date": "Saturday, January 17, 2026",
+  "location": "Online on Zoom",
+  "divisions": [
+    {
+      "name": "High school",
+      "places": [
+        {
+          "rank": 1,
+          "team": "Thiamine",
+          "award": "300"
+        },
+        {
+          "rank": 2,
+          "team": "IgM",
+          "award": "200"
+        }
+      ]
+    },
+    {
+      "name": "Middle School",
+      "places": [
+        {
+          "rank": 1,
+          "team": "Dazzling DNA",
+          "award": "300"
+        },
+        {
+          "rank": 2,
+          "team": "BISV 3",
+          "award": "200"
+        }
+      ]
+    },
+    {
+      "name": "Mock",
+      "places": [
+        {
+          "rank": 1,
+          "team": "Wayzata",
+          "award": "100"
+        },
+        {
+          "rank": 2,
+          "team": "Cortisol & BISV 6"
+        }
+      ]
+    }
+  ],
+  "bracketUrl": "https://docs.google.com/spreadsheets/d/1ZQP0s8jltLpYFIVDTIb6RmDJ8cJwJkwGA9isY_PObqA/htmlembed",
+  "provenance": {
+    "source": "Published Sanity event j0eueaqb/production/f5kLUiibxkkYi2hsAeBPnO",
+    "revision": "XmYu205Nr4T9YyapduEeOk",
+    "sourceUpdatedAt": "2026-08-24T03:20:09Z",
+    "retrievedAt": "2026-10-18T20:21:53Z",
+    "unverifiedYear": true,
+    "notes": "Published placements preserved from the legacy site. Match logs, structured bracket and reconciled participation evidence are unavailable; no verified-event or participation claim is made."
+  }
+}

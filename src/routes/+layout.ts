@@ -1,9 +1,5 @@
-// Enable prerendering for static pages and proper preloading
-export const prerender = false; // Set to true if all pages can be prerendered
-export const ssr = true; // Server-side rendering enabled
-export const csr = true; // Client-side rendering enabled
-
-// Load data for all routes
-export const load = async () => {
-    return {};
-};
+// Marketing routes remain dynamic. Results override this with entries() and
+// prerender=true, including the shared layout and navigation (`05` §6).
+export const prerender = false;
+export const ssr = true;
+export const csr = true;

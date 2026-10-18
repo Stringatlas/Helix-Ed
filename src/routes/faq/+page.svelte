@@ -1,12 +1,16 @@
 <script lang="ts">
     import FaqCard from "$lib/components/FaqCard.svelte";
-    import { faqs } from "$lib/stores/stores";
+    import type { PageData } from "./$types";
+    export let data: PageData;
 </script>
 
 <section class="faq-section">
     <h1 class="faq-title">Frequently Asked Questions</h1>
     <div class="faq-list">
-        {#each $faqs as faq}
+        {#if data.unavailable}
+            <p>FAQs are temporarily unavailable. Contact <a href="mailto:helix-ed.org@gmail.com">helix-ed.org@gmail.com</a> with questions.</p>
+        {/if}
+        {#each data.faqs as faq}
             <FaqCard question={faq.question} answer={faq.answer} />
         {/each}
     </div>
