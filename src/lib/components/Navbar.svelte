@@ -73,6 +73,7 @@
             <a href="https://www.helix-ed.org" role="menuitem">HelixEd</a>
             <a href="/" role="menuitem">Home</a>
             <a href="/faq" role="menuitem">Competition FAQ</a>
+            <a href="/live" role="menuitem">Live results</a>
             
             <div class="dropdown" role="group" on:mouseleave={closeDropdown}>
                 <button 
