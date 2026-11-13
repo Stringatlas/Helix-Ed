@@ -11,7 +11,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
-		"@sveltejs/adapter-vercel": "^4.0.5",
+		"@sveltejs/adapter-vercel": "^5.10.3",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"svelte": "^4.2.7",
@@ -25,5 +25,8 @@
 		"@sanity/client": "^7.6.0",
 		"sass": "^1.77.8",
 		"svelte-bootstrap-icons": "^3.1.1"
+	},
+	"engines": {
+		"node": "26.x"
 	}
 }

@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { goto } from "$app/navigation";
     import { browser } from "$app/environment";
     import { events, currentEvent } from "$lib/stores/stores";
     import { onMount, onDestroy } from "svelte";
@@ -109,13 +108,13 @@
                 </ul>
             </div>
             
-            <button 
+            <a 
                 class="btn-primary" 
-                on:click={() => goto("/register")}
+                href="/register"
                 aria-label="Register for BioBrawl {$currentEvent?.year}"
             >
                 Register for BioBrawl {$currentEvent?.year}
-            </button>
+            </a>
         </div>
 
         <button 
@@ -169,7 +168,7 @@
         align-items: center;
         gap: $spacing-xl;
         
-        a {
+        a:not(.btn-primary) {
             color: $text-color;
             font-weight: 500;
             font-size: $font-size-base;
@@ -304,7 +303,7 @@
                 display: flex;
             }
             
-            a {
+            a:not(.btn-primary) {
                 font-size: $font-size-lg;
                 padding: $spacing-md 0;
                 text-align: center;

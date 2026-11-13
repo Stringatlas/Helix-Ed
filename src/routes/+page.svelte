@@ -1,8 +1,11 @@
 <script lang="ts">
-    import { goto } from "$app/navigation";
     import { currentEvent } from "$lib/stores/stores";
     import { onMount } from "svelte";
     import { FileTextFill } from "svelte-bootstrap-icons";
+
+    $: scheduleItems = ($currentEvent?.schedule ?? []).filter(
+        (i) => i?.label?.trim() && i?.when?.trim()
+    );
 
     onMount(() => {
         console.log('Current Event:', $currentEvent);
@@ -39,14 +42,28 @@
 
     <div class="main-content">
         <div class="content-primary">
+            {#if $currentEvent.description?.trim()}
+                <p class="about-text summary-text">{$currentEvent.description.trim()}</p>
+            {/if}
+
             <h2 class="section-title">Rules</h2>
             <a href={$currentEvent.rules} class="rules-link">
                 <FileTextFill /> 
-                View our rules
+                Read the Information Document
             </a>
             
             <h2 class="section-title">Important Dates</h2>
             <ul class="dates-list">
+                {#if scheduleItems.length}
+                    {#each scheduleItems as item, index (item._key ?? index)}
+                        <li>
+                            <strong>{item.label}:</strong> {item.when}
+                            {#if item.note?.trim()}
+                                <span class="schedule-note">({item.note.trim()})</span>
+                            {/if}
+                        </li>
+                    {/each}
+                {:else}
                 {#if !$currentEvent.registration?.isOpen}
                     <li><strong>Registration opens:</strong> {$currentEvent.registration?.opens}</li>
                 {/if}
@@ -56,11 +73,12 @@
                 <li><strong>Registration deadline:</strong> {$currentEvent.registration?.closes}</li>
                 <li><strong>Mock competition:</strong> {$currentEvent.mock?.date}</li>
                 <li><strong>Competition:</strong> {$currentEvent.date}, {$currentEvent.time}</li>
+                {/if}
             </ul>
 
             <h2 class="section-title">About Us</h2>
             <p class="about-text">
-                The BioBrawl Biology Bowl is a dynamic, student-led competition debuting in 2024, designed to ignite curiosity and passion for the life sciences. Through a quiz bowl-like format, BioBrawl
+                The BioBrawl Biology Bowl is a dynamic, student-led competition debuting in 2024, designed to ignite curiosity and passion for the life sciences. BioBrawl
                 covers a wide range of topics, including human anatomy, physiology, pathology, botany, zoology, evolution, cell biology, genetics, ecology, and ethology. Our mission is to inspire students
                 to explore the frontiers of science and discover the endless possibilities within the life sciences.
             </p>
@@ -80,42 +98,7 @@
 
             <div class="info-card">
                 <h3 class="card-title">Where</h3>
-                <p class="card-text">{$currentEvent.location}, {$currentEvent.time}</p>
-            </div>
-
-            <div class="info-card">
-                <h3 class="card-title">Registration fee</h3>
-                <p class="card-text">${$currentEvent.registrationFee} / team</p>
-            </div>
-            
-            <div class="info-card prizes-card">
-                <h3 class="card-title">Prizes per division</h3>
-                <div class="prizes-list">
-                    <div class="prize-item">
-                        <span class="prize-place">1st Place:</span>
-                        <span class="prize-amount">${$currentEvent.prizes?.first} / team</span>
-                    </div>
-                    <div class="prize-item">
-                        <span class="prize-place">2nd Place:</span>
-                        <span class="prize-amount">${$currentEvent.prizes?.second} / team</span>
-                    </div>
-                    <div class="prize-item">
-                        <span class="prize-place">3rd Place:</span>
-                        <span class="prize-amount">${$currentEvent.prizes?.third} / team</span>
-                    </div>
-                    {#if $currentEvent.prizes?.fourth}
-                        <div class="prize-item">
-                            <span class="prize-place">4th Place:</span>
-                            <span class="prize-amount">${$currentEvent.prizes.fourth} / team</span>
-                        </div>
-                    {/if}
-                    {#if $currentEvent.prizes?.fifth}
-                        <div class="prize-item">
-                            <span class="prize-place">5th Place:</span>
-                            <span class="prize-amount">${$currentEvent.prizes.fifth} / team</span>
-                        </div>
-                    {/if}
-                </div>
+                <p class="card-text">{$currentEvent.location}</p>
             </div>
         </div>
     </div>
@@ -261,6 +244,15 @@
             color: $text-secondary;
             margin-top: $spacing-lg;
         }
+
+        .summary-text {
+            white-space: pre-line;
+            margin-top: 0;
+        }
+
+        .schedule-note {
+            color: $text-muted;
+        }
     }
 
     .content-sidebar {
@@ -304,37 +296,6 @@
             font-size: $font-size-lg;
             color: $text-secondary;
             margin: 0;
-        }
-        
-        &.prizes-card {
-            .prizes-list {
-                display: flex;
-                flex-direction: column;
-                gap: $spacing-md;
-                
-                .prize-item {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    padding: $spacing-sm 0;
-                    border-bottom: 1px solid $border-light;
-                    
-                    &:last-child {
-                        border-bottom: none;
-                    }
-                    
-                    .prize-place {
-                        font-weight: 600;
-                        color: $text-color;
-                    }
-                    
-                    .prize-amount {
-                        font-weight: 700;
-                        color: $primary;
-                        font-size: $font-size-lg;
-                    }
-                }
-            }
         }
     }
 

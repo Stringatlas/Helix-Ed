@@ -8,6 +8,7 @@ export interface EventData {
     time?: string;
     location?: string;
     description?: string;
+    schedule?: { _key?: string; label?: string; when?: string; note?: string }[];
     rules?: string;
     prizes?: {
         first?: string;

@@ -1,5 +1,4 @@
 <script>
-    import { goto } from "$app/navigation";
     import { currentEvent } from "$lib/stores/stores";
     import { PersonPlusFill} from "svelte-bootstrap-icons";
 
@@ -12,44 +11,42 @@
     </header>
     
     <main class="page-content">
-        {#if $currentEvent.registration?.link}
-            <button 
-                class="register-btn register-btn--primary" 
-                on:click={() => (window.location.href = $currentEvent.registration?.link ?? "/")}
-                aria-label="Register for BioBrawl {$currentEvent?.eventID}"
-            >
-                <PersonPlusFill />
-                Register Now
-            </button>
-        {:else}
-            <button 
-                class="register-btn register-btn--secondary" 
-                on:click={() => (window.location.href = $currentEvent.registration?.alternativeLink ?? "/")}
-                aria-label="Register for BioBrawl {$currentEvent?.eventID} via alternative link"
-            >
-                <PersonPlusFill />
-                Register Here
-            </button>
-        {/if}
-        
-        <div class="registration-info">
-            <div class="info-card">
-                <h3>Registration Details</h3>
-                <ul>
-                    <li><strong>Event:</strong> BioBrawl {$currentEvent?.eventID}</li>
-                    <li><strong>Date:</strong> {$currentEvent?.date}</li>
-                    {#if $currentEvent?.time}
-                        <li><strong>Time:</strong> {$currentEvent.time}</li>
-                    {/if}
-                    {#if $currentEvent?.location}
-                        <li><strong>Location:</strong> {$currentEvent.location}</li>
-                    {/if}
-                    {#if $currentEvent?.registrationFee}
-                        <li><strong>Fee:</strong> ${$currentEvent.registrationFee} per team</li>
-                    {/if}
-                </ul>
+        {#if $currentEvent}
+            {#if $currentEvent.registration?.link}
+                <a 
+                    class="register-btn register-btn--primary" 
+                    href={$currentEvent.registration.link}
+                    aria-label="Register for BioBrawl {$currentEvent.eventID}"
+                >
+                    <PersonPlusFill />
+                    Register Now
+                </a>
+            {:else if $currentEvent.registration?.alternativeLink}
+                <a 
+                    class="register-btn register-btn--secondary" 
+                    href={$currentEvent.registration.alternativeLink}
+                    aria-label="Register for BioBrawl {$currentEvent.eventID} via alternative link"
+                >
+                    <PersonPlusFill />
+                    Register Here
+                </a>
+            {/if}
+            
+            <div class="registration-info">
+                <div class="info-card">
+                    <h3>Registration Details</h3>
+                    <ul>
+                        <li><strong>Event:</strong> BioBrawl {$currentEvent.eventID}</li>
+                        {#if $currentEvent.location}
+                            <li><strong>Location:</strong> {$currentEvent.location}</li>
+                        {/if}
+                        {#if $currentEvent.rules}
+                            <li><strong>Schedule, fees and prizes:</strong> <a href={$currentEvent.rules}>Information Document</a></li>
+                        {/if}
+                    </ul>
+                </div>
             </div>
-        </div>
+        {/if}
     </main>
 </div>
 
