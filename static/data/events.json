@@ -20,7 +20,7 @@
     "teamSize": "3-4",
     "grades": "6-12",
     "registration": {
-      "closes": "January 9, 2027",
+      "closes": "Jan. 9, 2027 at 11:59 PM PT",
       "isOpen": true,
       "link": "https://www.zeffy.com/en-US/ticketing/2027-biobrawl-biology-bowl",
       "opens": "Now"
@@ -29,8 +29,31 @@
       "date": "January 2, 2027"
     },
     "rulesWorkshop": {
-      "date": "January 2, 2027"
+      "date": "Dec. 20 or Dec. 26, 2026, 8:30\u20139:00 PM PT"
     },
+    "schedule": [
+      {
+        "label": "Optional Rules Workshop",
+        "when": "Dec. 20 or Dec. 26, 2026, 8:30\u20139:00 PM PT"
+      },
+      {
+        "label": "Optional Mini Mock",
+        "when": "Jan. 2, 2027, 8:30\u20139:30 PM PT"
+      },
+      {
+        "label": "Registration & Roster Change Deadline",
+        "when": "Jan. 9, 2027 at 11:59 PM PT"
+      },
+      {
+        "label": "Buzzer Challenge",
+        "when": "Jan. 16, 2027"
+      },
+      {
+        "label": "Innovation Challenge",
+        "when": "Jan. 22\u201324, 2027",
+        "note": "choose one 30-minute slot, first come, first served"
+      }
+    ],
     "contact": "helix-ed@gmail.com",
     "eventID": "2027"
   },
