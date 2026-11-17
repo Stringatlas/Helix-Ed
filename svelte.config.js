@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-vercel';
 import preprocess from 'svelte-preprocess';
 
 const config = {
@@ -8,9 +8,8 @@ const config = {
         },
     }),
     kit: {
-        adapter: adapter(),
+        adapter: adapter({ runtime: 'nodejs22.x' }),
         prerender: {
-            handleHttpError: 'warn',
             handleMissingId: 'warn'
         },
         alias: {

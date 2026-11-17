@@ -1,15 +1,17 @@
 <script lang="ts">
     import { tick } from 'svelte';
-    import type { EventData } from '$lib/types';
-    import { events } from '$lib/stores/stores';
+    import type { PageData } from './$types';
+    import Bracket from '$lib/components/Bracket.svelte';
     import Podium from '$lib/components/Podium.svelte';
 
-    export let data: { eventID: string };
+    export let data: PageData;
 
     let activeDivision = 0;
 
-    $: eventData = $events.find((event) => event.eventID === data.eventID);
-    $: divisions = eventData?.results?.divisions ?? [];
+    $: snapshot = data.archive.kind === 'snapshot' ? data.archive.snapshot : null;
+    $: legacy = data.archive.kind === 'legacy' ? data.archive.legacy : null;
+    $: eventData = data.archive.kind === 'snapshot' ? data.archive.snapshot : data.archive.legacy;
+    $: divisions = snapshot?.results.divisions ?? legacy?.divisions ?? [];
     $: if (activeDivision >= divisions.length) activeDivision = 0;
 
     async function handleTabKey(event: KeyboardEvent, index: number) {
@@ -28,8 +30,12 @@
     }
 </script>
 
+<svelte:head>
+    <title>{eventData?.name ?? 'Results'} · BioBrawl results</title>
+    <meta name="description" content={`Results and participation record for ${eventData?.name ?? 'BioBrawl'}.`} />
+</svelte:head>
+
 <main class="results-page">
-    {#if eventData && !eventData.active}
         <header class="page-header">
             <h1 class="event-title">{eventData.name}</h1>
             <p class="event-date">{eventData.date}</p>
@@ -78,50 +84,58 @@
                         {/key}
                     </div>
                 {:else}
-                    <Podium
-                        first={eventData.results?.winners?.first}
-                        second={eventData.results?.winners?.second}
-                        third={eventData.results?.winners?.third}
-                    />
+                    <p>Placements were not recorded.</p>
                 {/if}
 
                 <div class="thank-you-message">
                     <h2>Thank you to everyone for participating</h2>
-                    {#if eventData.results?.description}
-                        <p class="event-description">{eventData.results.description}</p>
+                    {#if snapshot?.results.description}
+                        <p class="event-description">{snapshot.results.description}</p>
                     {/if}
                 </div>
             </section>
 
-            {#if eventData.results?.eliminationBracket}
-                <section class="bracket-section">
-                    <h2 class="section-title">Elimination Bracket</h2>
-                    <div class="bracket-content">
-                        <a 
-                            href={eventData.results.eliminationBracket} 
-                            class="bracket-link"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            View Full Bracket
-                        </a>
-                        <iframe 
-                            title="Elimination bracket"
-                            src={eventData.results.eliminationBracket} 
-                            class="bracket-iframe"
-                            loading="lazy"
-                        ></iframe>
-                    </div>
+            {#if snapshot}
+                <section aria-label="Participation" class="participation">
+                    <h2>Participation</h2>
+                    <p>{snapshot.participation.teamsPlayed} teams played · {snapshot.participation.studentsPlayed} students played · {snapshot.participation.schools.length} schools · {snapshot.participation.statesRepresented} states</p>
+                    <p>{snapshot.participation.teamsRegistered} teams registered · {snapshot.participation.studentsRostered} students rostered</p>
+                    <p>Schools: {snapshot.participation.schools.join(', ')}</p>
+                    <p>States: {snapshot.participation.states.join(', ')}</p>
+                    {#each snapshot.participation.divisionBreakdown as group}
+                        <p>{group.division}: {group.teams} teams · {group.students} students</p>
+                    {/each}
+                </section>
+                {#each snapshot.results.bracketData as division (division.division)}
+                    <Bracket {division} />
+                {/each}
+                {#if snapshot.individualAwards?.length}
+                    <section aria-label="Individual awards">
+                        <h2>Individual awards</h2>
+                        <ul>{#each snapshot.individualAwards as award}
+                            <li>{award.recipient} · {award.team} · {award.division} · {award.scope}{award.category ? ` · ${award.category}` : ''}{award.coAward ? ' · Shared award' : ''}</li>
+                        {/each}</ul>
+                    </section>
+                {/if}
+                <section class="provenance" aria-label="Results provenance">
+                    <h2>About this record</h2>
+                    <p>Computed {snapshot.provenance.computedAt} by {snapshot.provenance.computedBy}. Verified matches only.</p>
+                    <p class="source-reference">Source: {snapshot.provenance.sourceEventLog}</p>
+                    {#if snapshot.provenance.notes}<p>{snapshot.provenance.notes}</p>{/if}
+                    {#if snapshot.provenance.unverifiedYear}<p>Historical participation figures have not been independently verified.</p>{/if}
+                    <a href={`/data/results/${snapshot.eventID}.json`}>Download results JSON</a>
+                </section>
+            {:else if legacy}
+                <section class="provenance" aria-label="Historical record limitations">
+                    <h2>About this historical record</h2>
+                    <p>These placements were preserved from the previous site. Participation totals and match-by-match results have not been independently verified.</p>
+                    <p>The original bracket is available as an external historical source; it is not part of this archived page.</p>
+                    <a href={legacy.bracketUrl} target="_blank" rel="noopener noreferrer">Open historical bracket source</a>
+                    <details><summary>Source details</summary><p>{legacy.provenance.source}</p><p>Revision: {legacy.provenance.revision}</p></details>
                 </section>
             {/if}
         </div>
-    {:else}
-        <div class="error-state">
-            <h2>Event not found</h2>
-            <p>The requested event could not be found or is still active.</p>
-            <a href="/" class="back-link">← Back to Home</a>
-        </div>
-    {/if}
+
 </main>
 
 <style lang="scss">
@@ -272,86 +286,8 @@
         }
     }
 
-    .bracket-section {
-        .bracket-content {
-            text-align: center;
-            
-            .bracket-link {
-                display: inline-flex;
-                align-items: center;
-                gap: $spacing-sm;
-                padding: $spacing-md $spacing-lg;
-                background: $primary;
-                color: white;
-                border-radius: $radius-lg;
-                text-decoration: none;
-                font-weight: 600;
-                font-size: $font-size-lg;
-                margin-bottom: $spacing-xl;
-                transition: all 0.2s ease;
-                
-                &:hover {
-                    background: $primary-dark;
-                    transform: translateY(-2px);
-                    box-shadow: $shadow-md;
-                    text-decoration: none;
-                }
-            }
-            
-            .bracket-iframe {
-                width: 100%;
-                height: 600px;
-                border: 1px solid $border-light;
-                border-radius: $radius-lg;
-                box-shadow: $shadow-md;
-                background: white;
-                
-                @media (max-width: $mobile-width) {
-                    display: none;
-                }
-            }
-        }
-    }
-
-    .error-state {
-        text-align: center;
-        padding: $spacing-3xl;
-        background: $background-light;
-        border-radius: $radius-xl;
-        border: 1px solid $border-light;
-        
-        h2 {
-            font-size: $font-size-3xl;
-            color: $danger;
-            margin-bottom: $spacing-lg;
-        }
-        
-        p {
-            font-size: $font-size-lg;
-            color: $text-secondary;
-            margin-bottom: $spacing-xl;
-        }
-        
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: $spacing-sm;
-            padding: $spacing-md $spacing-lg;
-            background: $primary;
-            color: white;
-            border-radius: $radius-lg;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            
-            &:hover {
-                background: $primary-dark;
-                transform: translateY(-2px);
-                box-shadow: $shadow-md;
-                text-decoration: none;
-            }
-        }
-    }
+    .participation, .provenance { padding: $spacing-lg; border: 1px solid $border-color; border-radius: $radius-lg; }
+    .source-reference { overflow-wrap: anywhere; font-size: $font-size-sm; }
 
     @media (max-width: $mobile-width) {
         .winners-section .division-tabs {
@@ -364,12 +300,6 @@
             }
         }
 
-        .bracket-section {
-            .bracket-content {
-                .bracket-link {
-                    margin-bottom: $spacing-lg;
-                }
-            }
-        }
+
     }
 </style>

@@ -13,3 +13,15 @@ BioBrawl is a competitive biology program by Helix-Ed that engages students thro
 - **Vite** — local development and production builds
 
 Pages live in `src/routes`, reusable UI in `src/lib/components`, and Sanity queries in `src/lib/stores`.
+
+
+## Results archive
+
+Results now prerender from committed JSON, including shared navigation; Sanity is
+used only for FAQ prose. Event and registration facts live in
+`static/data/events.json`. See [the archive handoff](docs/results-archive.md) for
+source limitations, the canonical snapshot format, validation and remaining work.
+
+Run `npm run check`, `npm test`, `npm run build` and `npm run test:offline` before
+opening a PR against **biobrawl**. The offline check proves archive pages build
+without HTTP/TCP access and never publishes its synthetic fixture.
