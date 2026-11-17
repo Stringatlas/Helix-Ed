@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { goto } from "$app/navigation";
     import { browser } from "$app/environment";
     import { currentEvent } from "$lib/stores/stores";
     import type { EventData } from "$lib/types";
@@ -106,13 +105,13 @@
                 </ul>
             </div>
             
-            <button 
+            <a 
                 class="btn-primary" 
-                on:click={() => goto("/register")}
-                aria-label={$currentEvent ? `Register for BioBrawl ${$currentEvent.year}` : "Registration"}
+                href="/register"
+                aria-label="Register for BioBrawl {$currentEvent?.year}"
             >
-                {$currentEvent ? `Register for BioBrawl ${$currentEvent.year}` : "Registration"}
-            </button>
+                Register for BioBrawl {$currentEvent?.year}
+            </a>
         </div>
 
         <button 
@@ -166,7 +165,7 @@
         align-items: center;
         gap: $spacing-xl;
         
-        a {
+        > a:not(.btn-primary) {
             color: $text-color;
             font-weight: 500;
             font-size: $font-size-base;
@@ -301,7 +300,7 @@
                 display: flex;
             }
             
-            a {
+            > a:not(.btn-primary) {
                 font-size: $font-size-lg;
                 padding: $spacing-md 0;
                 text-align: center;

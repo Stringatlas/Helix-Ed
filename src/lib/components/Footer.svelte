@@ -1,4 +1,5 @@
 <script>
+    import { currentEvent } from "$lib/stores/stores";
     import instaIcon from "$lib/icons/instagram.png";
     import fbIcon from "$lib/icons/facebook.png";
     import linkedIcon from "$lib/icons/linkedin.png";
@@ -9,6 +10,8 @@
     
     // Automatically get current year
     const currentYear = new Date().getFullYear();
+
+    $: contactEmail = $currentEvent?.contact?.trim() || "helixed.org@gmail.com";
 </script>
 
 <section>
@@ -28,7 +31,7 @@
 
     <div class="credit">
         <div>
-            <p>Contact: <a href="mailto:helix-ed.org@gmail.com">helix-ed.org@gmail.com</a></p>
+            <p>Contact: <a href="mailto:{contactEmail}">{contactEmail}</a></p>
             <p>&copy; {currentYear} HelixEd. All rights reserved. Website by <a href="https://github.com/Stringatlas">Kevin Zhang</a></p>
         </div>
     </div>
