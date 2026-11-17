@@ -251,7 +251,8 @@
         }
 
         .schedule-note {
-            color: $text-muted;
+            color: $text-color;
+            font-weight: 600;
         }
     }
 
