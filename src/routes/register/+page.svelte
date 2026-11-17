@@ -6,7 +6,7 @@
 
 <div class="register-page">
     <header class="page-header">
-        <h1>Register for BioBrawl {$currentEvent?.eventID}</h1>
+        <h1>{$currentEvent ? `Register for BioBrawl ${$currentEvent.eventID}` : "Registration"}</h1>
         <p class="header-subtitle">Join the ultimate biology competition and showcase your knowledge!</p>
     </header>
     

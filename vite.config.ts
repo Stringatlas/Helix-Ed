@@ -3,6 +3,8 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
 	plugins: [sveltekit()],
+	// `05` §5: committed JSON is both a downloadable asset and build input.
+	server: { fs: { allow: ['static'] } },
 	build: {
 		// Enable minification with esbuild (faster and built-in)
 		minify: 'esbuild',

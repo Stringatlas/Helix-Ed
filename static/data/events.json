@@ -1,0 +1,129 @@
+[
+  {
+    "active": true,
+    "live": false,
+    "year": 2027,
+    "name": "BioBrawl 2027",
+    "date": "January 16, 2027",
+    "time": "8am\u20135pm Pacific time",
+    "location": "Online on Zoom",
+    "description": "Registration fee will be refunded when teams complete both events of the competition. ",
+    "rules": "https://docs.google.com/document/d/1EbQX-dQ5SJpTt72igsA8fKSzeT49DGCCOdABFnmVmKs/edit?usp=sharing",
+    "prizes": {
+      "fifth": "50",
+      "first": "600",
+      "fourth": "100",
+      "second": "400",
+      "third": "200"
+    },
+    "registrationFee": 20,
+    "teamSize": "3-4",
+    "grades": "6-12",
+    "registration": {
+      "closes": "January 9, 2027",
+      "isOpen": true,
+      "link": "https://www.zeffy.com/en-US/ticketing/2027-biobrawl-biology-bowl",
+      "opens": "Now"
+    },
+    "mock": {
+      "date": "January 2, 2027"
+    },
+    "rulesWorkshop": {
+      "date": "January 2, 2027"
+    },
+    "contact": "helix-ed@gmail.com",
+    "eventID": "2027"
+  },
+  {
+    "active": false,
+    "live": false,
+    "year": 2026,
+    "name": "Bio Brawl 2026",
+    "date": "Saturday, January 17, 2026",
+    "time": "8am-5pm PST",
+    "location": "Online on Zoom",
+    "description": "Bio Brawl is a competition where students will be tested on their knowledge of biology.",
+    "rules": "https://docs.google.com/document/d/1r6t3RFkg517unv5tbG49_wNKh-HNO1d3pyyGDwvxCFQ/edit?usp=sharing",
+    "prizes": {
+      "first": "300",
+      "fourth": "50",
+      "second": "200",
+      "third": "100"
+    },
+    "registrationFee": 20,
+    "teamSize": "3-5",
+    "grades": "6-12",
+    "registration": {
+      "closes": "January 10, 2026 12:00AM PST",
+      "isOpen": false,
+      "link": "https://www.zeffy.com/en-US/ticketing/2026-biobrawl-biology-bowl",
+      "opens": "Estimated Sep 2025"
+    },
+    "mock": {
+      "date": "January 3, 2026 8:30-9:30PM PST"
+    },
+    "rulesWorkshop": {
+      "date": "December 21, 2025 and December 27, 2025 at 8:30-9:00PM PST"
+    },
+    "contact": "helix-ed@gmail.com",
+    "eventID": "2026"
+  },
+  {
+    "active": false,
+    "year": 2025,
+    "name": "Bio Brawl 2025",
+    "date": "January 11th, 2025",
+    "time": "8am-5pm PST",
+    "location": "Online on Zoom",
+    "description": "Bio Brawl is a competition where students will be tested on their knowledge of biology.",
+    "rules": "/biobrawl-rules.pdf",
+    "prizes": {
+      "first": "200",
+      "second": "120",
+      "third": "80"
+    },
+    "registrationFee": 20,
+    "teamSize": "3-5",
+    "grades": "6-12",
+    "registration": {
+      "alternativeLink": "https://wj.qq.com/s2/15088554/1af7/",
+      "closes": "January 8th, 2025, 11:59 pm PST",
+      "link": "https://tinyurl.com/BioBrawl-25-BiologyBowl",
+      "opens": "August 15, 2024, 12:00 am PST"
+    },
+    "mock": {
+      "date": "January 4th, 2025"
+    },
+    "contact": "helix-ed@gmail.com",
+    "eventID": "2025"
+  },
+  {
+    "year": 2024,
+    "name": "Bio Brawl 2024",
+    "date": "May 18, 2024",
+    "time": "8am",
+    "location": "Virtual",
+    "description": "Bio Brawl is a competition where students will be tested on their knowledge of biology.",
+    "rules": "/biobrawl-rules.pdf",
+    "prizes": {
+      "first": "200",
+      "second": "120",
+      "third": "80"
+    },
+    "registrationFee": 20,
+    "teamSize": "3-5",
+    "grades": "6-12",
+    "registration": {
+      "alternativeLink": "https://wj.qq.com/s2/15088554/1af7/",
+      "closes": "January 8th, 2024, 11:59 pm PST",
+      "link": "https://tinyurl.com/BioBrawl-25-BiologyBowl",
+      "opens": "August 15, 2023, 12:00 am PST"
+    },
+    "mock": {
+      "date": "January 4th, 2024"
+    },
+    "contact": "helix-ed@gmail.com",
+    "eventID": "2024",
+    "active": false
+  }
+]

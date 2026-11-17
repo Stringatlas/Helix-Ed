@@ -1,0 +1,611 @@
+{
+  "eventID": "2027",
+  "year": 2027,
+  "name": "BioBrawl 2027 \u2014 synthetic example",
+  "date": "2027-01-16",
+  "location": "Zoom",
+  "snapshotVersion": 1,
+  "results": {
+    "divisions": [
+      {
+        "name": "Overall",
+        "places": [
+          {
+            "rank": 1,
+            "team": "Atlas"
+          },
+          {
+            "rank": 2,
+            "team": "Cedar"
+          },
+          {
+            "rank": 3,
+            "team": "Dune"
+          },
+          {
+            "rank": 4,
+            "team": "Birch"
+          }
+        ]
+      }
+    ],
+    "bracketData": [
+      {
+        "division": "Overall",
+        "provisional": false,
+        "matches": [
+          {
+            "id": "DE1a",
+            "round": 1,
+            "side": "winners",
+            "label": "Winners round 1",
+            "ifNecessary": false,
+            "topSource": {
+              "kind": "SEED",
+              "n": 1
+            },
+            "bottomSource": {
+              "kind": "SEED",
+              "n": 8
+            },
+            "seedTop": 1,
+            "seedBottom": 8,
+            "teamTop": {
+              "id": "atlas",
+              "name": "Atlas"
+            },
+            "teamBottom": {
+              "id": "harbor",
+              "name": "Harbor"
+            },
+            "topKnown": true,
+            "bottomKnown": true,
+            "winner": {
+              "id": "atlas",
+              "name": "Atlas"
+            },
+            "status": "final",
+            "verified": true,
+            "scoreTop": 40,
+            "scoreBottom": 20
+          },
+          {
+            "id": "DE1b",
+            "round": 1,
+            "side": "winners",
+            "label": "Winners round 1",
+            "ifNecessary": false,
+            "topSource": {
+              "kind": "SEED",
+              "n": 4
+            },
+            "bottomSource": {
+              "kind": "SEED",
+              "n": 5
+            },
+            "seedTop": 4,
+            "seedBottom": 5,
+            "teamTop": {
+              "id": "dune",
+              "name": "Dune"
+            },
+            "teamBottom": {
+              "id": "elm",
+              "name": "Elm"
+            },
+            "topKnown": true,
+            "bottomKnown": true,
+            "winner": {
+              "id": "dune",
+              "name": "Dune"
+            },
+            "status": "final",
+            "verified": true,
+            "scoreTop": 40,
+            "scoreBottom": 20
+          },
+          {
+            "id": "DE1c",
+            "round": 1,
+            "side": "winners",
+            "label": "Winners round 1",
+            "ifNecessary": false,
+            "topSource": {
+              "kind": "SEED",
+              "n": 3
+            },
+            "bottomSource": {
+              "kind": "SEED",
+              "n": 6
+            },
+            "seedTop": 3,
+            "seedBottom": 6,
+            "teamTop": {
+              "id": "cedar",
+              "name": "Cedar"
+            },
+            "teamBottom": {
+              "id": "fern",
+              "name": "Fern"
+            },
+            "topKnown": true,
+            "bottomKnown": true,
+            "winner": {
+              "id": "cedar",
+              "name": "Cedar"
+            },
+            "status": "final",
+            "verified": true,
+            "scoreTop": 40,
+            "scoreBottom": 20
+          },
+          {
+            "id": "DE1d",
+            "round": 1,
+            "side": "winners",
+            "label": "Winners round 1",
+            "ifNecessary": false,
+            "topSource": {
+              "kind": "SEED",
+              "n": 2
+            },
+            "bottomSource": {
+              "kind": "SEED",
+              "n": 7
+            },
+            "seedTop": 2,
+            "seedBottom": 7,
+            "teamTop": {
+              "id": "birch",
+              "name": "Birch"
+            },
+            "teamBottom": {
+              "id": "grove",
+              "name": "Grove"
+            },
+            "topKnown": true,
+            "bottomKnown": true,
+            "winner": {
+              "id": "birch",
+              "name": "Birch"
+            },
+            "status": "final",
+            "verified": true,
+            "scoreTop": 40,
+            "scoreBottom": 20
+          },
+          {
+            "id": "DE2a",
+            "round": 2,
+            "side": "winners",
+            "label": "Winners semifinal",
+            "ifNecessary": false,
+            "topSource": {
+              "kind": "WINNER",
+              "slot": "DE1a"
+            },
+            "bottomSource": {
+              "kind": "WINNER",
+              "slot": "DE1b"
+            },
+            "seedTop": 1,
+            "seedBottom": 4,
+            "teamTop": {
+              "id": "atlas",
+              "name": "Atlas"
+            },
+            "teamBottom": {
+              "id": "dune",
+              "name": "Dune"
+            },
+            "topKnown": true,
+            "bottomKnown": true,
+            "winner": {
+              "id": "atlas",
+              "name": "Atlas"
+            },
+            "status": "final",
+            "verified": true,
+            "scoreTop": 40,
+            "scoreBottom": 20
+          },
+          {
+            "id": "DE2b",
+            "round": 2,
+            "side": "winners",
+            "label": "Winners semifinal",
+            "ifNecessary": false,
+            "topSource": {
+              "kind": "WINNER",
+              "slot": "DE1c"
+            },
+            "bottomSource": {
+              "kind": "WINNER",
+              "slot": "DE1d"
+            },
+            "seedTop": 3,
+            "seedBottom": 2,
+            "teamTop": {
+              "id": "cedar",
+              "name": "Cedar"
+            },
+            "teamBottom": {
+              "id": "birch",
+              "name": "Birch"
+            },
+            "topKnown": true,
+            "bottomKnown": true,
+            "winner": {
+              "id": "cedar",
+              "name": "Cedar"
+            },
+            "status": "final",
+            "verified": true,
+            "scoreTop": 40,
+            "scoreBottom": 20
+          },
+          {
+            "id": "DE2c",
+            "round": 2,
+            "side": "losers",
+            "label": "Losers round 1",
+            "ifNecessary": false,
+            "topSource": {
+              "kind": "LOSER",
+              "slot": "DE1a"
+            },
+            "bottomSource": {
+              "kind": "LOSER",
+              "slot": "DE1b"
+            },
+            "seedTop": 8,
+            "seedBottom": 5,
+            "teamTop": {
+              "id": "harbor",
+              "name": "Harbor"
+            },
+            "teamBottom": {
+              "id": "elm",
+              "name": "Elm"
+            },
+            "topKnown": true,
+            "bottomKnown": true,
+            "winner": {
+              "id": "harbor",
+              "name": "Harbor"
+            },
+            "status": "final",
+            "verified": true,
+            "scoreTop": 40,
+            "scoreBottom": 20
+          },
+          {
+            "id": "DE2d",
+            "round": 2,
+            "side": "losers",
+            "label": "Losers round 1",
+            "ifNecessary": false,
+            "topSource": {
+              "kind": "LOSER",
+              "slot": "DE1c"
+            },
+            "bottomSource": {
+              "kind": "LOSER",
+              "slot": "DE1d"
+            },
+            "seedTop": 6,
+            "seedBottom": 7,
+            "teamTop": {
+              "id": "fern",
+              "name": "Fern"
+            },
+            "teamBottom": {
+              "id": "grove",
+              "name": "Grove"
+            },
+            "topKnown": true,
+            "bottomKnown": true,
+            "winner": {
+              "id": "fern",
+              "name": "Fern"
+            },
+            "status": "final",
+            "verified": true,
+            "scoreTop": 40,
+            "scoreBottom": 20
+          },
+          {
+            "id": "DE3a",
+            "round": 3,
+            "side": "losers",
+            "label": "Losers round 2",
+            "ifNecessary": false,
+            "topSource": {
+              "kind": "LOSER",
+              "slot": "DE2a"
+            },
+            "bottomSource": {
+              "kind": "WINNER",
+              "slot": "DE2c"
+            },
+            "seedTop": 4,
+            "seedBottom": 8,
+            "teamTop": {
+              "id": "dune",
+              "name": "Dune"
+            },
+            "teamBottom": {
+              "id": "harbor",
+              "name": "Harbor"
+            },
+            "topKnown": true,
+            "bottomKnown": true,
+            "winner": {
+              "id": "dune",
+              "name": "Dune"
+            },
+            "status": "final",
+            "verified": true,
+            "scoreTop": 40,
+            "scoreBottom": 20
+          },
+          {
+            "id": "DE3b",
+            "round": 3,
+            "side": "losers",
+            "label": "Losers round 2",
+            "ifNecessary": false,
+            "topSource": {
+              "kind": "LOSER",
+              "slot": "DE2b"
+            },
+            "bottomSource": {
+              "kind": "WINNER",
+              "slot": "DE2d"
+            },
+            "seedTop": 2,
+            "seedBottom": 6,
+            "teamTop": {
+              "id": "birch",
+              "name": "Birch"
+            },
+            "teamBottom": {
+              "id": "fern",
+              "name": "Fern"
+            },
+            "topKnown": true,
+            "bottomKnown": true,
+            "winner": {
+              "id": "birch",
+              "name": "Birch"
+            },
+            "status": "final",
+            "verified": true,
+            "scoreTop": 40,
+            "scoreBottom": 20
+          },
+          {
+            "id": "DE4a",
+            "round": 4,
+            "side": "winners",
+            "label": "Winners final",
+            "ifNecessary": false,
+            "topSource": {
+              "kind": "WINNER",
+              "slot": "DE2a"
+            },
+            "bottomSource": {
+              "kind": "WINNER",
+              "slot": "DE2b"
+            },
+            "seedTop": 1,
+            "seedBottom": 3,
+            "teamTop": {
+              "id": "atlas",
+              "name": "Atlas"
+            },
+            "teamBottom": {
+              "id": "cedar",
+              "name": "Cedar"
+            },
+            "topKnown": true,
+            "bottomKnown": true,
+            "winner": {
+              "id": "atlas",
+              "name": "Atlas"
+            },
+            "status": "final",
+            "verified": true,
+            "scoreTop": 40,
+            "scoreBottom": 20
+          },
+          {
+            "id": "DE4b",
+            "round": 4,
+            "side": "losers",
+            "label": "Losers round 3",
+            "ifNecessary": false,
+            "topSource": {
+              "kind": "WINNER",
+              "slot": "DE3a"
+            },
+            "bottomSource": {
+              "kind": "WINNER",
+              "slot": "DE3b"
+            },
+            "seedTop": 4,
+            "seedBottom": 2,
+            "teamTop": {
+              "id": "dune",
+              "name": "Dune"
+            },
+            "teamBottom": {
+              "id": "birch",
+              "name": "Birch"
+            },
+            "topKnown": true,
+            "bottomKnown": true,
+            "winner": {
+              "id": "dune",
+              "name": "Dune"
+            },
+            "status": "final",
+            "verified": true,
+            "scoreTop": 40,
+            "scoreBottom": 20
+          },
+          {
+            "id": "DE5",
+            "round": 5,
+            "side": "losers",
+            "label": "Losers final",
+            "ifNecessary": false,
+            "topSource": {
+              "kind": "LOSER",
+              "slot": "DE4a"
+            },
+            "bottomSource": {
+              "kind": "WINNER",
+              "slot": "DE4b"
+            },
+            "seedTop": 3,
+            "seedBottom": 4,
+            "teamTop": {
+              "id": "cedar",
+              "name": "Cedar"
+            },
+            "teamBottom": {
+              "id": "dune",
+              "name": "Dune"
+            },
+            "topKnown": true,
+            "bottomKnown": true,
+            "winner": {
+              "id": "cedar",
+              "name": "Cedar"
+            },
+            "status": "final",
+            "verified": true,
+            "scoreTop": 40,
+            "scoreBottom": 20
+          },
+          {
+            "id": "DE6",
+            "round": 6,
+            "side": "final",
+            "label": "Final",
+            "ifNecessary": false,
+            "topSource": {
+              "kind": "WINNER",
+              "slot": "DE4a"
+            },
+            "bottomSource": {
+              "kind": "WINNER",
+              "slot": "DE5"
+            },
+            "seedTop": 1,
+            "seedBottom": 3,
+            "teamTop": {
+              "id": "atlas",
+              "name": "Atlas"
+            },
+            "teamBottom": {
+              "id": "cedar",
+              "name": "Cedar"
+            },
+            "topKnown": true,
+            "bottomKnown": true,
+            "winner": {
+              "id": "atlas",
+              "name": "Atlas"
+            },
+            "status": "final",
+            "verified": true,
+            "scoreTop": 40,
+            "scoreBottom": 20
+          },
+          {
+            "id": "DE7",
+            "round": 7,
+            "side": "final",
+            "label": "Final, if necessary",
+            "ifNecessary": true,
+            "topSource": {
+              "kind": "WINNER",
+              "slot": "DE5"
+            },
+            "bottomSource": {
+              "kind": "WINNER",
+              "slot": "DE4a"
+            },
+            "seedTop": 3,
+            "seedBottom": 1,
+            "teamTop": {
+              "id": "cedar",
+              "name": "Cedar"
+            },
+            "teamBottom": {
+              "id": "atlas",
+              "name": "Atlas"
+            },
+            "topKnown": true,
+            "bottomKnown": true,
+            "winner": null,
+            "status": "not_needed",
+            "verified": false
+          }
+        ],
+        "champion": {
+          "id": "atlas",
+          "name": "Atlas"
+        },
+        "runnerUp": {
+          "id": "cedar",
+          "name": "Cedar"
+        },
+        "finalUnresolved": false,
+        "coFinalists": []
+      }
+    ]
+  },
+  "participation": {
+    "teamsRegistered": 8,
+    "teamsPlayed": 8,
+    "studentsRostered": 40,
+    "studentsPlayed": 32,
+    "schools": [
+      "Atlas Academy",
+      "Birch Academy",
+      "Cedar Academy",
+      "Dune Academy",
+      "Elm Academy",
+      "Fern Academy",
+      "Grove Academy",
+      "Harbor Academy"
+    ],
+    "states": [
+      "CA",
+      "MD"
+    ],
+    "statesRepresented": 2,
+    "divisionBreakdown": [
+      {
+        "division": "High School",
+        "teams": 6,
+        "students": 24
+      },
+      {
+        "division": "Middle School",
+        "teams": 2,
+        "students": 8
+      }
+    ]
+  },
+  "provenance": {
+    "computedAt": "2027-01-17T01:00:00Z",
+    "computedBy": "biobrawl-scoring snapshot v1",
+    "sourceEventLog": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "verifiedMatchesOnly": true,
+    "notes": "Hand-written synthetic C3 fixture; not event results."
+  }
+}

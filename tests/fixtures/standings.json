@@ -1,0 +1,153 @@
+{
+  "eventID": "2027",
+  "phase": "complete",
+  "generatedAt": "2027-01-17T01:00:00Z",
+  "divisions": [
+    {
+      "name": "Overall",
+      "pools": [
+        {
+          "pool": null,
+          "standings": [
+            {
+              "rank": 1,
+              "team": {
+                "id": "atlas",
+                "name": "Atlas"
+              },
+              "matchesPlayed": 1,
+              "wins": 1,
+              "ties": 0,
+              "losses": 0,
+              "pointsFor": 40,
+              "pointsAgainst": 0,
+              "rankingPoints": 90,
+              "provisional": false,
+              "decidedBy": null,
+              "unresolved": null
+            },
+            {
+              "rank": 2,
+              "team": {
+                "id": "birch",
+                "name": "Birch"
+              },
+              "matchesPlayed": 1,
+              "wins": 1,
+              "ties": 0,
+              "losses": 0,
+              "pointsFor": 30,
+              "pointsAgainst": 0,
+              "rankingPoints": 80,
+              "provisional": false,
+              "decidedBy": null,
+              "unresolved": null
+            },
+            {
+              "rank": 3,
+              "team": {
+                "id": "cedar",
+                "name": "Cedar"
+              },
+              "matchesPlayed": 1,
+              "wins": 1,
+              "ties": 0,
+              "losses": 0,
+              "pointsFor": 20,
+              "pointsAgainst": 0,
+              "rankingPoints": 70,
+              "provisional": false,
+              "decidedBy": null,
+              "unresolved": null
+            },
+            {
+              "rank": 4,
+              "team": {
+                "id": "dune",
+                "name": "Dune"
+              },
+              "matchesPlayed": 1,
+              "wins": 1,
+              "ties": 0,
+              "losses": 0,
+              "pointsFor": 10,
+              "pointsAgainst": 0,
+              "rankingPoints": 60,
+              "provisional": false,
+              "decidedBy": null,
+              "unresolved": null
+            },
+            {
+              "rank": 5,
+              "team": {
+                "id": "elm",
+                "name": "Elm"
+              },
+              "matchesPlayed": 1,
+              "wins": 0,
+              "ties": 0,
+              "losses": 1,
+              "pointsFor": 0,
+              "pointsAgainst": 10,
+              "rankingPoints": 40,
+              "provisional": false,
+              "decidedBy": null,
+              "unresolved": null
+            },
+            {
+              "rank": 6,
+              "team": {
+                "id": "fern",
+                "name": "Fern"
+              },
+              "matchesPlayed": 1,
+              "wins": 0,
+              "ties": 0,
+              "losses": 1,
+              "pointsFor": 0,
+              "pointsAgainst": 20,
+              "rankingPoints": 30,
+              "provisional": false,
+              "decidedBy": null,
+              "unresolved": null
+            },
+            {
+              "rank": 7,
+              "team": {
+                "id": "grove",
+                "name": "Grove"
+              },
+              "matchesPlayed": 1,
+              "wins": 0,
+              "ties": 0,
+              "losses": 1,
+              "pointsFor": 0,
+              "pointsAgainst": 30,
+              "rankingPoints": 20,
+              "provisional": false,
+              "decidedBy": null,
+              "unresolved": null
+            },
+            {
+              "rank": 8,
+              "team": {
+                "id": "harbor",
+                "name": "Harbor"
+              },
+              "matchesPlayed": 1,
+              "wins": 0,
+              "ties": 0,
+              "losses": 1,
+              "pointsFor": 0,
+              "pointsAgainst": 40,
+              "rankingPoints": 10,
+              "provisional": false,
+              "decidedBy": null,
+              "unresolved": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "archiveVersion": 1,
+  "eventID": "2024",
+  "year": 2024,
+  "name": "Bio Brawl 2024",
+  "date": "May 18, 2024",
+  "location": "Virtual",
+  "divisions": [
+    {
+      "name": "Overall",
+      "places": [
+        {
+          "rank": 1,
+          "team": "Thiamine",
+          "award": "200"
+        },
+        {
+          "rank": 2,
+          "team": "Riboflavin",
+          "award": "120"
+        },
+        {
+          "rank": 3,
+          "team": "Niacin",
+          "award": "80"
+        }
+      ]
+    }
+  ],
+  "bracketUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vRvvmbTEtXY2x6ejj4ogYVeSsv5X08QAE1ENSJiqJXLern89rG4BEH28Q_45Iul_0aXMe9pHJe_3-8z/pubhtml?gid=0&single=true&widget=true&headers=false",
+  "provenance": {
+    "source": "Published Sanity event j0eueaqb/production/38ERm2TPtBwiky6uAym4oP",
+    "revision": "QFmKvoHGPWm0rN2MhA0F1j",
+    "sourceUpdatedAt": "2026-08-24T03:34:50Z",
+    "retrievedAt": "2026-10-18T20:21:53Z",
+    "unverifiedYear": true,
+    "notes": "Published placements preserved from the legacy site. Match logs, structured bracket and reconciled participation evidence are unavailable; no verified-event or participation claim is made."
+  }
+}

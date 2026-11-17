@@ -1,20 +1,16 @@
 <script lang="ts">
     import { browser } from "$app/environment";
-    import { events, currentEvent } from "$lib/stores/stores";
+    import { currentEvent } from "$lib/stores/stores";
+    import type { EventData } from "$lib/types";
+    export let events: (EventData & { hasResults: boolean })[] = [];
     import { onMount, onDestroy } from "svelte";
 
-    let bioBrawlLink: string = "";
-    let homePage: string = "";
     let isDropdownOpen = false;
     let isMobile = false;
     let mobileMenuOpen = false;
     let mediaQuery: MediaQueryList | null = null;
     let mediaQueryHandler: ((e: MediaQueryListEvent) => void) | null = null;
 
-    if (browser) {
-        bioBrawlLink = window.location.hostname.includes("localhost") ? "/bio-brawl" : "https://biobrawl.helix-ed.org";
-        homePage = window.location.hostname.replace(/^biobrawl\./, "");
-    }
 
     onMount(() => {
         if (browser) {
@@ -67,15 +63,16 @@
 <nav aria-label="Main navigation">
     <div class="nav-container">
         <div class="nav-brand">
-            <a href={"https://www." + homePage} aria-label="HelixEd home">
+            <a href="https://www.helix-ed.org" aria-label="HelixEd home">
                 <img src="/logo.png" alt="HelixEd logo" />
             </a>
         </div>
         
-        <div class={"nav-links" + (mobileMenuOpen ? " active" : "")} role="menubar"> 
-            <a href={"https://www." + homePage} role="menuitem">HelixEd</a>
+        <div id="nav-links" class={"nav-links" + (mobileMenuOpen ? " active" : "")} role="menubar">
+            <a href="https://www.helix-ed.org" role="menuitem">HelixEd</a>
             <a href="/" role="menuitem">Home</a>
             <a href="/faq" role="menuitem">Competition FAQ</a>
+            <a href="/live" role="menuitem">Live results</a>
             
             <div class="dropdown" role="group" on:mouseleave={closeDropdown}>
                 <button 
@@ -100,7 +97,7 @@
                     role="menu"
                     aria-labelledby="past-competitions"
                 > 
-                    {#each $events.filter(e => !e.active).sort((a, b) => b.year - a.year) as event}
+                    {#each events.filter(e => e.hasResults) as event}
                         <li role="none">
                             <a href={`/results/${event.eventID}`} role="menuitem">BioBrawl {event.year}</a>
                         </li>
