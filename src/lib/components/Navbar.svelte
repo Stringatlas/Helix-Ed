@@ -168,7 +168,7 @@
         align-items: center;
         gap: $spacing-xl;
         
-        a:not(.btn-primary) {
+        > a:not(.btn-primary) {
             color: $text-color;
             font-weight: 500;
             font-size: $font-size-base;
@@ -303,7 +303,7 @@
                 display: flex;
             }
             
-            a:not(.btn-primary) {
+            > a:not(.btn-primary) {
                 font-size: $font-size-lg;
                 padding: $spacing-md 0;
                 text-align: center;
